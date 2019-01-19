@@ -1,12 +1,10 @@
-package org.usfirst.frc.team68.robot;
+package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team68.robot.commands.*;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 

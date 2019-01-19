@@ -1,9 +1,9 @@
-package org.usfirst.frc.team68.robot.commands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team68.robot.Robot;
+import frc.robot.Robot;
 
 
 public class DriveWithXboxJoysticks extends Command {
@@ -53,5 +53,3 @@ public class DriveWithXboxJoysticks extends Command {
 	protected void interrupted() {
 	}
 }
-
-
