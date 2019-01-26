@@ -1,21 +1,23 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.cscore.UsbCamera;
+import frc.robot.subsystems.DriveTrain;
 
 /*import org.usfirst.frc.team68.robot.auto.RightAutoStartCommand; */
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 	
 	public static RobotMap robotMap;
-
+	public static DriveTrain driveTrain;
 	public static OI oi;
+
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
@@ -34,7 +36,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// The RobotMap class should be the first to instantiate
 		robotMap = RobotMap.getRobotMap();
-
+		driveTrain = DriveTrain.getDriveTrain();
 		// Create a single instance of each Robot subsystem here
 
 
@@ -51,14 +53,14 @@ public class Robot extends IterativeRobot {
 	    //Choosing strategy
 
 
-	    stratChooser = new SendableChooser<>();
-	    stratChooser.addObject("SC/SW", "SC/SW");
-	    stratChooser.addObject("SW", "SW");
-	    stratChooser.addObject("SC/SC", "SC/SC");
-	    stratChooser.addObject("SC", "SC");
+	   // stratChooser = new SendableChooser<>();
+	   // stratChooser.addObject("SC/SW", "SC/SW");
+	   // stratChooser.addObject("SW", "SW");
+	   // stratChooser.addObject("SC/SC", "SC/SC");
+	  //  stratChooser.addObject("SC", "SC");
 	    
-	    SmartDashboard.putData("Autonomous", autoChooser);
-	    SmartDashboard.putData("Strat Chooser", stratChooser);
+	   // SmartDashboard.putData("Autonomous", autoChooser);
+	   // SmartDashboard.putData("Strat Chooser", stratChooser);
 		oi = OI.getOI();
 	}
 
