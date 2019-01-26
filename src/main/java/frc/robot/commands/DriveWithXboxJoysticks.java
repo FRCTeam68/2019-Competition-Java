@@ -1,20 +1,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Robot;
 
 
 public class DriveWithXboxJoysticks extends Command {
 	
-	boolean isFinished = false;
-	private double speedLeft;
-	private double speedRight;
-	
+	boolean isFinished = false;	
 	
 	public DriveWithXboxJoysticks() {
 		
+		requires(Robot.driveTrain);
 	}
 
 	@Override
@@ -23,21 +21,14 @@ public class DriveWithXboxJoysticks extends Command {
 
 	@Override
 	protected void execute() {
-
-/*   		SmartDashboard.putNumber("Yaw: ", Robot.driveTrain.getGyroYaw());
-   		SmartDashboard.putNumber("Pitch: ", Robot.driveTrain.getGyroPitch());
-   		SmartDashboard.putNumber("Roll: ", Robot.driveTrain.getGyroRoll());
-*/
-   		
-/*		speedLeft = Robot.driveTrain.getDriveLeftSpeed();
-		SmartDashboard.putNumber("Drive Left RPM Chart: ", speedLeft);
-		SmartDashboard.putNumber("Drive Left RPM: ", speedLeft);
+		if (Math.abs(Robot.lift.getPosition()) > 50000){
+			Robot.driveTrain.tankDrive(Robot.oi.getLeftXboxJoystickValue() * .75, Robot.oi.getRightXboxJoystickValue() * .75);
+		}
 		
-		speedRight = Robot.driveTrain.getDriveRightSpeed();
-		SmartDashboard.putNumber("Drive Right RPM Chart: ", speedRight);
-		SmartDashboard.putNumber("Drive Right RPM: ", speedRight);
-*/
-
+		else {
+			Robot.driveTrain.tankDrive(Robot.oi.getLeftXboxJoystickValue(), Robot.oi.getRightXboxJoystickValue());
+		}
+   		
 	}
 
 	@Override
@@ -53,3 +44,5 @@ public class DriveWithXboxJoysticks extends Command {
 	protected void interrupted() {
 	}
 }
+
+

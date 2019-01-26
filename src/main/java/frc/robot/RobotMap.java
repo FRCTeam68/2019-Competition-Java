@@ -71,7 +71,7 @@ public class RobotMap {
     public static final double DRIVETRAIN_RIGHT_PID_D = 10.0;
     
     // ENDGAME
-    public static final int HOOK_MOTOR_1 = 2;
+    public static final int HOOK_MOTOR_1 = 4;
     public static final int HOOK_MOTOR_2 = 3;
 	public static final int WINCH_MOTOR_1 = 6;
 	public static final int WINCH_MOTOR_2 = 7;
@@ -93,6 +93,10 @@ public class RobotMap {
 	
 	public static final int HOOK_LIMIT_SWITCH_A = 1;
 	public static final int HOOK_LIMIT_SWITCH_B = 2;
+	
+	public static final int HOOK_SENSOR_A = 2;
+	public static final int HOOK_SENSOR_B = 3;
+
 
 
     
@@ -101,10 +105,21 @@ public class RobotMap {
 	public static final double LIFT_SPEED_UP = 0.75;
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-	public static final double LIFT_NORMAL_SCALE = -72500.0;
-	public static final double LIFT_HIGH_SCALE = -93000.0;
-	public static final double LIFT_NORMAL_SWITCH = -29000.0;
-	public static final double LIFT_GROUND = -1750.0;
+	public static final double LIFT_NORMAL_SCALE = -70750.0;
+	//public static final double LIFT_NORMAL_SCALE = -73500.0;
+	public static final double LIFT_HIGH_SCALE = -91250.0;
+	//public static final double LIFT_HIGH_SCALE = -94000.0;
+
+	//public static final double LIFT_MAX_SCALE = -105500.0;
+	public static final double LIFT_MAX_SCALE = -102750.0;
+
+	public static final double LIFT_NORMAL_SWITCH = -30000.0;
+
+	
+	// MWE - Set ground level back to zero since the inner wheels on
+	// the intake have been removed.
+	// public static final double LIFT_GROUND = -3750.0;
+	public static final double LIFT_GROUND = 0.00;
 	
 	//public static final int LIFT_LIMIT_SWITCH_UP = 2;
 	public static final int LIFT_LIMIT_SWITCH_DOWN = 3;
@@ -124,12 +139,60 @@ public class RobotMap {
     public static final int INTAKE_MOTOR_A = 0;
     public static final int INTAKE_MOTOR_B = 1;
     public static final double INTAKE_A_SPEED_FORWARD = 1;
-    public static final double INTAKE_A_SPEED_REVERSE = -.45;
-    public static final double INTAKE_B_SPEED_FORWARD = -.9;
-    public static final double INTAKE_B_SPEED_REVERSE = .45;
+    public static final double INTAKE_A_SPEED_REVERSE = -.4;
+    public static final double INTAKE_B_SPEED_FORWARD = -1.0;
+    public static final double INTAKE_B_SPEED_REVERSE = .4;
     public static final double INTAKE_SPEED_STOP = 0;
     public static final int INTAKE_LIMIT_SWITCH = 0;
     
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
+    
+    //Paths to the CSV files for the paths (Do not touch)
+    
+    public static final String CenterLeftL = "/home/lvuser/paths/CenterLeft/CenterLeft_left_detailed.csv";
+    public static final String CenterLeftR = "/home/lvuser/paths/CenterLeft/CenterLeft_right_detailed.csv";
+    
+    public static final String CenterRightL = "/home/lvuser/paths/CenterRight/CenterRight_left_detailed.csv";
+    public static final String CenterRightR = "/home/lvuser/paths/CenterRight/CenterRight_right_detailed.csv";
+    
+    //Left Switch
+    public static final String LeftSwitchL = "/home/lvuser/paths/LeftSwitch/LeftSwitch_left_detailed.csv";
+    public static final String LeftSwitchR = "/home/lvuser/paths/LeftSwitch/LeftSwitch_right_detailed.csv";
+    
+    //Right Switch
+    public static final String RightSwitchL = "/home/lvuser/paths/RightSwitch/RightSwitch_left_detailed.csv";
+    public static final String RightSwitchR = "/home/lvuser/paths/RightSwitch/RightSwitch_right_detailed.csv";
+    
+    //Drive Straight
+    public static final String DriveStraightL = "/home/lvuser/paths/DriveStraight/DriveStraight_left_detailed.csv";
+    public static final String DriveStraightR= "/home/lvuser/paths/DriveStraight/DriveStraight_right_detailed.csv";
+    
+    //Left Scale
+    public static final String LeftScaleLeft= "/home/lvuser/paths/LeftScale/LeftScale_left_detailed.csv";
+    public static final String LeftScaleRight= "/home/lvuser/paths/LeftScale/LeftScale_right_detailed.csv";
+        
+    //Right Scale
+    public static final String RightScaleLeft= "/home/lvuser/paths/RightScale/RightScale_left_detailed.csv";
+    public static final String RightScaleRight= "/home/lvuser/paths/RightScale/RightScale_right_detailed.csv";
+
+    public static final String RightSideCrossScaleLeft = "/home/lvuser/paths/RightSideCrossScale/RightSideCrossScale_left_detailed.csv";
+    public static final String RightSideCrossScaleRight = "/home/lvuser/paths/RightSideCrossScale/RightSideCrossScale_right_detailed.csv";
+
+    public static final String LeftSideCrossScaleLeft = "/home/lvuser/paths/LeftSideCrossScale/LeftSideCrossScale_left_detailed.csv";
+    public static final String LeftSideCrossScaleRight = "/home/lvuser/paths/LeftSideCrossScale/LeftSideCrossScale_right_detailed.csv";
+    
+    //NavX
+    //rotate to angle
+  	public static double rotateToAngleHiEnd = 10;
+  	public static double rotateToAngleLoEnd = 10;
+  	
+	public static double kpTurn = 0.01;
+
+
+
+    
+    
+    
+    
 }
