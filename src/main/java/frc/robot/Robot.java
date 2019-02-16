@@ -2,26 +2,40 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
+import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.cscore.UsbCamera;
 
 /*import org.usfirst.frc.team68.robot.auto.RightAutoStartCommand; */
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 	
 	public static RobotMap robotMap;
 
+	public static Wrist wrist;
+
 	public static OI oi;
+
+	public static DriveTrain driveTrain;
+
+	public static Lift lift;
+
+	public static Intake intake;
+
+	public static UsbCamera camera;
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
 
-
-
+	
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser;
 	SendableChooser<String> stratChooser;
@@ -36,11 +50,10 @@ public class Robot extends IterativeRobot {
 		robotMap = RobotMap.getRobotMap();
 
 		// Create a single instance of each Robot subsystem here
+		
 
-
-		//camera = USBCamera.getCamera();
-		/*UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setResolution(640, 480);*/
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+        camera.setResolution(640, 480);
         
 
 		// The OI class should be the last to be instantiated
@@ -146,6 +159,7 @@ public class Robot extends IterativeRobot {
 
 
 	}
+
 
 	/**
 	 * This function is called periodically during test mode

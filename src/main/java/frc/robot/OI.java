@@ -3,8 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.AutoLift;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -53,6 +52,28 @@ public class OI {
 		
 		xboxDrive = new XboxController(RobotMap.XBOX_DRIVE);	
 		
+		//LIFT
+		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
+		xboxManipulateA.whileHeld(new AutoLift (RobotMap.LIFT_GROUND));
+
+		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
+		xboxManipulateB.whileHeld(new AutoLift (RobotMap.LIFT_BALL1));
+
+		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
+		xboxManipulateX.whileHeld(new AutoLift (RobotMap.LIFT_BALL2));
+
+		xboxManipulateY = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_Y);
+		xboxManipulateY.whileHeld(new AutoLift (RobotMap.LIFT_BALL3));
+
+		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
+		xboxManipulateRB.whileHeld(new AutoLift (RobotMap.LIFT_HATCH1));
+
+		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
+		xboxManipulateLB.whileHeld(new AutoLift (RobotMap.LIFT_HATCH2));
+
+		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
+		xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
+
 
 
 		xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_BS);
@@ -67,6 +88,7 @@ public class OI {
 	
 	// Custom user defined methods should go here
 	
+
 	// Drivetrain Tank Drive Left 
 	public double getLeftXboxJoystickValue() {
 		double leftAxis;
@@ -93,6 +115,14 @@ public class OI {
 		// Allow for up to 10% of joystick noise
 		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
     	return leftAxis;
+	}
+
+	public double getRightXboxManipulatorJoystick() {
+		double rightAxis;
+		rightAxis = xboxManipulate.getY(Hand.kLeft);
+		// Allow for up to 10% of joystick noise
+		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
+    	return rightAxis;
 	}
 	
 	//Intake In

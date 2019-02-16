@@ -69,30 +69,6 @@ public class RobotMap {
     public static final double DRIVETRAIN_RIGHT_PID_P = 1.0;
     public static final double DRIVETRAIN_RIGHT_PID_I = 0.0;
     public static final double DRIVETRAIN_RIGHT_PID_D = 10.0;
-    
-    // ENDGAME
-    public static final int HOOK_MOTOR_1 = 2;
-    public static final int HOOK_MOTOR_2 = 3;
-	public static final int WINCH_MOTOR_1 = 6;
-	public static final int WINCH_MOTOR_2 = 7;
-	
-	public static final double HOOK_MOTOR_1_FORWARDS = -1.0;
-	public static final double HOOK_MOTOR_1_BACKWARDS = 1.0;
-	public static final double HOOK_MOTOR_2_FORWARDS = -1.0;
-	public static final double HOOK_MOTOR_2_BACKWARDS = 1.0;
-	public static final double HOOK_MOTOR_1_STOP = 0.0;
-	public static final double HOOK_MOTOR_1_PITSPEED_FORWARDS = -0.1;
-	public static final double HOOK_MOTOR_1_PITSPEED_BACKWARDS = 0.1;
-	
-	public static final double WINCH_MOTOR_1_FORWARDS = -1.0;
-	public static final double WINCH_MOTOR_1_BACKWARDS = 1.0;
-	public static final double WINCH_MOTOR_2_FORWARDS = -1.0;
-	public static final double WINCH_MOTOR_2_BACKWARDS = 1.0;
-	
-	public static final double WINCH_MOTOR_STOP = 0.0;
-	
-	public static final int HOOK_LIMIT_SWITCH_A = 1;
-	public static final int HOOK_LIMIT_SWITCH_B = 2;
 
 
     
@@ -101,11 +77,14 @@ public class RobotMap {
 	public static final double LIFT_SPEED_UP = 0.75;
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-	public static final double LIFT_NORMAL_SCALE = -72500.0;
-	public static final double LIFT_HIGH_SCALE = -93000.0;
-	public static final double LIFT_NORMAL_SWITCH = -29000.0;
-	public static final double LIFT_GROUND = -1750.0;
-	
+    public static final double LIFT_GROUND = -1750.0;
+    public static final double LIFT_BALL1 = -1750.0;
+    public static final double LIFT_BALL2 = -1750.0;
+    public static final double LIFT_BALL3 = -1750.0;
+    public static final double LIFT_HATCH1 = -1750.0;
+    public static final double LIFT_HATCH2 = -1750.0;
+    public static final double LIFT_HATCH3 = -1750.0;
+
 	//public static final int LIFT_LIMIT_SWITCH_UP = 2;
 	public static final int LIFT_LIMIT_SWITCH_DOWN = 3;
     public static final int LIFT_PID_SLOT = 0;
@@ -129,7 +108,14 @@ public class RobotMap {
     public static final double INTAKE_B_SPEED_REVERSE = .45;
     public static final double INTAKE_SPEED_STOP = 0;
     public static final int INTAKE_LIMIT_SWITCH = 0;
-    
+
+    // INTAKE WRIST POSITIONS
+    public static final double WRIST_POS_1 = 0;
+    public static final double WRIST_POS_2 = 0;
+    public static final double WRIST_POS_3 = 0;
+    public static final double WRIST_POS_4 = 0;
+    public static final double WRIST_POS_5 = 0;
+
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
 }

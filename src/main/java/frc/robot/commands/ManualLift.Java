@@ -1,26 +1,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.Robot;
 
+public class ManualLift extends Command {
 
-public class DriveWithXboxJoysticks extends Command {
-	
-	boolean isFinished = false;	
-	
-	public DriveWithXboxJoysticks() {
-		
-		requires(Robot.driveTrain);
+    boolean isFinished = false;
+
+    public ManualLift() {
+        
+		requires(robot.Lift);
 	}
 
 	@Override
 	protected void initialize() {
+
 	}
 
 	@Override
 	protected void execute() {
-			Robot.driveTrain.tankDrive(Robot.oi.getLeftXboxJoystickValue(), Robot.oi.getRightXboxJoystickValue());
-   		
+        
 	}
 
 	@Override

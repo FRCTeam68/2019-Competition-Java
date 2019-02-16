@@ -1,29 +1,24 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithXboxJoysticks;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.sensors.PigeonIMU; 
 
 
 public class DriveTrain extends Subsystem {
 	
-	private WPI_VictorSPX leftFront;
-	private WPI_VictorSPX rightFront;
-	private WPI_VictorSPX leftRear;
-	private WPI_VictorSPX rightRear;
+	private WPI_TalonSRX leftFront;
+	private WPI_TalonSRX rightFront;
+	private WPI_TalonSRX leftRear;
+	private WPI_TalonSRX rightRear;
 	private DifferentialDrive drive;
 	private boolean reverseDrive;
 	private double leftRearCruiseVelocity; 
@@ -48,8 +43,8 @@ public class DriveTrain extends Subsystem {
 
 	private DriveTrain() {
 
-		leftRear = new WPI_VictorSPX(RobotMap.DRIVETRAIN_LEFT_REAR);
-		rightRear = new WPI_VictorSPX(RobotMap.DRIVETRAIN_RIGHT_REAR);
+		leftRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_REAR);
+		rightRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_REAR);
 		
 		leftRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		
@@ -77,10 +72,10 @@ public class DriveTrain extends Subsystem {
 		rightRear.config_kI(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, RobotMap.DRIVETRAIN_RIGHT_PID_I, 0);
 		rightRear.config_kD(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, RobotMap.DRIVETRAIN_RIGHT_PID_D, 0);
 		
-		leftFront = new WPI_VictorSPX(RobotMap.DRIVETRAIN_LEFT_FRONT);
+		leftFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_FRONT);
 		leftFront.set(ControlMode.Follower, leftRear.getDeviceID());
 
-		rightFront = new WPI_VictorSPX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
+		rightFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
 		rightFront.set(ControlMode.Follower, rightRear.getDeviceID());
 
 		drive = new DifferentialDrive(leftRear, rightRear);
