@@ -3,9 +3,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.commands.AutoLift;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot {
 
 	public static UsbCamera camera;
 
+
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
 
@@ -50,28 +53,19 @@ public class Robot extends TimedRobot {
 		robotMap = RobotMap.getRobotMap();
 
 		// Create a single instance of each Robot subsystem here
-		
-
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setResolution(640, 480);
-        
+		driveTrain = DriveTrain.getDriveTrain();
+		intake = Intake.getIntake();
+		lift = Lift.getLift();
+		wrist = Wrist.getWrist();
 
 		// The OI class should be the last to be instantiated
-		autoChooser = new SendableChooser<>();
 /*	    autoChooser.addObject("Left Start Auto", leftAuto);
-	    autoChooser.addObject("Right Start Auto", rightAuto);*/
+		autoChooser.addObject("Right Start Auto", rightAuto);*/
+		//TESTING ENCODER
 	    //autoChooser.addDefault("Auto-Run", new DriveXInchesCommand(100, 0.8));
 	    //Choosing strategy
 
 
-	    stratChooser = new SendableChooser<>();
-	    stratChooser.addObject("SC/SW", "SC/SW");
-	    stratChooser.addObject("SW", "SW");
-	    stratChooser.addObject("SC/SC", "SC/SC");
-	    stratChooser.addObject("SC", "SC");
-	    
-	    SmartDashboard.putData("Autonomous", autoChooser);
-	    SmartDashboard.putData("Strat Chooser", stratChooser);
 		oi = OI.getOI();
 	}
 
@@ -104,6 +98,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		
+		Robot.driveTrain.setBrakeMode();
 		double timeout = System.currentTimeMillis();
         
 		while((DriverStation.getInstance().getGameSpecificMessage() == null || DriverStation.getInstance().getGameSpecificMessage().equals(""))
@@ -141,6 +136,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 
+		Robot.driveTrain.setBrakeMode();
 
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to

@@ -19,8 +19,8 @@ public class DriveWithXboxJoysticks extends Command {
 
 	@Override
 	protected void execute() {
-			Robot.driveTrain.tankDrive(Robot.oi.getLeftXboxJoystickValue(), Robot.oi.getRightXboxJoystickValue());
-   		
+			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue(), -Robot.oi.getRightXboxJoystickValue());
+		
 	}
 
 	@Override

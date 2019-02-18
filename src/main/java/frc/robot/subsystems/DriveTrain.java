@@ -214,6 +214,12 @@ public class DriveTrain extends Subsystem {
 		rightRear.config_kD(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, DR, 0);
     	targetSpeedRight = speed;
     	//this.setDriveRightSpeed(SmartDashboard.getNumber("Drive Right Target RPM Value: ", targetSpeedRight));
+	}
+	public void setBrakeMode() {
+		leftRear.setNeutralMode(NeutralMode.Brake);
+		leftFront.setNeutralMode(NeutralMode.Brake);
+		rightRear.setNeutralMode(NeutralMode.Brake);
+		rightFront.setNeutralMode(NeutralMode.Brake);
     }
     
     public double getDriveLeftSpeed() {

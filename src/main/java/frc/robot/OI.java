@@ -53,6 +53,17 @@ public class OI {
 		xboxDrive = new XboxController(RobotMap.XBOX_DRIVE);	
 		
 		//LIFT
+		
+
+
+		xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_BS);
+
+		xboxDriveB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_B);	
+		//this is a new comment
+		// Manipulator Xbox Controller Bindings
+		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
+
+		//lift
 		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
 		xboxManipulateA.whileHeld(new AutoLift (RobotMap.LIFT_GROUND));
 
@@ -73,15 +84,6 @@ public class OI {
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
-
-
-
-		xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_BS);
-
-		xboxDriveB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_B);	
-		//this is a new comment
-		// Manipulator Xbox Controller Bindings
-		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
 
 
 	}

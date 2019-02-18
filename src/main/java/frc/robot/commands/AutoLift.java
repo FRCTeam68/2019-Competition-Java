@@ -12,15 +12,14 @@ import frc.robot.Robot;
 public class AutoLift extends Command {
 	
 	private boolean isFinished = false;
-	private double setPoint;
-	//private double startTime;
-	double currentPos = Robot.wrist.getPosition();
+	public double setPoint;
+	double currentPos = Robot.lift.getPosition();
 
 	
-	public AutoLift(double position) {
+	public AutoLift(double pos) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.lift);
-		setPoint = position;
+		setPoint = pos;
 	}
 
 	// Called just before this Command runs the first time
@@ -48,10 +47,7 @@ public class AutoLift extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		// MWE
-    	if (Robot.lift.getSwitchDown() == false) {
-    		Robot.lift.zeroEncoder();
-    	}
+    	
 	}
 
 	// Called when another command which requires one or more of the same

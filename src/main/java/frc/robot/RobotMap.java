@@ -1,4 +1,4 @@
-package frc.robot;
+ package frc.robot;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -48,9 +48,9 @@ public class RobotMap {
 	public static final int XBOX_MANIPULATE_RT = 3;
 
     // DRIVETRAIN
-    public static final int DRIVETRAIN_LEFT_FRONT = 1;
-    public static final int DRIVETRAIN_RIGHT_FRONT = 3;
-    public static final int DRIVETRAIN_LEFT_REAR = 2;
+    public static final int DRIVETRAIN_LEFT_FRONT = 2;
+    public static final int DRIVETRAIN_RIGHT_FRONT = 1;
+    public static final int DRIVETRAIN_LEFT_REAR = 3;
     public static final int DRIVETRAIN_RIGHT_REAR = 4;
 
     public static final int DRIVETRAIN_SHIFT_LOW = 1;
@@ -73,11 +73,11 @@ public class RobotMap {
 
     
     // LIFT
-	public static final int LIFT_MOTORS = 5;
+	public static final int LIFT_MOTORS = 7;
 	public static final double LIFT_SPEED_UP = 0.75;
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-    public static final double LIFT_GROUND = -1750.0;
+    public static final double LIFT_GROUND = -3000.0;
     public static final double LIFT_BALL1 = -1750.0;
     public static final double LIFT_BALL2 = -1750.0;
     public static final double LIFT_BALL3 = -1750.0;
