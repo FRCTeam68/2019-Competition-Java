@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 
 	public static UsbCamera camera;
 
+	
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
@@ -152,8 +153,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
-
+		SmartDashboard.putNumber("encoder value", Robot.lift.getPosition());
 	}
 
 

@@ -77,7 +77,7 @@ public class RobotMap {
 	public static final double LIFT_SPEED_UP = 0.75;
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-    public static final double LIFT_GROUND = -3000.0;
+    public static final double LIFT_GROUND = 6000.0;
     public static final double LIFT_BALL1 = -1750.0;
     public static final double LIFT_BALL2 = -1750.0;
     public static final double LIFT_BALL3 = -1750.0;
