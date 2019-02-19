@@ -1,39 +1,35 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import frc.robot.RobotMap;
 /**
- *
+ * An example command.  You can replace me with your own command.
  */
-public class ManualWrist extends Command {
-	
-	boolean isFinished = false;
-	
-	public ManualWrist() {
+public class LiftManual extends Command {
+	public LiftManual() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.wrist);
+		requires(Robot.lift);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
-       // Robot.wrist.setWristSpeed(Robot.oi.getRightXboxManipulatorJoystick()); 
+		
+        Robot.lift.setLiftSpeed(Robot.oi.getRightXboxManipulatorJoystick());
+		
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isFinished;
+		return false;
 	}
 
 	// Called once after isFinished returns true
@@ -45,6 +41,5 @@ public class ManualWrist extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.INTAKE_SPEED_STOP, RobotMap.INTAKE_SPEED_STOP);
 	}
 }

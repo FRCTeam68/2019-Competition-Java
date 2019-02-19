@@ -65,25 +65,25 @@ public class OI {
 
 		//lift
 		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
-		xboxManipulateA.whileHeld(new AutoLift (RobotMap.LIFT_GROUND));
+		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
 
 		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
-		xboxManipulateB.whileHeld(new AutoLift (RobotMap.LIFT_BALL1));
+		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
 
 		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
-		xboxManipulateX.whileHeld(new AutoLift (RobotMap.LIFT_BALL2));
+		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));
 
 		xboxManipulateY = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_Y);
-		xboxManipulateY.whileHeld(new AutoLift (RobotMap.LIFT_BALL3));
+		xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_BALL3));
 
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
-		xboxManipulateRB.whileHeld(new AutoLift (RobotMap.LIFT_HATCH1));
+		xboxManipulateRB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH2));
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whileHeld(new AutoLift (RobotMap.LIFT_HATCH2));
+		xboxManipulateLB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
 
-		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
-		xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
+		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
+		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
 
 
 	}
@@ -121,7 +121,7 @@ public class OI {
 
 	public double getRightXboxManipulatorJoystick() {
 		double rightAxis;
-		rightAxis = xboxManipulate.getY(Hand.kLeft);
+		rightAxis = xboxManipulate.getY(Hand.kRight);
 		// Allow for up to 10% of joystick noise
 		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
     	return rightAxis;

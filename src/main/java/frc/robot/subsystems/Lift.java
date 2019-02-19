@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 //import frc.robot.commands.DriveWithXboxJoysticks;
 //import frc.robot.commands.LiftManual;
+import frc.robot.commands.LiftManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -42,7 +43,7 @@ public class Lift extends Subsystem {
 		liftMotor.setSensorPhase(true); 
 		liftMotor.configNominalOutputForward(0, 0);
 		liftMotor.configNominalOutputReverse(0, 0);
-		liftMotor.configPeakOutputForward(0.4,0); 
+		liftMotor.configPeakOutputForward(1,0); 
 		liftMotor.configPeakOutputReverse(-1,0); 
 //		liftMotor.configNeutralDeadband(0.001, 0);
 		liftMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
@@ -61,7 +62,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		//setDefaultCommand(new LiftManual());
+		setDefaultCommand(new LiftManual());
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);

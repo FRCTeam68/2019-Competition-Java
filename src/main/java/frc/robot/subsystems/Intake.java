@@ -2,7 +2,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
 import frc.robot.RobotMap;
+import frc.robot.commands.IntakeManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -34,7 +36,7 @@ public class Intake extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-
+        //setDefaultCommand(IntakeManual);
     }
 
     public void setIntakeSpeed(double speedA, double speedB) 
