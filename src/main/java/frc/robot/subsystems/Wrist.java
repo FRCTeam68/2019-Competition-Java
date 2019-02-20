@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -14,7 +15,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class Wrist extends Subsystem {
     
-    // Declare Class variables here
+	private static final Command ManualWrist = null;
+
+	// Declare Class variables here
     private WPI_TalonSRX wristMotor;
 
     public static Wrist wrist;
@@ -41,7 +44,7 @@ public class Wrist extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-
+		//setDefaultCommand(ManualWrist);
     }
     
     public void setWristSpeed(double speedC)

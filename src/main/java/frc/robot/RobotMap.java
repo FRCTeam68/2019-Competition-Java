@@ -1,5 +1,7 @@
  package frc.robot;
 
+
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -45,7 +47,9 @@ public class RobotMap {
 	public static final int XBOX_MANIPULATE_SR = 10;
 	public static final int XBOX_MANIPULATE_LY = 1;
 	public static final int XBOX_MANIPULATE_LT = 2;
-	public static final int XBOX_MANIPULATE_RT = 3;
+    public static final int XBOX_MANIPULATE_RT = 3;
+    public static final int XBOX_MANIPULATE_RY = 5;
+
 
     // DRIVETRAIN
     public static final int DRIVETRAIN_LEFT_FRONT = 2;
@@ -74,23 +78,23 @@ public class RobotMap {
     
     // LIFT
 	public static final int LIFT_MOTORS = 7;
-	public static final double LIFT_SPEED_UP = 0.75;
+	public static final double LIFT_SPEED_UP = 1;
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-    public static final double LIFT_GROUND = 6000.0;
-    public static final double LIFT_BALL1 = -1750.0;
-    public static final double LIFT_BALL2 = -1750.0;
-    public static final double LIFT_BALL3 = -1750.0;
-    public static final double LIFT_HATCH1 = -1750.0;
-    public static final double LIFT_HATCH2 = -1750.0;
-    public static final double LIFT_HATCH3 = -1750.0;
+    public static final double LIFT_GROUND =0.0;
+    public static final double LIFT_BALL1 = 10880.0;
+    public static final double LIFT_BALL2 = 32200.0;
+    public static final double LIFT_BALL3 = 53647.0;
+    public static final double LIFT_HATCH1 = 0.0;
+    public static final double LIFT_HATCH2 = 21620.0;
+    public static final double LIFT_HATCH3 = 43254.0;
 
 	//public static final int LIFT_LIMIT_SWITCH_UP = 2;
 	public static final int LIFT_LIMIT_SWITCH_DOWN = 3;
     public static final int LIFT_PID_SLOT = 0;
     
     public static final double LIFT_PID_F = 0.03; //0.025
-    public static final double LIFT_PID_P = .4;
+    public static final double LIFT_PID_P = 0.3; //0.3 start
     public static final double LIFT_PID_I = 0.0;
     public static final double LIFT_PID_D = 0.0;
 

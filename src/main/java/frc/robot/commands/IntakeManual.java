@@ -27,7 +27,7 @@ public class IntakeManual extends Command {
 	@Override
 	protected void execute() {
 
-            Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick(), -Robot.oi.getLeftXboxManipulatorJoystick());
+         // Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick(), -Robot.oi.getLeftXboxManipulatorJoystick());
 
 	}
 

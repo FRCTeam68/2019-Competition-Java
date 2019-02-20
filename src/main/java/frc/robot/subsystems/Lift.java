@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 //import frc.robot.commands.DriveWithXboxJoysticks;
 //import frc.robot.commands.LiftManual;
+import frc.robot.commands.LiftManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -61,7 +62,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		//setDefaultCommand(new LiftManual());
+		setDefaultCommand(new LiftManual());
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);
