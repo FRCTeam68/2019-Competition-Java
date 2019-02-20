@@ -43,9 +43,10 @@ public class Lift extends Subsystem {
 		liftMotor.setSensorPhase(true); 
 		liftMotor.configNominalOutputForward(0, 0);
 		liftMotor.configNominalOutputReverse(0, 0);
-		liftMotor.configPeakOutputForward(-1,0); 
-		liftMotor.configPeakOutputReverse(0.4,0); 
-//		liftMotor.configNeutralDeadband(0.001, 0);
+		liftMotor.configPeakOutputForward(1,0); 
+		liftMotor.configPeakOutputReverse(-0.4,0); 
+
+		//		liftMotor.configNeutralDeadband(0.001, 0);
 		liftMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
 		liftMotor.config_kF(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_F, 0);
 		liftMotor.config_kP(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_P, 0);
