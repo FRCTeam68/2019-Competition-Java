@@ -32,6 +32,8 @@ public class Robot extends TimedRobot {
 
 	public static Intake intake;
 
+	public static Sweeper sweeper;
+
 	public static UsbCamera camera;
 
 	
@@ -58,6 +60,7 @@ public class Robot extends TimedRobot {
 		intake = Intake.getIntake();
 		lift = Lift.getLift();
 		wrist = Wrist.getWrist();
+		sweeper = Sweeper.getSweeper();
 
 		// The OI class should be the last to be instantiated
 /*	    autoChooser.addObject("Left Start Auto", leftAuto);
@@ -138,13 +141,14 @@ public class Robot extends TimedRobot {
 	public void teleopInit() {
 
 		Robot.driveTrain.setBrakeMode();
-
+		Robot.lift.zeroEncoder();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+			
 	}
 
 	/**

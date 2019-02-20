@@ -118,4 +118,14 @@ public class RobotMap {
 
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
+
+    //Set sweeper intake vars here
+    //public static final double SWEEPER_MOTOR_A = ;
+    
+    public static final double SWEEPER_POS_1 = 6000.0;
+    public static final double SWEEPER_POS_2 = 6000.0;
+    public static final double SWEEPER_POS_3 = 6000.0;
+    public static final double SWEEPER_POS_4 = 6000.0;
+    public static final double SWEEPER_POS_5 = 6000.0;
+    public static final double SWEEPER_POS_6 = 6000.0;
 }
