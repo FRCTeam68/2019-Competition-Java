@@ -14,7 +14,7 @@ public class Sweeper extends Subsystem {
     // Declare Class variables here
 	private VictorSPX sweeperMotorA;
     
-    private WPI_TalonSRX sweeperRotator;
+    private VictorSPX sweeperRotator;
 
     private static Sweeper sweeper;
     
@@ -28,15 +28,24 @@ public class Sweeper extends Subsystem {
       
 
     private Sweeper(){
-    	sweeperMotorA = new VictorSPX(RobotMap.INTAKE_MOTOR_A); //Setting whaat motor this is associated with
+    	//sweeperMotorA = new VictorSPX(2); //Setting whaat motor this is associated with
         
-        sweeperRotator = new WPI_TalonSRX(2);
+        // sweeperRotator = new VictorSPX(2); please for the love of god tell me which motors go with each subsystem
 		sweeperRotator.setSensorPhase(true); 
 		sweeperRotator.configNominalOutputForward(0, 0);
 		sweeperRotator.configNominalOutputReverse(0, 0);
 		sweeperRotator.configPeakOutputForward(0.4,0); 
 		sweeperRotator.configPeakOutputReverse(0.4,0); 
-//		sweeperRotator.configNeutralDeadband(0.001, 0);
+        //sweeperRotator.configNeutralDeadband(0.001, 0);
+        sweeperRotator.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
+        
+                // sweeperRotator = new VictorSPX(2); please for the love of god tell me which motors go with each subsystem
+		sweeperMotorA.setSensorPhase(true); 
+		sweeperMotorA.configNominalOutputForward(0, 0);
+		sweeperMotorA.configNominalOutputReverse(0, 0);
+		sweeperRotator.configPeakOutputForward(0.4,0); 
+		sweeperRotator.configPeakOutputReverse(0.4,0); 
+        //sweeperRotator.configNeutralDeadband(0.001, 0);
 		sweeperRotator.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
     }
  
@@ -47,19 +56,21 @@ public class Sweeper extends Subsystem {
 
     public void setSweeperSpeed(double speedA, double speedB) 
     {
-    	
     	sweeperMotorA.set(ControlMode.PercentOutput,speedA);
-    	
-    	
     }
-    public void setSweeperSpeedLeft(double speedA)
-    {
-    	sweeperMotorA.set(ControlMode.Current,speedA);	
-    }
+
     public void setPosition(double position) {
-		sweeperRotator.set(ControlMode.Position, position);
+        sweeperRotator.set(ControlMode.Position, position);
+        
     }
-    
+
+    public double getSensorPos(){
+
+        double position = 0;
+		position = sweeperRotator.getSelectedSensorPosition(0);
+        return position;
+        
+    }
     
     public void setControlModePercentOutput(double speed) {
 		sweeperRotator.set(ControlMode.PercentOutput, speed);

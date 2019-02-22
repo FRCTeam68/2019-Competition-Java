@@ -1,11 +1,10 @@
+/*
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class LiftManual extends Command {
 	public LiftManual() {
 		// Use requires() here to declare subsystem dependencies
@@ -43,3 +42,4 @@ public class LiftManual extends Command {
 	protected void interrupted() {
 	}
 }
+*/

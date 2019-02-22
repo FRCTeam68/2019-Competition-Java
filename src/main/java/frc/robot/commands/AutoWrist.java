@@ -1,3 +1,4 @@
+/*
 package frc.robot.commands;
 
 import frc.robot.Robot;
@@ -5,9 +6,7 @@ import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 import frc.robot.RobotMap;
-/**
- *
- */
+
 public class AutoWrist extends Command {
     private double setPoint;
 	boolean isFinished = false;
@@ -51,3 +50,4 @@ public class AutoWrist extends Command {
 		Robot.intake.setIntakeSpeed(RobotMap.INTAKE_SPEED_STOP, RobotMap.INTAKE_SPEED_STOP);
 	}
 }
+*/

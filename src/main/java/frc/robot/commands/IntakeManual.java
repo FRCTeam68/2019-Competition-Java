@@ -1,6 +1,9 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.*;
+
+import java.util.concurrent.TimeUnit;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,10 +14,14 @@ import frc.robot.RobotMap;
 public class IntakeManual extends Command {
 	
 	boolean isFinished = false;
+	int suc = 0;
 	
 	public IntakeManual() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.intake);
+		requires(Robot.wrist);
+		requires(Robot.sweeper);
+		requires(Robot.lift);
 	}
 
 	// Called just before this Command runs the first time
@@ -27,7 +34,21 @@ public class IntakeManual extends Command {
 	@Override
 	protected void execute() {
 
-         // Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick(), -Robot.oi.getLeftXboxManipulatorJoystick());
+		 Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick(), -Robot.oi.getLeftXboxManipulatorJoystick());
+		 Robot.sweeper.setSweeperSpeed(Robot.oi.getLeftXboxManipulatorJoystick(), -Robot.oi.getLeftXboxManipulatorJoystick());
+		 
+		 if(Robot.intake.findCurrentStateOfBeamBreak() == true){
+
+			Robot.intake.setIntakeSpeed( 0.00 , 0.00);
+			Robot.sweeper.setSweeperSpeed(0.00, 0.00);
+			Robot.lift.setPosition(32200.0); 
+			
+			if(Robot.lift.getPosition() == 32200.0){
+			//Robot.sweeper.setPosition(position);
+			}
+			
+
+		 }
 
 	}
 

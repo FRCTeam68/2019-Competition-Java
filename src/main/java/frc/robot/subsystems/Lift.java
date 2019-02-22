@@ -2,9 +2,10 @@ package frc.robot.subsystems;
 
 //import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.AutoLift;
 //import frc.robot.commands.DriveWithXboxJoysticks;
 //import frc.robot.commands.LiftManual;
-import frc.robot.commands.LiftManual;
+//import frc.robot.commands.LiftManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -43,8 +44,8 @@ public class Lift extends Subsystem {
 		liftMotor.setSensorPhase(true); 
 		liftMotor.configNominalOutputForward(0, 0);
 		liftMotor.configNominalOutputReverse(0, 0);
-		liftMotor.configPeakOutputForward(1,0); 
-		liftMotor.configPeakOutputReverse(-0.4,0); 
+		liftMotor.configPeakOutputForward(.7,0); 
+		liftMotor.configPeakOutputReverse(-.7,0); 
 
 		//		liftMotor.configNeutralDeadband(0.001, 0);
 		liftMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
@@ -54,7 +55,7 @@ public class Lift extends Subsystem {
 		liftMotor.config_kD(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_D, 0);
 		liftMotor.setNeutralMode(NeutralMode.Brake);
 		manualBool = false;
-		//limitSwitchUp = new DigitalInput(RobotMap.LIFT_LIMIT_SWITCH_UP);
+		/*limitSwitchUp = new DigitalInput(RobotMap.LIFT_LIMIT_SWITCH_UP);
 		limitSwitchDown = new DigitalInput(RobotMap.LIFT_LIMIT_SWITCH_DOWN);
 		/*liftMotor.configMotionAcceleration(arg0, 0);
 		liftMotor.configMotionCruiseVelocity(arg0, 0);
@@ -63,7 +64,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new LiftManual());
+		setDefaultCommand(new AutoLift(0));
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);
