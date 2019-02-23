@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 import frc.robot.RobotMap;
+import frc.robot.commands.IntakeManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -30,19 +31,20 @@ public class Wrist extends Subsystem {
       
 
     private Wrist(){
-      	//  wristMotor = new WPI_TalonSRX(0); //Change device number later
-      	//  wristMotor = new WPI_TalonSRX(RobotMap.LIFT_MOTORS);
+      	/*wristMotor = new WPI_TalonSRX(0); //Change device number later
+      	wristMotor = new WPI_TalonSRX(RobotMap.LIFT_MOTORS);
 		wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		wristMotor.setSensorPhase(true); 
 		wristMotor.configNominalOutputForward(0, 0);
 		wristMotor.configNominalOutputReverse(0, 0);
 		wristMotor.configPeakOutputForward(0.4,0); 
 		wristMotor.configPeakOutputReverse(-.4,0); 
+		*/
     }
  
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(ManualWrist);
+		setDefaultCommand(new IntakeManual());
     }
     
     public void setWristSpeed(double speedC)

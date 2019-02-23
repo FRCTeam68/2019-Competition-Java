@@ -32,30 +32,23 @@ public class Intake extends Subsystem {
 
     private Intake(){
     	intakeMotorA = new VictorSPX(RobotMap.INTAKE_MOTOR_A); //Setting whaat motor this is associated with
-        intakeMotorB = new VictorSPX(RobotMap.INTAKE_MOTOR_B); //Setting whaat motor this is associated with
-        beamBreak = new DigitalInput(222); //set the port that this is on later
+        //beamBreak = new DigitalInput(222); //set the port that this is on later
     }
  
 	@Override
 	protected void initDefaultCommand() {
-        //setDefaultCommand(IntakeManual);
+        setDefaultCommand(new IntakeManual());
     }
 
     public void setIntakeSpeed(double speedA, double speedB) 
     {
     	
     	intakeMotorA.set(ControlMode.PercentOutput,speedA);
-    	intakeMotorB.set(ControlMode.PercentOutput,speedB);
     	
     }
     public void setIntakeSpeedLeft(double speedA)
     {
     	intakeMotorA.set(ControlMode.Current,speedA);	
-    }
-    
-    public void setIntakeSpeedRight(double speedB)
-    {
-    	intakeMotorB.set(ControlMode.Current,speedB);
     }
     
     public boolean findCurrentStateOfBeamBreak(){
@@ -68,10 +61,4 @@ public class Intake extends Subsystem {
     {
     	return intakeMotorA.getMotorOutputPercent();
     }
-    
-    public double getIntakeBSpeed()
-    {
-    	return intakeMotorB.getMotorOutputPercent();
-    }
-
 }

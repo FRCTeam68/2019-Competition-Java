@@ -46,10 +46,8 @@ public class IntakeManual extends Command {
 			if(Robot.lift.getPosition() == 32200.0){
 			//Robot.sweeper.setPosition(position);
 			}
-			
-
 		 }
-
+		 isFinished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

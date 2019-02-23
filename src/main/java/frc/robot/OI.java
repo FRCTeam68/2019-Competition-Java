@@ -65,10 +65,10 @@ public class OI {
 
 		//lift
 		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
-		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
+		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
 
 		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
-		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
+		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
 
 		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
 		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));

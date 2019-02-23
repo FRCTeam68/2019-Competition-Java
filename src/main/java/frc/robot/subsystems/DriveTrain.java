@@ -44,7 +44,6 @@ public class DriveTrain extends Subsystem {
 	private DriveTrain() {
 
 		leftRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_REAR);
-		rightRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_REAR);
 		
 		leftRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		
@@ -58,9 +57,10 @@ public class DriveTrain extends Subsystem {
 		leftRear.config_kP(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_P, 0);
 		leftRear.config_kI(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_I, 0);
 		leftRear.config_kD(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_D, 0);
-		
-		rightRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		
+
+		rightRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_REAR);
+
+		rightRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);	
 		rightRear.setSensorPhase(true); 
 		rightRear.configNominalOutputForward(0, 0);
 		rightRear.configNominalOutputReverse(0, 0);
@@ -74,9 +74,19 @@ public class DriveTrain extends Subsystem {
 		
 		leftFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_FRONT);
 		leftFront.set(ControlMode.Follower, leftRear.getDeviceID());
+		leftFront.setSensorPhase(true); 
+		leftFront.configNominalOutputForward(0, 0);
+		leftFront.configNominalOutputReverse(0, 0);
+		leftFront.configPeakOutputForward(1,0); 
+		leftFront.configPeakOutputReverse(-1,0); 
 
 		rightFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
 		rightFront.set(ControlMode.Follower, rightRear.getDeviceID());
+		rightFront.setSensorPhase(true); 
+		rightFront.configNominalOutputForward(0, 0);
+		rightFront.configNominalOutputReverse(0, 0);
+		rightFront.configPeakOutputForward(1,0); 
+		rightFront.configPeakOutputReverse(-1,0); 
 
 		drive = new DifferentialDrive(leftRear, rightRear);
 		

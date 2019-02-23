@@ -114,6 +114,7 @@ public class RobotMap {
     public static final int INTAKE_LIMIT_SWITCH = 0;
 
     // INTAKE WRIST POSITIONS
+    //public static final double WRIST_MOTOR= 0;
     public static final double WRIST_POS_1 = 0;
     public static final double WRIST_POS_2 = 0;
     public static final double WRIST_POS_3 = 0;
@@ -124,6 +125,7 @@ public class RobotMap {
     public static final int PCM_MAIN = 9;
 
     //Set sweeper intake vars here
+
     //public static final double SWEEPER_MOTOR_A = ;
     
     public static final double SWEEPER_POS_1 = 6000.0;
@@ -132,4 +134,15 @@ public class RobotMap {
     public static final double SWEEPER_POS_4 = 6000.0;
     public static final double SWEEPER_POS_5 = 6000.0;
     public static final double SWEEPER_POS_6 = 6000.0;
+
+    //set endgame vars here
+    public static final double ENDGAME_MOTOR1  = 11;
+    public static final double ENDGAME_MOTOR2  = 12;
+    public static final double ENDGAME_MOTOR3  = 13;
+    public static final double ENDGAME_MOTOR4  = 14;
+    public static final double ENDGAME_MOTOR5  = 15;
+    public static final double ENDGAME_POTENTIOMETER_POS = 0;
+    public static final double ENDGAME_PONTENTIOMETER_POS2 = 0;
+
+
 }
