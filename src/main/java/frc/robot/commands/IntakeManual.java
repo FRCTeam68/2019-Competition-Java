@@ -1,3 +1,4 @@
+
 package frc.robot.commands;
 
 import frc.robot.Robot;
@@ -11,6 +12,7 @@ import frc.robot.RobotMap;
 /**
  *
  */
+
 public class IntakeManual extends Command {
 	
 	boolean isFinished = false;
@@ -19,9 +21,7 @@ public class IntakeManual extends Command {
 	public IntakeManual() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.intake);
-		requires(Robot.wrist);
-		requires(Robot.sweeper);
-		requires(Robot.lift);
+
 	}
 
 	// Called just before this Command runs the first time

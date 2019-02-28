@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 import frc.robot.RobotMap;
-import frc.robot.commands.IntakeManual;
+//import frc.robot.commands.IntakeManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -44,7 +44,7 @@ public class Wrist extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeManual());
+		//setDefaultCommand(new IntakeManual());
     }
     
     public void setWristSpeed(double speedC)

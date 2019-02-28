@@ -44,7 +44,7 @@ public class Lift extends Subsystem {
 		liftMotor.setSensorPhase(true); 
 		liftMotor.configNominalOutputForward(0, 0);
 		liftMotor.configNominalOutputReverse(0, 0);
-		liftMotor.configPeakOutputForward(.7,0); 
+		liftMotor.configPeakOutputForward(.420,0); //snoop dogg
 		liftMotor.configPeakOutputReverse(-.7,0); 
 
 		//		liftMotor.configNeutralDeadband(0.001, 0);
@@ -64,7 +64,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new AutoLift(0));
+	//	setDefaultCommand(new AutoLift(0));
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);
@@ -108,6 +108,4 @@ public class Lift extends Subsystem {
     public boolean getManualStatus() {
     	return manualBool;
     }
-    
-    
 }

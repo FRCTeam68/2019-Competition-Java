@@ -45,7 +45,7 @@ public class Sweeper extends Subsystem {
     }
 	@Override
 	protected void initDefaultCommand() {
-        setDefaultCommand(new IntakeManual());
+        //setDefaultCommand(new IntakeManual());
     }
 
     public void setSweeperSpeed(double speedA, double speedB) 
