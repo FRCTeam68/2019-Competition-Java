@@ -6,14 +6,14 @@ import frc.robot.RobotMap;
 import frc.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
 public class Sweeper extends Subsystem {
     
     // Declare Class variables here
-	private VictorSPX sweeperMotorA;
+	private WPI_VictorSPX sweeperMotorA;
     
     private WPI_TalonSRX sweeperRotator;
 
@@ -31,7 +31,7 @@ public class Sweeper extends Subsystem {
     private Sweeper(){
 
         /*
-    	//sweeperMotorA = new VictorSPX(2); //Setting whaat motor this is associated with
+    	//sweeperMotorA = new WPI_VictorSPX(2); //Setting whaat motor this is associated with
         
         // sweeperRotator = new WPI_TalonSRX(2); please for the love of god tell me which motors go with each subsystem
 		sweeperRotator.setSensorPhase(true); 

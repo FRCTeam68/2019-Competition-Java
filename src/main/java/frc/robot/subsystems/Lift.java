@@ -64,7 +64,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-	//	setDefaultCommand(new AutoLift(0));
+
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);

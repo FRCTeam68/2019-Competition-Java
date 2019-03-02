@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
 	public static UsbCamera camera;
 
-	
+	public static Hatch hatch;
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
 		lift = Lift.getLift();
 		wrist = Wrist.getWrist();
 		sweeper = Sweeper.getSweeper();
+		hatch = Hatch.getHatch();
 
 		// The OI class should be the last to be instantiated
 /*	    autoChooser.addObject("Left Start Auto", leftAuto);

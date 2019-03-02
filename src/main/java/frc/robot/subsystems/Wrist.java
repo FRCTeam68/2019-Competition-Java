@@ -31,15 +31,13 @@ public class Wrist extends Subsystem {
       
 
     private Wrist(){
-      	/*wristMotor = new WPI_TalonSRX(0); //Change device number later
-      	wristMotor = new WPI_TalonSRX(RobotMap.LIFT_MOTORS);
+      	wristMotor = new WPI_TalonSRX(5); //Change device number later
 		wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		wristMotor.setSensorPhase(true); 
 		wristMotor.configNominalOutputForward(0, 0);
 		wristMotor.configNominalOutputReverse(0, 0);
 		wristMotor.configPeakOutputForward(0.4,0); 
 		wristMotor.configPeakOutputReverse(-.4,0); 
-		*/
     }
  
 	@Override

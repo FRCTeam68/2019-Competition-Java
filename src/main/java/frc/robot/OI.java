@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutoLift;
-
+import frc.robot.commands.Hatchy;
+import frc.robot.commands.Hatchy2;
+import frc.robot.commands.SweeperIn;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 
@@ -33,6 +35,7 @@ public class OI {
 	private Button xboxManipulateA;
 	private Button xboxManipulateB;
 	private Button xboxManipulateLT;
+	private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
 	private Button xboxManipulateOptions;
 	private Button xboxManipulateSR;
@@ -81,6 +84,16 @@ public class OI {
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
 		xboxManipulateLB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
+
+		xboxManipulateLT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LT);
+		xboxManipulateLT.whenPressed(new SweeperIn());
+
+		xboxManipulateRT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RT);
+		xboxManipulateRT.whenPressed(new Hatchy());
+
+		xboxManipulateOptions = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
+		xboxManipulateOptions.whenPressed(new Hatchy2());
+
 
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));

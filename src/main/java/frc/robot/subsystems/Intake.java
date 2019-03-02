@@ -8,7 +8,7 @@ import frc.robot.RobotMap;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Intake extends Subsystem {
     
     // Declare Class variables here
-	private VictorSPX intakeMotorA;
-	private VictorSPX intakeMotorB;
+	private WPI_VictorSPX intakeMotorA;
     private DigitalInput beamBreak;
     private static Intake intake;
     
@@ -31,7 +30,7 @@ public class Intake extends Subsystem {
       
 
     private Intake(){
-    	intakeMotorA = new VictorSPX(RobotMap.INTAKE_MOTOR_A); //Setting whaat motor this is associated with
+    	intakeMotorA = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR_A); //Setting whaat motor this is associated with
         //beamBreak = new DigitalInput(222); //set the port that this is on later
     }
  

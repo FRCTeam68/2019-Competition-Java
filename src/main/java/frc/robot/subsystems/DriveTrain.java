@@ -75,18 +75,21 @@ public class DriveTrain extends Subsystem {
 		leftFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_FRONT);
 		leftFront.set(ControlMode.Follower, leftRear.getDeviceID());
 		leftFront.setSensorPhase(true); 
+		/*
 		leftFront.configNominalOutputForward(0, 0);
 		leftFront.configNominalOutputReverse(0, 0);
 		leftFront.configPeakOutputForward(1,0); 
 		leftFront.configPeakOutputReverse(-1,0); 
-
+		*/
 		rightFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
 		rightFront.set(ControlMode.Follower, rightRear.getDeviceID());
 		rightFront.setSensorPhase(true); 
+		/*
 		rightFront.configNominalOutputForward(0, 0);
 		rightFront.configNominalOutputReverse(0, 0);
 		rightFront.configPeakOutputForward(1,0); 
 		rightFront.configPeakOutputReverse(-1,0); 
+		*/
 
 		drive = new DifferentialDrive(leftRear, rightRear);
 		
