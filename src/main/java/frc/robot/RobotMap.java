@@ -99,40 +99,34 @@ public class RobotMap {
     public static final double LIFT_PID_D = 0.0;
 
 	// INTAKE
-    public static final int INTAKE_CLAMP = 3;
-    public static final int INTAKE_NORMAL = 2;
-	public static final int INTAKE_UP = 4; 
-	public static final int INTAKE_DOWN = 5;
-	
-    public static final int INTAKE_MOTOR_A = 14;
-    public static final double INTAKE_A_SPEED_FORWARD = 1;
-    public static final double INTAKE_A_SPEED_REVERSE = -.45;
-    public static final double INTAKE_B_SPEED_FORWARD = -.9;
-    public static final double INTAKE_B_SPEED_REVERSE = .45;
+    public static final int INTAKE_MOTOR = 14;
+    public static final double INTAKE_SPEED_FORWARD = 1;
+    public static final double INTAKE_SPEED_REVERSE = -.45;
     public static final double INTAKE_SPEED_STOP = 0;
-    public static final int INTAKE_LIMIT_SWITCH = 0;
-
+    public static final int INTAKE_BEAM_BREAK = 0;
 
     //set hatch
     public static final int HATCH_MOTOR = 10;
 
-    // INTAKE WRIST POSITIONS
-    //public static final double WRIST_MOTOR= 0;
-    public static final double WRIST_POS_1 = 0;
-    public static final double WRIST_POS_2 = 0;
-    public static final double WRIST_POS_3 = 0;
-    public static final double WRIST_POS_4 = 0;
-    public static final double WRIST_POS_5 = 0;
+    // INTAKE WRIST
+    public static final int INTAKE_WRIST_MOTOR= 5;
+
+    public static final double INTAKE_WRIST_POS_1 = 0;
+    public static final double INTAKE_WRIST_POS_2 = 0;
+    public static final double INTAKE_WRIST_POS_3 = 0;
+    public static final double INTAKE_WRIST_POS_4 = 0;
+    public static final double INTAKE_WRIST_POS_5 = 0;
 
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
 
-    //Set sweeper intake vars here
-
-    //public static final double SWEEPER_MOTOR_A = ;
+    // SWEEPER
+    public static final int SWEEPER_MOTOR = 13;
+    public static final int SWEEPER_WRIST_MOTOR = 6;
     
-    public static final double SWEEPER_POS_1 = 6000.0;
-    public static final double SWEEPER_POS_2 = 6000.0;
+    public static final double SWEEPER_DEPLOYED = 118407.0;
+    public static final double SWEEPER_PACKAGED = 0.0;
+    
 
     //set endgame vars here
     //public static final double ENDGAME_MOTOR1  = 11;
@@ -142,4 +136,7 @@ public class RobotMap {
     //public static final double ENDGAME_MOTOR5  = 15;
     //public static final double ENDGAME_POTENTIOMETER_POS = 0;
     //public static final double ENDGAME_PONTENTIOMETER_POS2 = 0;
+
+    // GENERAL
+    public static final double MOTOR_STOP = 0;
 }

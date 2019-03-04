@@ -21,12 +21,12 @@ public class DriveTrain extends Subsystem {
 	private WPI_TalonSRX rightRear;
 	private DifferentialDrive drive;
 	private boolean reverseDrive;
-	private double leftRearCruiseVelocity; 
+/*	private double leftRearCruiseVelocity; 
 	private double leftRearAcceleration; 
 	private double rightRearCruiseVelocity; 
 	private double rightRearAcceleration; 
 	private double leftRearSetPoint; 
-	private double rightRearSetPoint; 	
+	private double rightRearSetPoint; */	
 	private double targetSpeedLeft;
 	private double targetSpeedRight;
 	StringBuilder reportPIDLeft = new StringBuilder();

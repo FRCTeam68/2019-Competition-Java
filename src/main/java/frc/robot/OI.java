@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutoLift;
 import frc.robot.commands.Hatchy;
 import frc.robot.commands.Hatchy2;
-import frc.robot.commands.SweeperIn;
+import frc.robot.commands.IntakeTest;
+import frc.robot.commands.SweeperDeploy;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 
@@ -18,14 +19,16 @@ public class OI {
 	
 	// Driver's Xbox Controller
 	private XboxController xboxDrive;
-	private Button xboxDriveA;
-	private Button xboxDriveB;
+	//private Button xboxDriveB;
+	//private Button xboxDriveStart;
+	/*private Button xboxDriveA;
+	
 	private Button xboxDriveX;
 	private Button xboxDriveY;
 	private Button xboxDriveRB;
 	private Button xboxDriveLB;
 	private Button xboxDriveBack;
-	private Button xboxDriveStart;
+	*/
 	
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
@@ -36,9 +39,9 @@ public class OI {
 	private Button xboxManipulateB;
 	private Button xboxManipulateLT;
 	private Button xboxManipulateRT;
-	private Button xboxManipulateShare;
+	//private Button xboxManipulateShare;
 	private Button xboxManipulateOptions;
-	private Button xboxManipulateSR;
+	//private Button xboxManipulateSR;
 	
 	private static OI oi;
 	
@@ -59,9 +62,9 @@ public class OI {
 		
 
 
-		xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_BS);
+		//xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_BS);
 
-		xboxDriveB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_B);	
+		//xboxDriveB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_B);	
 		//this is a new comment
 		// Manipulator Xbox Controller Bindings
 		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
@@ -82,11 +85,11 @@ public class OI {
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
 		xboxManipulateRB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH2));
 
-		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
+		//xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
+		//xboxManipulateLB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
 
-		xboxManipulateLT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LT);
-		xboxManipulateLT.whenPressed(new SweeperIn());
+		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
+		xboxManipulateLB.whenPressed(new SweeperDeploy());
 
 		xboxManipulateRT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RT);
 		xboxManipulateRT.whenPressed(new Hatchy());

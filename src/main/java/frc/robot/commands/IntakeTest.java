@@ -2,24 +2,19 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.*;
-
-import java.util.concurrent.TimeUnit;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import frc.robot.RobotMap;
-/**
- *
- */
 
-public class SweeperIn extends Command {
+public class IntakeTest extends Command {
 	
 	boolean isFinished = false;
-
-	public SweeperIn() {
+	int suc = 0;
+	
+	public IntakeTest() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sweeper);
+		requires(Robot.intake);
 
 	}
 
@@ -32,13 +27,9 @@ public class SweeperIn extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		 
-			Robot.intake.setIntakeSpeed( 0.00 , 0.00);
-			Robot.sweeper.setSweeperSpeed(0.00, 0.00);
-			Robot.lift.setPosition(32200.0); 			
-			if(Robot.lift.getPosition() == 32200.0){
-			//Robot.sweeper.setPosition(position);
-			}
+
+		 Robot.intake.setIntakeSpeed(1);
+		 Robot.sweeper.setSweeperSpeed(1);
 		 
 		 isFinished = true;
 	}
@@ -58,6 +49,6 @@ public class SweeperIn extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.INTAKE_SPEED_STOP, RobotMap.INTAKE_SPEED_STOP);
+		Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 	}
 }

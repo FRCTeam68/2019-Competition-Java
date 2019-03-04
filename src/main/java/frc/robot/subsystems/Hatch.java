@@ -11,12 +11,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
-import edu.wpi.first.wpilibj.DigitalInput;
-
 public class Hatch extends Subsystem {
     
     // Declare Class variables here
-	private WPI_VictorSPX hatchMotorB;
+	private WPI_VictorSPX hatchMotor;
     private static Hatch hatch;
     
 
@@ -29,7 +27,7 @@ public class Hatch extends Subsystem {
       
 
     private Hatch(){
-    	hatchMotorB = new WPI_VictorSPX(RobotMap.HATCH_MOTOR); //Setting whaat motor this is associated with
+    	hatchMotor = new WPI_VictorSPX(RobotMap.HATCH_MOTOR); //Setting whaat motor this is associated with
     }
  
 	@Override
@@ -37,19 +35,15 @@ public class Hatch extends Subsystem {
         //setDefaultCommand(new IntakeManual());
     }
 
-    public void setHatchSpeed(double speedA, double speedB) 
+    public void setHatchSpeed(double speed) 
     {
     	
-    	hatchMotorB.set(ControlMode.PercentOutput,speedA);
+    	hatchMotor.set(ControlMode.PercentOutput,speed);
     	
-    }
-    public void setHatchSpeedLeft(double speedA)
-    {
-    	hatchMotorB.set(ControlMode.Current,speedA);
     }
     
-    public double getHatchBSpeed()
+    public double getHatchSpeed()
     {
-    	return hatchMotorB.getMotorOutputPercent();
+    	return hatchMotor.getMotorOutputPercent();
     }
 }

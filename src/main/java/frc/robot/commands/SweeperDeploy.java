@@ -2,19 +2,21 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import frc.robot.RobotMap;
+/**
+ *
+ */
 
-public class IntakeManual extends Command {
+public class SweeperDeploy extends Command {
 	
 	boolean isFinished = false;
-	int suc = 0;
-	
-	public IntakeManual() {
+
+	public SweeperDeploy() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.intake);
+		requires(Robot.sweeper);
 
 	}
 
@@ -27,22 +29,14 @@ public class IntakeManual extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
-		 Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
-		 Robot.sweeper.setSweeperSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
 		 
-		 if(Robot.intake.getBeamBreak() == true){
-
-			Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
+			Robot.intake.setIntakeSpeed( RobotMap.MOTOR_STOP );
 			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_BALL2); 
-			
-			if(Robot.lift.getPosition() == RobotMap.LIFT_BALL2){
-				Robot.sweeper.setPosition(RobotMap.SWEEPER_PACKAGED);
-				isFinished = true;
+			Robot.lift.setPosition(RobotMap.LIFT_BALL2); 			
+			if(Robot.lift.getPosition() <= -31200.0){
+			  Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
+			  isFinished = true;
 			}
-		}
-		 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

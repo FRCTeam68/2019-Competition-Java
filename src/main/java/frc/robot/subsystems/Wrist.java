@@ -1,13 +1,12 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Command;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -31,7 +30,7 @@ public class Wrist extends Subsystem {
       
 
     private Wrist(){
-      	wristMotor = new WPI_TalonSRX(5); //Change device number later
+      	wristMotor = new WPI_TalonSRX(RobotMap.INTAKE_WRIST_MOTOR); 
 		wristMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		wristMotor.setSensorPhase(true); 
 		wristMotor.configNominalOutputForward(0, 0);

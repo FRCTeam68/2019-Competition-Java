@@ -1,19 +1,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.commands.AutoLift;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.CameraServer;
-import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.cscore.UsbCamera;
 
 /*import org.usfirst.frc.team68.robot.auto.RightAutoStartCommand; */
@@ -143,6 +136,7 @@ public class Robot extends TimedRobot {
 
 		Robot.driveTrain.setBrakeMode();
 		Robot.lift.zeroEncoder();
+		Robot.sweeper.zeroEncoder();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -158,7 +152,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("encoder value", Robot.lift.getPosition());
+		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
+		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
 	}
 
 

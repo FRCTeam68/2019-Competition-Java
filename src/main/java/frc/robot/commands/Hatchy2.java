@@ -2,13 +2,9 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.*;
-
-import java.util.concurrent.TimeUnit;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import frc.robot.RobotMap;
 /**
  *
  */
@@ -33,7 +29,7 @@ public class Hatchy2 extends Command {
 	@Override
 	protected void execute() {
 		 
-            Robot.hatch.setHatchSpeed(-1,-1);
+            Robot.hatch.setHatchSpeed(-1);
 		 
 		 isFinished = true;
 	}
@@ -53,6 +49,6 @@ public class Hatchy2 extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.INTAKE_SPEED_STOP, RobotMap.INTAKE_SPEED_STOP);
+		
 	}
 }

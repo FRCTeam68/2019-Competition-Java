@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
-
+import frc.robot.commands.IntakeManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class Intake extends Subsystem {
     
     // Declare Class variables here
-	private WPI_VictorSPX intakeMotorA;
+	private WPI_VictorSPX intakeMotor;
     private DigitalInput beamBreak;
     private static Intake intake;
     
@@ -30,34 +30,30 @@ public class Intake extends Subsystem {
       
 
     private Intake(){
-    	intakeMotorA = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR_A); //Setting whaat motor this is associated with
-        //beamBreak = new DigitalInput(222); //set the port that this is on later
+    	intakeMotor = new WPI_VictorSPX(RobotMap.INTAKE_MOTOR); //Setting whaat motor this is associated with
+        beamBreak = new DigitalInput(RobotMap.INTAKE_BEAM_BREAK); //set the port that this is on later
     }
  
 	@Override
 	protected void initDefaultCommand() {
-        //setDefaultCommand(new IntakeManual());
+        setDefaultCommand(new IntakeManual());
     }
 
-    public void setIntakeSpeed(double speedA, double speedB) 
+    public void setIntakeSpeed(double speedA) 
     {
     	
-    	intakeMotorA.set(ControlMode.PercentOutput,speedA);
+    	intakeMotor.set(speedA);
     	
-    }
-    public void setIntakeSpeedLeft(double speedA)
-    {
-    	intakeMotorA.set(ControlMode.Current,speedA);	
     }
     
-    public boolean findCurrentStateOfBeamBreak(){
+    public boolean getBeamBreak(){
         boolean isBeamBreakHit;
         isBeamBreakHit = beamBreak.get();
         return isBeamBreakHit;
     }
     
-    public double getIntakeASpeed()
+    public double getIntakeSpeed()
     {
-    	return intakeMotorA.getMotorOutputPercent();
+    	return intakeMotor.getMotorOutputPercent();
     }
 }

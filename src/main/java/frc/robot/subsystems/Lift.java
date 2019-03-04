@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 //import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.AutoLift;
 //import frc.robot.commands.DriveWithXboxJoysticks;
 //import frc.robot.commands.LiftManual;
 //import frc.robot.commands.LiftManual;
