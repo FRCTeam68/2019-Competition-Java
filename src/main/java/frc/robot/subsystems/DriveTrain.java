@@ -1,37 +1,32 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 import frc.robot.RobotMap;
 import frc.robot.commands.DriveWithXboxJoysticks;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.sensors.PigeonIMU; 
 
 
 public class DriveTrain extends Subsystem {
 	
-	private WPI_VictorSPX leftFront;
-	private WPI_VictorSPX rightFront;
-	private WPI_VictorSPX leftRear;
-	private WPI_VictorSPX rightRear;
+	private WPI_TalonSRX leftFront;
+	private WPI_TalonSRX rightFront;
+	private WPI_TalonSRX leftRear;
+	private WPI_TalonSRX rightRear;
 	private DifferentialDrive drive;
 	private boolean reverseDrive;
-	private double leftRearCruiseVelocity; 
+/*	private double leftRearCruiseVelocity; 
 	private double leftRearAcceleration; 
 	private double rightRearCruiseVelocity; 
 	private double rightRearAcceleration; 
 	private double leftRearSetPoint; 
-	private double rightRearSetPoint; 	
+	private double rightRearSetPoint; */	
 	private double targetSpeedLeft;
 	private double targetSpeedRight;
 	StringBuilder reportPIDLeft = new StringBuilder();
@@ -48,8 +43,7 @@ public class DriveTrain extends Subsystem {
 
 	private DriveTrain() {
 
-		leftRear = new WPI_VictorSPX(RobotMap.DRIVETRAIN_LEFT_REAR);
-		rightRear = new WPI_VictorSPX(RobotMap.DRIVETRAIN_RIGHT_REAR);
+		leftRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_REAR);
 		
 		leftRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
 		
@@ -63,9 +57,10 @@ public class DriveTrain extends Subsystem {
 		leftRear.config_kP(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_P, 0);
 		leftRear.config_kI(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_I, 0);
 		leftRear.config_kD(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, RobotMap.DRIVETRAIN_LEFT_PID_D, 0);
-		
-		rightRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		
+
+		rightRear = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_REAR);
+
+		rightRear.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);	
 		rightRear.setSensorPhase(true); 
 		rightRear.configNominalOutputForward(0, 0);
 		rightRear.configNominalOutputReverse(0, 0);
@@ -77,11 +72,24 @@ public class DriveTrain extends Subsystem {
 		rightRear.config_kI(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, RobotMap.DRIVETRAIN_RIGHT_PID_I, 0);
 		rightRear.config_kD(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, RobotMap.DRIVETRAIN_RIGHT_PID_D, 0);
 		
-		leftFront = new WPI_VictorSPX(RobotMap.DRIVETRAIN_LEFT_FRONT);
+		leftFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_LEFT_FRONT);
 		leftFront.set(ControlMode.Follower, leftRear.getDeviceID());
-
-		rightFront = new WPI_VictorSPX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
+		leftFront.setSensorPhase(true); 
+		/*
+		leftFront.configNominalOutputForward(0, 0);
+		leftFront.configNominalOutputReverse(0, 0);
+		leftFront.configPeakOutputForward(1,0); 
+		leftFront.configPeakOutputReverse(-1,0); 
+		*/
+		rightFront = new WPI_TalonSRX(RobotMap.DRIVETRAIN_RIGHT_FRONT);
 		rightFront.set(ControlMode.Follower, rightRear.getDeviceID());
+		rightFront.setSensorPhase(true); 
+		/*
+		rightFront.configNominalOutputForward(0, 0);
+		rightFront.configNominalOutputReverse(0, 0);
+		rightFront.configPeakOutputForward(1,0); 
+		rightFront.configPeakOutputReverse(-1,0); 
+		*/
 
 		drive = new DifferentialDrive(leftRear, rightRear);
 		
@@ -219,6 +227,12 @@ public class DriveTrain extends Subsystem {
 		rightRear.config_kD(RobotMap.DRIVETRAIN_RIGHT_PID_SLOT, DR, 0);
     	targetSpeedRight = speed;
     	//this.setDriveRightSpeed(SmartDashboard.getNumber("Drive Right Target RPM Value: ", targetSpeedRight));
+	}
+	public void setBrakeMode() {
+		leftRear.setNeutralMode(NeutralMode.Brake);
+		leftFront.setNeutralMode(NeutralMode.Brake);
+		rightRear.setNeutralMode(NeutralMode.Brake);
+		rightFront.setNeutralMode(NeutralMode.Brake);
     }
     
     public double getDriveLeftSpeed() {
