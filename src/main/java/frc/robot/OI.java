@@ -4,9 +4,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutoLift;
-import frc.robot.commands.Hatchy;
-import frc.robot.commands.Hatchy2;
-import frc.robot.commands.IntakeTest;
+import frc.robot.commands.MoveSweeper;
+import frc.robot.commands.MoveSweeper2;
 import frc.robot.commands.SweeperDeploy;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -37,9 +36,9 @@ public class OI {
 	private Button xboxManipulateRB;
 	private Button xboxManipulateA;
 	private Button xboxManipulateB;
-	private Button xboxManipulateLT;
-	private Button xboxManipulateRT;
-	//private Button xboxManipulateShare;
+	//private Button xboxManipulateLT;
+	//private Button xboxManipulateRT;
+	private Button xboxManipulateShare;
 	private Button xboxManipulateOptions;
 	//private Button xboxManipulateSR;
 	
@@ -91,11 +90,11 @@ public class OI {
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
 		xboxManipulateLB.whenPressed(new SweeperDeploy());
 
-		xboxManipulateRT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RT);
-		xboxManipulateRT.whenPressed(new Hatchy());
+		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
+		xboxManipulateShare.whenPressed(new MoveSweeper(RobotMap.SWEEPER_PACKAGED)); //packaged
 
 		xboxManipulateOptions = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateOptions.whenPressed(new Hatchy2());
+		xboxManipulateOptions.whenPressed(new MoveSweeper2(RobotMap.SWEEPER_DEPLOYED)); //deployed
 
 
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);

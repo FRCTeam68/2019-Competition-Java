@@ -32,13 +32,17 @@ public class Sweeper extends Subsystem {
     	sweeperMotor = new WPI_VictorSPX(RobotMap.SWEEPER_MOTOR); //Setting whaat motor this is associated with
         sweeperWrist = new WPI_TalonSRX(RobotMap.SWEEPER_WRIST_MOTOR); 
 
-		/*sweeperRotator.setSensorPhase(true); 
-		sweeperRotator.configNominalOutputForward(0, 0);
-		sweeperRotator.configNominalOutputReverse(0, 0);
-		sweeperRotator.configPeakOutputForward(0.4,0); 
-		sweeperRotator.configPeakOutputReverse(0.4,0); 
-        //sweeperRotator.configNeutralDeadband(0.001, 0);
-        sweeperRotator.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);*/
+		sweeperWrist.setSensorPhase(false); 
+		sweeperWrist.configNominalOutputForward(0, 0);
+		sweeperWrist.configNominalOutputReverse(0, 0);
+		sweeperWrist.configPeakOutputForward(0.4,0); 
+		sweeperWrist.configPeakOutputReverse(-0.4,0); 
+        //sweeperWrist.configNeutralDeadband(0.001, 0);
+        sweeperWrist.selectProfileSlot(RobotMap.SWEEPER_PID_SLOT, 0);
+        sweeperWrist.config_kF(RobotMap.SWEEPER_PID_SLOT, RobotMap.SWEEPER_PID_F, 0);
+		sweeperWrist.config_kP(RobotMap.SWEEPER_PID_SLOT, RobotMap.SWEEPER_PID_P, 0);
+		sweeperWrist.config_kI(RobotMap.SWEEPER_PID_SLOT, RobotMap.SWEEPER_PID_I, 0);
+		sweeperWrist.config_kD(RobotMap.SWEEPER_PID_SLOT, RobotMap.SWEEPER_PID_D, 0);
 
     }
 	@Override

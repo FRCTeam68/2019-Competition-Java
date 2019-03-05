@@ -27,7 +27,7 @@ public class DriveTrain extends Subsystem {
 	private double rightRearAcceleration; 
 	private double leftRearSetPoint; 
 	private double rightRearSetPoint; */	
-	private double targetSpeedLeft;
+//	private double targetSpeedLeft;
 	private double targetSpeedRight;
 	StringBuilder reportPIDLeft = new StringBuilder();
 	StringBuilder reportPIDRight = new StringBuilder();
@@ -187,7 +187,7 @@ public class DriveTrain extends Subsystem {
        	leftRear.set(ControlMode.Velocity,0);
 
        	// Publish the target speed to the dashboard
-       	targetSpeedLeft = speed;
+      // 	targetSpeedLeft = speed;
     	//SmartDashboard.putNumber("Left Drive Target RPM Value: ", targetSpeedLeft);
 
     	leftRear.set(speed);
@@ -216,7 +216,7 @@ public class DriveTrain extends Subsystem {
 		leftRear.config_kI(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, IL, 0);
 		leftRear.config_kD(RobotMap.DRIVETRAIN_LEFT_PID_SLOT, DL, 0);
 
-    	targetSpeedLeft = speed;
+    //	targetSpeedLeft = speed;
 //    	this.setDriveLeftSpeed(SmartDashboard.getNumber("Drive Left Target Speed: ", targetSpeedLeft));
     }
 

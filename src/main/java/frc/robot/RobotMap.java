@@ -83,6 +83,7 @@ public class RobotMap {
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND =0.0;
     public static final double LIFT_BALL1 = -10880.0;
+    public static final double LIFT_BALL_PICKUP = -5440.0;
     public static final double LIFT_BALL2 = -32200.0;
     public static final double LIFT_BALL3 = -53647.0;
     public static final double LIFT_HATCH1 = 0.0;
@@ -106,16 +107,16 @@ public class RobotMap {
     public static final int INTAKE_BEAM_BREAK = 0;
 
     //set hatch
-    public static final int HATCH_MOTOR = 10;
+    public static final int HATCH_MOTOR = 15;
 
     // INTAKE WRIST
     public static final int INTAKE_WRIST_MOTOR= 5;
 
-    public static final double INTAKE_WRIST_POS_1 = 0;
-    public static final double INTAKE_WRIST_POS_2 = 0;
-    public static final double INTAKE_WRIST_POS_3 = 0;
-    public static final double INTAKE_WRIST_POS_4 = 0;
-    public static final double INTAKE_WRIST_POS_5 = 0;
+    public static final double INTAKE_WRIST_PACKAGED = 0;
+    public static final double INTAKE_WRIST_HATCH_POSITION = -44656.0;
+    public static final double INTAKE_WRIST_ROCKET_BALL = -99768.0;
+    public static final double INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT = -59849.0;
+    public static final double INTAKE_WRIST_GROUND_INTAKE_BALL = -131345.0; //-11216
 
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
@@ -124,10 +125,24 @@ public class RobotMap {
     public static final int SWEEPER_MOTOR = 13;
     public static final int SWEEPER_WRIST_MOTOR = 6;
     
-    public static final double SWEEPER_DEPLOYED = 118407.0;
+    public static final double SWEEPER_DEPLOYED = 98463.0;
     public static final double SWEEPER_PACKAGED = 0.0;
     
-
+  //-51396
+    //SWEEPER PID STUFF
+    public static final int SWEEPER_PID_SLOT = 0;
+    
+    public static final double SWEEPER_PID_F = 0.03; //0.025
+    public static final double SWEEPER_PID_P = 0.3; //0.3 start
+    public static final double SWEEPER_PID_I = 0.0;
+    public static final double SWEEPER_PID_D = 0.0;
+    //CLAW PID STUFF
+    public static final int CLAW_PID_SLOT = 0;
+    
+    public static final double CLAW_PID_F = 0.03; //0.025
+    public static final double CLAW_PID_P = 0.3; //0.3 start
+    public static final double CLAW_PID_I = 0.0;
+    public static final double CLAW_PID_D = 0.0;
     //set endgame vars here
     //public static final double ENDGAME_MOTOR1  = 11;
     //public static final double ENDGAME_MOTOR2  = 12;

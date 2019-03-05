@@ -42,7 +42,11 @@ public class Wrist extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		//setDefaultCommand(new IntakeManual());
-    }
+	}
+	
+	public void zeroEncoder() {
+		wristMotor.setSelectedSensorPosition(0, 0, 10);
+	}
     
     public void setWristSpeed(double speedC)
     {

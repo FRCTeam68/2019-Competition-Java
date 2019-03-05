@@ -137,6 +137,7 @@ public class Robot extends TimedRobot {
 		Robot.driveTrain.setBrakeMode();
 		Robot.lift.zeroEncoder();
 		Robot.sweeper.zeroEncoder();
+		Robot.wrist.zeroEncoder();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
