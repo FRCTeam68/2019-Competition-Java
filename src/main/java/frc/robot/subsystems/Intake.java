@@ -56,4 +56,5 @@ public class Intake extends Subsystem {
     {
     	return intakeMotor.getMotorOutputPercent();
     }
+    
 }

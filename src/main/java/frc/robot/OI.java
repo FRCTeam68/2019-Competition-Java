@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.AutoLift;
+import frc.robot.commands.AutoWrist;
 import frc.robot.commands.MoveSweeper;
 import frc.robot.commands.MoveSweeper2;
 import frc.robot.commands.SweeperDeploy;
@@ -70,22 +71,38 @@ public class OI {
 
 		//lift
 		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
-		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
-
+		if(Robot.oi.getXboxManipulateLT() > 0.01){
+		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL_PICKUP));
+		}
+		if(Robot.oi.getXboxManipulateRT() > 0.01){
+			xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
+		}	
 		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
+		if(Robot.oi.getXboxManipulateLT() > 0.01){
+		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
+		}
+		if(Robot.oi.getXboxManipulateRT() > 0.01){
 		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
-
+		}	
 		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
+		if(Robot.oi.getXboxManipulateLT() > 0.01){
 		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));
-
+		}
+		if(Robot.oi.getXboxManipulateRT() > 0.01){
+		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_HATCH2));
+		}	
 		xboxManipulateY = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_Y);
+		if(Robot.oi.getXboxManipulateLT() > 0.01){		
 		xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_BALL3));
-
+		}
+		if(Robot.oi.getXboxManipulateRT() > 0.01){
+		xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
+		}	
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
-		xboxManipulateRB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH2));
+		xboxManipulateRB.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 
-		//xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		//xboxManipulateLB.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
+		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
+		xboxManipulateLB.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE_BALL));
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
 		xboxManipulateLB.whenPressed(new SweeperDeploy());
@@ -142,7 +159,7 @@ public class OI {
     	return rightAxis;
 	}
 	
-	//Intake In
+	
 	public double getXboxManipulateLT() {
 		double leftAxis;
 		leftAxis = xboxManipulate.getRawAxis(RobotMap.XBOX_MANIPULATE_LT);
@@ -151,5 +168,13 @@ public class OI {
     	return leftAxis;
 	}
 
-	
+	public double getXboxManipulateRT() {
+		double rightAxis;
+		rightAxis = xboxManipulate.getRawAxis(RobotMap.XBOX_MANIPULATE_RT);
+		// Allow for up to 10% of joystick noise
+		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
+    	return rightAxis;
+	}
+
+
 }

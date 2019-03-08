@@ -1,4 +1,4 @@
-/*
+
 package frc.robot.commands;
 
 import frc.robot.Robot;
@@ -47,7 +47,6 @@ public class AutoWrist extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.INTAKE_SPEED_STOP, RobotMap.INTAKE_SPEED_STOP);
+		
 	}
 }
-*/

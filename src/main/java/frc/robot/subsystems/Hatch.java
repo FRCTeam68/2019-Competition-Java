@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
-
+import frc.robot.commands.Hatchy2;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -32,7 +32,7 @@ public class Hatch extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-        //setDefaultCommand(new IntakeManual());
+        setDefaultCommand(new Hatchy2());
     }
 
     public void setHatchSpeed(double speed) 

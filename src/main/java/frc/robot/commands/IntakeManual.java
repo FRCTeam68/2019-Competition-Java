@@ -29,8 +29,10 @@ public class IntakeManual extends Command {
 	protected void execute() {
 
 		 Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
-	//	 Robot.sweeper.setSweeperSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
-		 
+		if(Robot.sweeper.getPosition() == 0) {
+			Robot.sweeper.setSweeperSpeed(0);
+		}
+		Robot.sweeper.setSweeperSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
 		 if(Robot.intake.getBeamBreak() == true && Robot.intake.getIntakeSpeed() < 0.01 ){
 
 			Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
