@@ -82,13 +82,13 @@ public class RobotMap {
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND =0.0;
-    public static final double LIFT_BALL1 = -10880.0;
-    public static final double LIFT_BALL_PICKUP = -5440.0;
-    public static final double LIFT_BALL2 = -32200.0;
-    public static final double LIFT_BALL3 = -53647.0;
-    public static final double LIFT_HATCH1 = 0.0;
-    public static final double LIFT_HATCH2 = -21620.0;
-    public static final double LIFT_HATCH3 = -43254.0;
+    public static final double LIFT_ROCKET_CARGO_LOW = 10880.0;
+    public static final double LIFT_ROCKET_CARGO_MID = 32200.0;
+    public static final double LIFT_ROCKET_CARGO_HIGH = 53647.0;
+    public static final double LIFT_ROCKET_HATCH_LOW = 8500.0;
+    public static final double LIFT_ROCKET_HATCH_MID = 21620.0;
+    public static final double LIFT_ROCKET_HATCH_HIGH = 43254.0;
+    public static final double LIFT_BALL_INTAKE = 5440.0;
 
 	//public static final int LIFT_LIMIT_SWITCH_UP = 2;
 	public static final int LIFT_LIMIT_SWITCH_DOWN = 3;

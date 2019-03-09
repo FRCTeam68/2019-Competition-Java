@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -17,10 +18,9 @@ public class AutoLift extends Command {
 	double currentPos = Robot.lift.getPosition();
 
 	
-	public AutoLift(double pos) {
+	public AutoLift() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.lift);
-		setPoint = pos;
 	}
 
 	// Called just before this Command runs the first time
@@ -32,7 +32,24 @@ public class AutoLift extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-        
+		if(Robot.oi.getXboxManipulateRB()) {
+			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
+				setPoint = RobotMap.LIFT_ROCKET_HATCH_LOW;
+			} else if (Robot.oi.getXboxManipulateX()) {
+				setPoint = RobotMap.LIFT_ROCKET_HATCH_MID;
+			} else if (Robot.oi.getXboxManipulateY()) {
+				setPoint = RobotMap.LIFT_ROCKET_HATCH_HIGH;
+			}
+		} else if(Robot.oi.getXboxManipulateLB()) {
+			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_LOW;
+			} else if (Robot.oi.getXboxManipulateX()) {
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_MID;
+			} else if (Robot.oi.getXboxManipulateY()) {
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_HIGH;
+			} 
+		}
+
 		Robot.lift.setPosition(setPoint);
 	
 		isFinished = true;

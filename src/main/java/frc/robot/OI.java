@@ -71,41 +71,24 @@ public class OI {
 
 		//lift
 		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
-		if(Robot.oi.getXboxManipulateLT() > 0.01){
-		xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL_PICKUP));
-		}
-		if(Robot.oi.getXboxManipulateRT() > 0.01){
-			xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
-		}	
+		//xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL_PICKUP));
+	
 		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
-		if(Robot.oi.getXboxManipulateLT() > 0.01){
-		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
-		}
-		if(Robot.oi.getXboxManipulateRT() > 0.01){
-		xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_GROUND));
-		}	
+		//xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
+
 		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
-		if(Robot.oi.getXboxManipulateLT() > 0.01){
-		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));
-		}
-		if(Robot.oi.getXboxManipulateRT() > 0.01){
-		xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_HATCH2));
-		}	
+		//xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));
+
 		xboxManipulateY = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_Y);
-		if(Robot.oi.getXboxManipulateLT() > 0.01){		
-		xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_BALL3));
-		}
-		if(Robot.oi.getXboxManipulateRT() > 0.01){
-		xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_HATCH3));
-		}	
+		//xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_BALL3));
+		
+
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
-		xboxManipulateRB.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+		xboxManipulateRB.whileHeld(new AutoLift());
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE_BALL));
+		xboxManipulateLB.whileHeld(new AutoLift());
 
-		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whenPressed(new SweeperDeploy());
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		xboxManipulateShare.whenPressed(new MoveSweeper(RobotMap.SWEEPER_PACKAGED)); //packaged
@@ -174,6 +157,54 @@ public class OI {
 		// Allow for up to 10% of joystick noise
 		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
     	return rightAxis;
+	}
+
+	public boolean getXboxManipulateA() {
+		boolean buttonPressed = false;
+		if(xboxManipulateA.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateY() {
+		boolean buttonPressed = false;
+		if(xboxManipulateY.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateB() {
+		boolean buttonPressed = false;
+		if(xboxManipulateB.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateX() {
+		boolean buttonPressed = false;
+		if(xboxManipulateX.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateRB() {
+		boolean buttonPressed = false;
+		if(xboxManipulateRB.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateLB() {
+		boolean buttonPressed = false;
+		if(xboxManipulateLB.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
 	}
 
 

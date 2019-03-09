@@ -37,7 +37,7 @@ public class IntakeManual extends Command {
 
 			Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_BALL1); 
+			Robot.lift.setPosition(RobotMap.LIFT_ROCKET_CARGO_LOW); 
 			
 		//	if(Robot.lift.getPosition() < -30000.0  ){
 				Robot.sweeper.setPosition(RobotMap.SWEEPER_PACKAGED);

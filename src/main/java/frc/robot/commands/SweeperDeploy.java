@@ -32,7 +32,7 @@ public class SweeperDeploy extends Command {
 		 
 			Robot.intake.setIntakeSpeed( RobotMap.MOTOR_STOP );
 			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_BALL2); 			
+			Robot.lift.setPosition(RobotMap.LIFT_ROCKET_CARGO_MID); 			
 			if(Robot.lift.getPosition() <= -31200.0){
 			  Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
 			  isFinished = true;
