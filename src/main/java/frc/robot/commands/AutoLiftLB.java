@@ -1,4 +1,4 @@
-/*
+
 package frc.robot.commands;
 
 //import edu.wpi.first.wpilibj.Timer;
@@ -6,18 +6,21 @@ import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class SweeperChangePos extends Command {
+/**
+ * An example command.  You can replace me with your own command.
+ */
+public class AutoLiftLB extends Command {
 	
 	private boolean isFinished = false;
 	public double setPoint;
 	double currentPos = Robot.lift.getPosition();
 
 	
-	public SweeperChangePos(double pos) {
+	public AutoLiftLB() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sweeper);
-		setPoint = pos;
+		requires(Robot.lift);
 	}
 
 	// Called just before this Command runs the first time
@@ -26,11 +29,21 @@ public class SweeperChangePos extends Command {
 		//startTime = Timer.getFPGATimestamp();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
-        
-		//Robot.sweeper.setPosition(setPoint);
+		
+		 if(Robot.oi.getXboxManipulateLB()) {
+			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_LOW;
+			} else if (Robot.oi.getXboxManipulateX()) {
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_MID;
+			} else if (Robot.oi.getXboxManipulateY()) {
+				setPoint = RobotMap.LIFT_ROCKET_CARGO_HIGH;
+			} 
+		}
+
+		Robot.lift.setPosition(setPoint);
 	
 		isFinished = true;
         
@@ -54,4 +67,3 @@ public class SweeperChangePos extends Command {
 	protected void interrupted() {
 	}
 }
-*/

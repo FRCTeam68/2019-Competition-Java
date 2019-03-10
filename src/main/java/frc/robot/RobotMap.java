@@ -49,6 +49,10 @@ public class RobotMap {
 	public static final int XBOX_MANIPULATE_LT = 2;
     public static final int XBOX_MANIPULATE_RT = 3;
     public static final int XBOX_MANIPULATE_RY = 5;
+    public static final int XBOX_MANIPULATE_POV_DOWN = 180;
+    public static final int XBOX_MANIPULATE_POV_RIGHT = 90;
+    public static final int XBOX_MANIPULATE_POV_LEFT = 270;
+    public static final int XBOX_MANIPULATE_POV_UP = 0;
 
 
     // DRIVETRAIN
@@ -113,10 +117,10 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -44656.0;
-    public static final double INTAKE_WRIST_ROCKET_BALL = -99768.0;
-    public static final double INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT = -59849.0;
-    public static final double INTAKE_WRIST_GROUND_INTAKE_BALL = -131345.0; //-11216
+    public static final double INTAKE_WRIST_HATCH_POSITION = -41140;
+    public static final double INTAKE_WRIST_CARGO_OUTPUT_POSITION = -97452.0;
+    public static final double INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT = -61262.0;
+    public static final double INTAKE_WRIST_GROUND_INTAKE_BALL = -126278.0; //-11216
 
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;

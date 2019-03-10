@@ -11,14 +11,14 @@ import frc.robot.RobotMap;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class AutoLift extends Command {
+public class AutoLiftRB extends Command {
 	
 	private boolean isFinished = false;
 	public double setPoint;
 	double currentPos = Robot.lift.getPosition();
 
 	
-	public AutoLift() {
+	public AutoLiftRB() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.lift);
 	}
@@ -29,7 +29,7 @@ public class AutoLift extends Command {
 		//startTime = Timer.getFPGATimestamp();
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
 		if(Robot.oi.getXboxManipulateRB()) {
@@ -40,15 +40,8 @@ public class AutoLift extends Command {
 			} else if (Robot.oi.getXboxManipulateY()) {
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_HIGH;
 			}
-		} else if(Robot.oi.getXboxManipulateLB()) {
-			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
-				setPoint = RobotMap.LIFT_ROCKET_CARGO_LOW;
-			} else if (Robot.oi.getXboxManipulateX()) {
-				setPoint = RobotMap.LIFT_ROCKET_CARGO_MID;
-			} else if (Robot.oi.getXboxManipulateY()) {
-				setPoint = RobotMap.LIFT_ROCKET_CARGO_HIGH;
-			} 
-		}
+		} 
+
 
 		Robot.lift.setPosition(setPoint);
 	

@@ -3,10 +3,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.AutoLift;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.commands.AutoLiftLB;
+import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
-import frc.robot.commands.MoveSweeper;
-import frc.robot.commands.MoveSweeper2;
 import frc.robot.commands.SweeperDeploy;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -41,6 +41,10 @@ public class OI {
 	//private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
 	private Button xboxManipulateOptions;
+	private POVButton xboxManipulatorPOVUp;
+	private POVButton xboxManipulatorPOVLeft;
+	private POVButton xboxManipulatorPOVRight;
+	private POVButton xboxManipulatorPOVDown;
 	//private Button xboxManipulateSR;
 	
 	private static OI oi;
@@ -84,17 +88,32 @@ public class OI {
 		
 
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
-		xboxManipulateRB.whileHeld(new AutoLift());
+		xboxManipulateRB.whileHeld(new AutoLiftRB());
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whileHeld(new AutoLift());
+		xboxManipulateLB.whileHeld(new AutoLiftLB());
 
+		//end lift here
+		// WRIST BUTTONS HERE
+
+		xboxManipulatorPOVLeft = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_LEFT);
+		xboxManipulatorPOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+
+		xboxManipulatorPOVDown = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_DOWN);
+		xboxManipulatorPOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT_POSITION));
+
+		xboxManipulatorPOVUp = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_UP);
+		xboxManipulatorPOVUp.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+		
+		xboxManipulatorPOVRight = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_RIGHT);
+		xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE_BALL));
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
-		xboxManipulateShare.whenPressed(new MoveSweeper(RobotMap.SWEEPER_PACKAGED)); //packaged
+		xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT));
 
+		//SWEEPER BUTTON
 		xboxManipulateOptions = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateOptions.whenPressed(new MoveSweeper2(RobotMap.SWEEPER_DEPLOYED)); //deployed
+		xboxManipulateOptions.whenPressed(new SweeperDeploy()); 
 
 
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);

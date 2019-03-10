@@ -25,7 +25,7 @@ public class Hatchy extends Command {
 	@Override
 	protected void execute() {
 		 
-            Robot.hatch.setHatchSpeed(1);
+            Robot.hatch.setHatchSpeed(Robot.oi.getRightXboxManipulatorJoystick());
 		 
 		 isFinished = true;
 	}

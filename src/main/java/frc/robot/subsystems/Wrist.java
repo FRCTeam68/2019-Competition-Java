@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 
 
 public class Wrist extends Subsystem {
@@ -59,6 +59,7 @@ public class Wrist extends Subsystem {
 
 
 	public void setPosition(double position) {
+		wristMotor.set(ControlMode.Position, position);
 		wristMotor.set(position);
 	}
 	

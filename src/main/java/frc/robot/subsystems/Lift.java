@@ -74,6 +74,7 @@ public class Lift extends Subsystem {
 	
 	public void setPosition(double position) {
 		liftMotor.set(ControlMode.Position, position);
+		System.out.println(position);
 	}
 	
 /*	public void setMotionMagicPosition(double position) {

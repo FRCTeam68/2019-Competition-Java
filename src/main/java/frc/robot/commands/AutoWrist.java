@@ -5,8 +5,6 @@ import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import frc.robot.RobotMap;
-
 public class AutoWrist extends Command {
     private double setPoint;
 	boolean isFinished = false;
