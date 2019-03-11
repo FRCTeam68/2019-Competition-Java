@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.commands.MatchStart;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -96,17 +97,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		
-		Robot.driveTrain.setBrakeMode();
-		double timeout = System.currentTimeMillis();
-        
-		while((DriverStation.getInstance().getGameSpecificMessage() == null || DriverStation.getInstance().getGameSpecificMessage().equals(""))
-                && System.currentTimeMillis() - timeout > 1000) {
-            System.out.println("Waiting For FMS Data");
-        }
+		//Robot.driveTrain.setBrakeMode();
+	
 
 
         
-		autonomousCommand = autoChooser.getSelected();
+		//autonomousCommand = autoChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -120,7 +116,7 @@ public class Robot extends TimedRobot {
 		
 		//schedule the autonomous command (example)
 		if (autonomousCommand != null)
-	        System.out.println("Auto Running: " + autonomousCommand.getName());
+	        //System.out.println("Auto Running: " + autonomousCommand.getName());
 			autonomousCommand.start();
 	}
 
@@ -138,6 +134,7 @@ public class Robot extends TimedRobot {
 		Robot.lift.zeroEncoder();
 		Robot.sweeper.zeroEncoder();
 		Robot.wrist.zeroEncoder();
+		Scheduler.getInstance().add(new MatchStart());
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -156,6 +153,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+
 	}
 
 

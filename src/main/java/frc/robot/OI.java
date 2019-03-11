@@ -97,19 +97,19 @@ public class OI {
 		// WRIST BUTTONS HERE
 
 		xboxManipulatorPOVLeft = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_LEFT);
-		xboxManipulatorPOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+		xboxManipulatorPOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_STATION_INTAKE));
 
 		xboxManipulatorPOVDown = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_DOWN);
-		xboxManipulatorPOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT_POSITION));
+		xboxManipulatorPOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
 
 		xboxManipulatorPOVUp = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_UP);
 		xboxManipulatorPOVUp.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
 		
 		xboxManipulatorPOVRight = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_RIGHT);
-		xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE_BALL));
+		xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
-		xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT));
+		xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 
 		//SWEEPER BUTTON
 		xboxManipulateOptions = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);

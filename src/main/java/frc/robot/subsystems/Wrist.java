@@ -37,6 +37,13 @@ public class Wrist extends Subsystem {
 		wristMotor.configNominalOutputReverse(0, 0);
 		wristMotor.configPeakOutputForward(0.4,0); 
 		wristMotor.configPeakOutputReverse(-.4,0); 
+
+		wristMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
+		wristMotor.config_kF(RobotMap.WRIST_PID_SLOT, RobotMap.WRIST_PID_F, 0);
+		wristMotor.config_kP(RobotMap.WRIST_PID_SLOT, RobotMap.WRIST_PID_P, 0);
+		wristMotor.config_kI(RobotMap.WRIST_PID_SLOT, RobotMap.WRIST_PID_I, 0);
+		wristMotor.config_kD(RobotMap.WRIST_PID_SLOT, RobotMap.WRIST_PID_D, 0);
+//		wristMotor.setNeutralMode(NeutralMode.Brake);
     }
  
 	@Override
@@ -60,7 +67,6 @@ public class Wrist extends Subsystem {
 
 	public void setPosition(double position) {
 		wristMotor.set(ControlMode.Position, position);
-		wristMotor.set(position);
 	}
 	
 	public double getPosition() {

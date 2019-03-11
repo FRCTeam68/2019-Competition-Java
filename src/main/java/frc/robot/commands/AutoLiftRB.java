@@ -14,9 +14,8 @@ import frc.robot.RobotMap;
 public class AutoLiftRB extends Command {
 	
 	private boolean isFinished = false;
-	public double setPoint;
-	double currentPos = Robot.lift.getPosition();
-
+	private double setPoint = 0;
+	private double currentPos = 0;
 	
 	public AutoLiftRB() {
 		// Use requires() here to declare subsystem dependencies
@@ -26,26 +25,36 @@ public class AutoLiftRB extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		//startTime = Timer.getFPGATimestamp();
+		setPoint = Robot.lift.getLastSetPoint();
+		System.out.println("Initial position RB  is "+ setPoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
+
+		System.out.println("Holding Right Button");
 		if(Robot.oi.getXboxManipulateRB()) {
+			System.out.println("Yep, RB is pressed");
 			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
+				System.out.println("And A or B is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_LOW;
 			} else if (Robot.oi.getXboxManipulateX()) {
+				System.out.println("And X is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_MID;
 			} else if (Robot.oi.getXboxManipulateY()) {
+				System.out.println("And Y is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_HIGH;
-			}
-		} 
-
-
-		Robot.lift.setPosition(setPoint);
+			} 
 	
-		isFinished = true;
+		} 
+		System.out.println("Setting setPoint to RB " + setPoint);
+		Robot.lift.setPosition(setPoint);
+
+		currentPos = Robot.lift.getPosition();
+		if ( currentPos == setPoint ) {
+			isFinished = true;
+		}
         
 	}
 
@@ -58,7 +67,7 @@ public class AutoLiftRB extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-    	
+		System.out.println("RB WhileHeld Ended " + setPoint);
 	}
 
 	// Called when another command which requires one or more of the same

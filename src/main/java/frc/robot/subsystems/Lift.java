@@ -26,6 +26,7 @@ public class Lift extends Subsystem {
     //private DigitalInput limitSwitchUp;
     private DigitalInput limitSwitchDown;
 	private Boolean manualBool;
+	private double lastSetPoint = 0;
 	
 	private static Lift lift;
 	
@@ -74,7 +75,11 @@ public class Lift extends Subsystem {
 	
 	public void setPosition(double position) {
 		liftMotor.set(ControlMode.Position, position);
-		System.out.println(position);
+		lastSetPoint = position;
+	}
+
+	public double getLastSetPoint() {
+		return lastSetPoint;
 	}
 	
 /*	public void setMotionMagicPosition(double position) {

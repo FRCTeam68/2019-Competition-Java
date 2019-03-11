@@ -1,42 +1,41 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+
 /**
- *
+ * An example command.  You can replace me with your own command.
  */
-
-public class SweeperDeploy extends Command {
+public class AutoLift extends Command {
 	
-	boolean isFinished = false;
+	private boolean isFinished = false;
+	private double setPoint = 0;
 
-	public SweeperDeploy() {
+	public AutoLift(double pointToSet) {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sweeper);
-
+		requires(Robot.lift);
+		setPoint = pointToSet;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
-		 
-			Robot.intake.setIntakeSpeed( RobotMap.MOTOR_STOP );
-			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_ROCKET_CARGO_MID); 			
 
-			  Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
-			  isFinished = true;
-
+		Robot.lift.setPosition(setPoint);
+	
+		isFinished = true;
+        
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -48,12 +47,12 @@ public class SweeperDeploy extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+    	
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 	}
 }

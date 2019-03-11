@@ -118,9 +118,16 @@ public class RobotMap {
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
     public static final double INTAKE_WRIST_HATCH_POSITION = -41140;
-    public static final double INTAKE_WRIST_CARGO_OUTPUT_POSITION = -97452.0;
-    public static final double INTAKE_WRIST_HUMAN_FEED_STATION_CARGO_INPUT = -61262.0;
-    public static final double INTAKE_WRIST_GROUND_INTAKE_BALL = -126278.0; //-11216
+    public static final double INTAKE_WRIST_CARGO_OUTPUT = -61262.0;
+    public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -92452.0;
+    public static final double INTAKE_WRIST_GROUND_INTAKE = -120278.0; //-11216
+
+    public static final int WRIST_PID_SLOT = 0;
+    
+    public static final double WRIST_PID_F = 0.03; //0.025
+    public static final double WRIST_PID_P = 0.3; //0.3 start
+    public static final double WRIST_PID_I = 0.0;
+    public static final double WRIST_PID_D = 0.0;
 
 	// Pneumatic Control Module CAN Bus ID
     public static final int PCM_MAIN = 9;
