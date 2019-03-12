@@ -35,8 +35,8 @@ public class Wrist extends Subsystem {
 		wristMotor.setSensorPhase(true); 
 		wristMotor.configNominalOutputForward(0, 0);
 		wristMotor.configNominalOutputReverse(0, 0);
-		wristMotor.configPeakOutputForward(0.4,0); 
-		wristMotor.configPeakOutputReverse(-.4,0); 
+		wristMotor.configPeakOutputForward(0.75,0); 
+		wristMotor.configPeakOutputReverse(-.75,0); 
 
 		wristMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
 		wristMotor.config_kF(RobotMap.WRIST_PID_SLOT, RobotMap.WRIST_PID_F, 0);

@@ -8,6 +8,7 @@ import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
 import frc.robot.commands.SweeperDeploy;
+import frc.robot.commands.SweeperDeployIntake;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 
@@ -37,6 +38,8 @@ public class OI {
 	private Button xboxManipulateRB;
 	private Button xboxManipulateA;
 	private Button xboxManipulateB;
+	private Button xboxManipulateSL;
+	private Button xboxManipulateSR;
 	//private Button xboxManipulateLT;
 	//private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
@@ -92,6 +95,9 @@ public class OI {
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
 		xboxManipulateLB.whileHeld(new AutoLiftLB());
+
+		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
+		xboxManipulateSL.whenPressed(new SweeperDeployIntake());
 
 		//end lift here
 		// WRIST BUTTONS HERE

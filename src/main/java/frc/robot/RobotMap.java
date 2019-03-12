@@ -86,6 +86,7 @@ public class RobotMap {
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND =0.0;
+    public static final double LIFT_MATCH_START = 3000.0;
     public static final double LIFT_ROCKET_CARGO_LOW = 10880.0;
     public static final double LIFT_ROCKET_CARGO_MID = 32200.0;
     public static final double LIFT_ROCKET_CARGO_HIGH = 53647.0;

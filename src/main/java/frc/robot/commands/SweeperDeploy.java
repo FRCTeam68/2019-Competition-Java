@@ -30,12 +30,8 @@ public class SweeperDeploy extends Command {
 	@Override
 	protected void execute() {
 		 
-			Robot.intake.setIntakeSpeed( RobotMap.MOTOR_STOP );
-			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_ROCKET_CARGO_MID); 			
-
-			  Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
-			  isFinished = true;
+		Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
+		isFinished = true;
 
 	}
 
@@ -54,6 +50,6 @@ public class SweeperDeploy extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
+		
 	}
 }

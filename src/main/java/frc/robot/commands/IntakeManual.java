@@ -5,17 +5,17 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class IntakeManual extends Command {
 	
-	boolean isFinished = false;
-	int suc = 0;
+	private boolean isFinished = false;
+	private double joystickSpeed = 0;
 	
 	public IntakeManual() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.intake);
-
 	}
 
 	// Called just before this Command runs the first time
@@ -28,7 +28,20 @@ public class IntakeManual extends Command {
 	@Override
 	protected void execute() {
 
-		 Robot.intake.setIntakeSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
+		if (!Robot.sweeper.isDeployed() ) {
+			SmartDashboard.putBoolean("Sweeper State", false);
+		} else {
+			SmartDashboard.putBoolean("Sweeper State", true);
+			joystickSpeed = Robot.oi.getLeftXboxManipulatorJoystick();
+
+			Robot.intake.setIntakeSpeed(joystickSpeed);
+			Robot.sweeper.setSweeperSpeed(joystickSpeed);
+		}
+
+
+
+
+/*		
 		if(Robot.sweeper.getPosition() == 0) {
 			Robot.sweeper.setSweeperSpeed(0);
 		}
@@ -44,6 +57,7 @@ public class IntakeManual extends Command {
 				isFinished = true;
 		//	}
 		}
+		*/
 		 
 	}
 

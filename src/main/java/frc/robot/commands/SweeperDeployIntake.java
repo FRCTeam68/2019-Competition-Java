@@ -11,16 +11,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.RobotMap;
 
-public class MatchStart extends CommandGroup {
+public class SweeperDeployIntake extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public MatchStart() {
-    addSequential(new AutoLift(RobotMap.LIFT_MATCH_START));
-    addSequential(new WaitCommand(1));
-    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
-    addSequential(new WaitCommand(1));
-    addSequential(new AutoLift(RobotMap.LIFT_GROUND));
+  public SweeperDeployIntake() {
+
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW));
+    addSequential(new WaitCommand(2));
+    addSequential(new SweeperDeploy());
+    addSequential(new WaitCommand(4));
+
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
