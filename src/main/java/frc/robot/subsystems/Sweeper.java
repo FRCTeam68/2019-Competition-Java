@@ -90,7 +90,7 @@ public class Sweeper extends Subsystem {
     }
     
     public boolean isDeployed(){
-        return (sweeperWrist.getSelectedSensorPosition(0)> 1000);
+        return (sweeperWrist.getSelectedSensorPosition(0) > 90000);
     }
 
 }

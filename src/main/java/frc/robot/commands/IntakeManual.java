@@ -5,6 +5,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -28,36 +29,37 @@ public class IntakeManual extends Command {
 	@Override
 	protected void execute() {
 
-		if (!Robot.sweeper.isDeployed() ) {
-			SmartDashboard.putBoolean("Sweeper State", false);
+		joystickSpeed = Robot.oi.getLeftXboxManipulatorJoystick();
+		if(Math.abs(joystickSpeed) > .5) { // it better be intentional 
+			if(!Robot.sweeper.isDeployed()) {
+				// Notify the drivers the sweeper IS NOT deployed
+				SmartDashboard.putBoolean("Sweeper State", false);
+				if(joystickSpeed < -0.5) {
+					System.out.println("Setting intake speed to " + joystickSpeed);
+					Robot.intake.setIntakeSpeed(joystickSpeed);
+				}
+			} else {
+				// Notify the drivers the sweeper IS 
+				SmartDashboard.putBoolean("Sweeper State", true);
+				if(joystickSpeed > 0.5) {    // Intaking
+					if(!Robot.intake.getBeamBreak()) {
+						System.out.println("Beam Break is FALSE ");
+						System.out.println("Setting intake speed to " + joystickSpeed);
+						Robot.intake.setIntakeSpeed(joystickSpeed);
+						System.out.println("Setting sweeper speed to " + joystickSpeed);
+						Robot.sweeper.setSweeperSpeed(joystickSpeed);
+					} else if (Robot.intake.getBeamBreak()) {  // the beam is broken
+						System.out.println("BEAM Broken");
+						Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
+						Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
+						Scheduler.getInstance().add(new DeliverCargo());
+					}
+				}
+			}
 		} else {
-			SmartDashboard.putBoolean("Sweeper State", true);
-			joystickSpeed = Robot.oi.getLeftXboxManipulatorJoystick();
-
-			Robot.intake.setIntakeSpeed(joystickSpeed);
-			Robot.sweeper.setSweeperSpeed(joystickSpeed);
-		}
-
-
-
-
-/*		
-		if(Robot.sweeper.getPosition() == 0) {
-			Robot.sweeper.setSweeperSpeed(0);
-		}
-		Robot.sweeper.setSweeperSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
-		 if(Robot.intake.getBeamBreak() == true && Robot.intake.getIntakeSpeed() < 0.01 ){
-
 			Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-			Robot.lift.setPosition(RobotMap.LIFT_ROCKET_CARGO_LOW); 
-			
-		//	if(Robot.lift.getPosition() < -30000.0  ){
-				Robot.sweeper.setPosition(RobotMap.SWEEPER_PACKAGED);
-				isFinished = true;
-		//	}
 		}
-		*/
 		 
 	}
 
@@ -76,6 +78,6 @@ public class IntakeManual extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
+		
 	}
 }
