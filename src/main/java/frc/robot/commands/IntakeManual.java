@@ -35,21 +35,21 @@ public class IntakeManual extends Command {
 				// Notify the drivers the sweeper IS NOT deployed
 				SmartDashboard.putBoolean("Sweeper State", false);
 				if(joystickSpeed < -0.5) {
-					System.out.println("Setting intake speed to " + joystickSpeed);
+					//System.out.println("Setting intake speed to " + joystickSpeed);
 					Robot.intake.setIntakeSpeed(joystickSpeed);
 				}
 			} else {
 				// Notify the drivers the sweeper IS 
 				SmartDashboard.putBoolean("Sweeper State", true);
-				if(joystickSpeed > 0.5) {    // Intaking
+				if(Math.abs(joystickSpeed) > 0.5) {   
 					if(!Robot.intake.getBeamBreak()) {
-						System.out.println("Beam Break is FALSE ");
-						System.out.println("Setting intake speed to " + joystickSpeed);
+						//System.out.println("Beam Break is FALSE ");
+						//System.out.println("Setting intake speed to " + joystickSpeed);
 						Robot.intake.setIntakeSpeed(joystickSpeed);
-						System.out.println("Setting sweeper speed to " + joystickSpeed);
+						//System.out.println("Setting sweeper speed to " + joystickSpeed);
 						Robot.sweeper.setSweeperSpeed(joystickSpeed);
 					} else if (Robot.intake.getBeamBreak()) {  // the beam is broken
-						System.out.println("BEAM Broken");
+						//System.out.println("BEAM Broken");
 						Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 						Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
 						Scheduler.getInstance().add(new DeliverCargo());
