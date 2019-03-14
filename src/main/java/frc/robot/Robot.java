@@ -1,27 +1,44 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.commands.MatchStart;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.cscore.UsbCamera;
 
 /*import org.usfirst.frc.team68.robot.auto.RightAutoStartCommand; */
 
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 	
 	public static RobotMap robotMap;
 
+	public static Wrist wrist;
+
 	public static OI oi;
+
+	public static DriveTrain driveTrain;
+
+	public static Lift lift;
+
+	public static Intake intake;
+
+	public static Sweeper sweeper;
+
+	public static UsbCamera camera;
+
+	public static Hatch hatch;
+
+	public static EndGame endGame;
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
 
-
-
+	
 	Command autonomousCommand;
 	SendableChooser<Command> autoChooser;
 	SendableChooser<String> stratChooser;
@@ -36,30 +53,22 @@ public class Robot extends IterativeRobot {
 		robotMap = RobotMap.getRobotMap();
 
 		// Create a single instance of each Robot subsystem here
+		driveTrain = DriveTrain.getDriveTrain();
+		intake = Intake.getIntake();
+		lift = Lift.getLift();
+		wrist = Wrist.getWrist();
+		sweeper = Sweeper.getSweeper();
+		hatch = Hatch.getHatch();
+		endGame = EndGame.getEndGame();
 
-
-		//camera = USBCamera.getCamera();
-		/*UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-        camera.setResolution(640, 480);*/
-        
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(160, 120);
+		camera.setFPS(10);
 
 		// The OI class should be the last to be instantiated
-		autoChooser = new SendableChooser<>();
-/*	    autoChooser.addObject("Left Start Auto", leftAuto);
-	    autoChooser.addObject("Right Start Auto", rightAuto);*/
-	    //autoChooser.addDefault("Auto-Run", new DriveXInchesCommand(100, 0.8));
-	    //Choosing strategy
 
-
-	    stratChooser = new SendableChooser<>();
-	    stratChooser.addObject("SC/SW", "SC/SW");
-	    stratChooser.addObject("SW", "SW");
-	    stratChooser.addObject("SC/SC", "SC/SC");
-	    stratChooser.addObject("SC", "SC");
-	    
-	    SmartDashboard.putData("Autonomous", autoChooser);
-	    SmartDashboard.putData("Strat Chooser", stratChooser);
 		oi = OI.getOI();
+		
 	}
 
 	/**
@@ -90,32 +99,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
-		double timeout = System.currentTimeMillis();
-        
-		while((DriverStation.getInstance().getGameSpecificMessage() == null || DriverStation.getInstance().getGameSpecificMessage().equals(""))
-                && System.currentTimeMillis() - timeout > 1000) {
-            System.out.println("Waiting For FMS Data");
-        }
 
-
-        
-		autonomousCommand = autoChooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		//driveTrain.GetLeftFront().enableBrakeMode(true);
-		//driveTrain.GetRightFront().enableBrakeMode(true);
-		
-		//schedule the autonomous command (example)
 		if (autonomousCommand != null)
-	        System.out.println("Auto Running: " + autonomousCommand.getName());
+	        //System.out.println("Auto Running: " + autonomousCommand.getName());
 			autonomousCommand.start();
+
+			Robot.driveTrain.setBrakeMode();
+			Robot.lift.zeroEncoder();
+			Robot.sweeper.zeroEncoder();
+			Robot.wrist.zeroEncoder();
+
+			Scheduler.getInstance().add(new MatchStart());
 	}
 
 	/**
@@ -123,18 +117,24 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
+		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
+		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
 	}
 
 	@Override
 	public void teleopInit() {
-
-
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+			
 	}
 
 	/**
@@ -143,9 +143,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
-
+		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
+		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
 	}
+
 
 	/**
 	 * This function is called periodically during test mode
@@ -156,4 +160,3 @@ public class Robot extends IterativeRobot {
 	}
 
 } 
- 
