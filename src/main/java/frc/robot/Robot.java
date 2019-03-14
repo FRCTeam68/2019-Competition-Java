@@ -58,14 +58,9 @@ public class Robot extends TimedRobot {
 		hatch = Hatch.getHatch();
 
 		// The OI class should be the last to be instantiated
-/*	    autoChooser.addObject("Left Start Auto", leftAuto);
-		autoChooser.addObject("Right Start Auto", rightAuto);*/
-		//TESTING ENCODER
-	    //autoChooser.addDefault("Auto-Run", new DriveXInchesCommand(100, 0.8));
-	    //Choosing strategy
-
 
 		oi = OI.getOI();
+		
 	}
 
 	/**
@@ -96,28 +91,17 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		
-		//Robot.driveTrain.setBrakeMode();
-	
 
-
-        
-		//autonomousCommand = autoChooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		//driveTrain.GetLeftFront().enableBrakeMode(true);
-		//driveTrain.GetRightFront().enableBrakeMode(true);
-		
-		//schedule the autonomous command (example)
 		if (autonomousCommand != null)
 	        //System.out.println("Auto Running: " + autonomousCommand.getName());
 			autonomousCommand.start();
+
+			Robot.driveTrain.setBrakeMode();
+			Robot.lift.zeroEncoder();
+			Robot.sweeper.zeroEncoder();
+			Robot.wrist.zeroEncoder();
+
+			Scheduler.getInstance().add(new MatchStart());
 	}
 
 	/**
@@ -125,16 +109,16 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
+		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
+		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+
 	}
 
 	@Override
 	public void teleopInit() {
-
-		Robot.driveTrain.setBrakeMode();
-		Robot.lift.zeroEncoder();
-		Robot.sweeper.zeroEncoder();
-		Robot.wrist.zeroEncoder();
-		Scheduler.getInstance().add(new MatchStart());
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -153,7 +137,6 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
-
 	}
 
 

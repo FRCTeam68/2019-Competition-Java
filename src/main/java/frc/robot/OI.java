@@ -9,6 +9,8 @@ import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
 import frc.robot.commands.SweeperDeploy;
 import frc.robot.commands.SweeperDeployIntake;
+import frc.robot.commands.SweeperPackage;
+import frc.robot.commands.SweeperPackageIntake;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 
@@ -95,11 +97,8 @@ public class OI {
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
 		xboxManipulateLB.whileHeld(new AutoLiftLB());
-
-		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
-		xboxManipulateSL.whenPressed(new SweeperDeployIntake());
-
 		//end lift here
+
 		// WRIST BUTTONS HERE
 
 		xboxManipulatorPOVLeft = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_LEFT);
@@ -118,8 +117,15 @@ public class OI {
 		xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 
 		//SWEEPER BUTTON
-		xboxManipulateOptions = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateOptions.whenPressed(new SweeperDeploy()); 
+		// Setup the left joystick of the manipulate controller to deploy the sweeper
+		// when the button click (pushed down) is activated.
+		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
+		xboxManipulateSL.whenPressed(new SweeperDeployIntake());
+
+		// Setup the Right joystick of the manipulate controller to package the sweeper
+		// when the button click (pushed down) is activated.
+		xboxManipulateSR = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SR);
+		xboxManipulateSR.whenPressed(new SweeperPackageIntake());
 
 
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
