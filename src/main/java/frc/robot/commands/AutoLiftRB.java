@@ -26,29 +26,29 @@ public class AutoLiftRB extends Command {
 	@Override
 	protected void initialize() {
 		setPoint = Robot.lift.getLastSetPoint();
-		System.out.println("Initial position RB  is "+ setPoint);
+		//System.out.println("Initial position RB  is "+ setPoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
 
-		System.out.println("Holding Right Button");
+		//System.out.println("Holding Right Button");
 		if(Robot.oi.getXboxManipulateRB()) {
-			System.out.println("Yep, RB is pressed");
+		//	System.out.println("Yep, RB is pressed");
 			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
-				System.out.println("And A or B is pressed");
+		//		System.out.println("And A or B is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_LOW;
 			} else if (Robot.oi.getXboxManipulateX()) {
-				System.out.println("And X is pressed");
+				//System.out.println("And X is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_MID;
 			} else if (Robot.oi.getXboxManipulateY()) {
-				System.out.println("And Y is pressed");
+				//System.out.println("And Y is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_HIGH;
 			} 
 	
 		} 
-		System.out.println("Setting setPoint to RB " + setPoint);
+		//System.out.println("Setting setPoint to RB " + setPoint);
 		Robot.lift.setPosition(setPoint);
 
 		currentPos = Robot.lift.getPosition();
@@ -67,7 +67,7 @@ public class AutoLiftRB extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		System.out.println("RB WhileHeld Ended " + setPoint);
+	//	System.out.println("RB WhileHeld Ended " + setPoint);
 	}
 
 	// Called when another command which requires one or more of the same

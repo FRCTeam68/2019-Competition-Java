@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
 
 	public static Hatch hatch;
 
-	public static EndGame endGame;
+	//public static EndGame endGame;
 
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
 		wrist = Wrist.getWrist();
 		sweeper = Sweeper.getSweeper();
 		hatch = Hatch.getHatch();
-		endGame = EndGame.getEndGame();
+//		endGame = EndGame.getEndGame();
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(160, 120);
@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
 			Robot.lift.zeroEncoder();
 			Robot.sweeper.zeroEncoder();
 			Robot.wrist.zeroEncoder();
+	//		Robot.endGame.zeroEncoder();
 
 			Scheduler.getInstance().add(new MatchStart());
 	}
@@ -121,9 +122,14 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
-		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
-		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
-		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
+	//	SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+	//	SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+	//	SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
+		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
+		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
+		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
+		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
+		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
 	}
 
 	@Override
@@ -146,8 +152,13 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
-		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
-		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
+		//SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+		//SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
+		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
+		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
+		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
+		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
+		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
 	}
 
 

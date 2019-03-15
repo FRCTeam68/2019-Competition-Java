@@ -9,6 +9,7 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -21,6 +22,8 @@ public class Wrist extends Subsystem {
     public static Wrist wrist;
 	
 	private double lastWristPosition;
+
+	public SmartDashboard smartDashboard;
 
     public static Wrist getWrist() {
     	if (wrist == null) {

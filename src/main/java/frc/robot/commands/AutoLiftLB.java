@@ -26,28 +26,28 @@ public class AutoLiftLB extends Command {
 	@Override
 	protected void initialize() {
 		setPoint = Robot.lift.getLastSetPoint();
-		System.out.println("Initial position LB is " + setPoint);
+	//	System.out.println("Initial position LB is " + setPoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run+
 	@Override
 	protected void execute() {
-		System.out.println("Holding Left Button");
+	//	System.out.println("Holding Left Button");
 		if(Robot.oi.getXboxManipulateLB()) {
-			System.out.println("Yep, its Left Button");
+	//		System.out.println("Yep, its Left Button");
 			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
 				setPoint = RobotMap.LIFT_ROCKET_CARGO_LOW;
-				System.out.println("And A or B was pressed");
+	//			System.out.println("And A or B was pressed");
 			} else if (Robot.oi.getXboxManipulateX()) {
-				System.out.println("And X was pressed");
+	//			System.out.println("And X was pressed");
 				setPoint = RobotMap.LIFT_ROCKET_CARGO_MID;
 			} else if (Robot.oi.getXboxManipulateY()) {
-				System.out.println("And Y was pressed");
+	//			System.out.println("And Y was pressed");
 				setPoint = RobotMap.LIFT_ROCKET_CARGO_HIGH;
 			}
 
 		} 
-		System.out.println("Setting setPoint to LB " + setPoint);
+	//	System.out.println("Setting setPoint to LB " + setPoint);
 		Robot.lift.setPosition(setPoint);
 		currentPos = Robot.lift.getPosition();
 		if ( currentPos == setPoint ) {

@@ -5,21 +5,20 @@ import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class EndGameBackWheelsMoveStop extends Command {
+public class EndGameBackWheelsMoveReverse extends Command {
 	
 	private boolean isFinished = false;
 
 
 	
-	public EndGameBackWheelsMoveStop(double setSpeed) {
+	public EndGameBackWheelsMoveReverse() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.endGame);
+		//requires(Robot.endGame);
 
 	}
 
@@ -34,8 +33,8 @@ public class EndGameBackWheelsMoveStop extends Command {
 	protected void execute() {
 		
 		// if the sensor is at the position the set it to this point
-		Robot.endGame.setEndGameWheelSpeeds(0);
-        
+	//	Robot.endGame.setEndGameWheelSpeeds(1);
+        isFinished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -54,5 +53,6 @@ public class EndGameBackWheelsMoveStop extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+	//	Robot.endGame.setEndGameWheelSpeeds(-1);
 	}
 }

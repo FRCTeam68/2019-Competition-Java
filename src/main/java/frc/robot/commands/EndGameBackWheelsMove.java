@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 
 /**
@@ -17,9 +16,9 @@ public class EndGameBackWheelsMove extends Command {
 
 
 	
-	public EndGameBackWheelsMove(double setSpeed) {
+	public EndGameBackWheelsMove() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.endGame);
+		//requires(Robot.endGame);
 
 	}
 
@@ -34,12 +33,8 @@ public class EndGameBackWheelsMove extends Command {
 	protected void execute() {
 		
 		// if the sensor is at the position the set it to this point
-		Robot.endGame.setEndGameWheelSpeeds(-1);
-		if(Robot.endGame.getSuperSonicSensor() < 3){
-			Robot.endGame.setEndGameMotorsSpeed(0);
-			Robot.endGame.setBackMotorPos(RobotMap.ENDGAME_HEIGHT_START);
-		}
-        
+	//	Robot.endGame.setEndGameWheelSpeeds(-1);
+        isFinished = true;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -58,5 +53,6 @@ public class EndGameBackWheelsMove extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+	//	Robot.endGame.setEndGameWheelSpeeds(-1);
 	}
 }

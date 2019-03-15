@@ -7,9 +7,13 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
-import frc.robot.commands.SweeperDeploy;
+import frc.robot.commands.EndGameBackWheelsIn;
+import frc.robot.commands.EndGameBackWheelsMove;
+import frc.robot.commands.EndGameBackWheelsMoveReverse;
+import frc.robot.commands.EndGameFrontWheelsIn;
+import frc.robot.commands.EndGameSetPosition;
+import frc.robot.commands.Hatchy;
 import frc.robot.commands.SweeperDeployIntake;
-import frc.robot.commands.SweeperPackage;
 import frc.robot.commands.SweeperPackageIntake;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -26,6 +30,8 @@ public class OI {
 	private POVButton xboxDrivePOVDown;
 	private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
+	//private Button xboxDriveStart;
+	private Button xboxDriveSelect;
 
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
@@ -39,7 +45,7 @@ public class OI {
 	//private Button xboxManipulateLT;
 	//private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
-	private Button xboxManipulateOptions;
+	private Button xboxManipulateStart;
 	private POVButton xboxManipulatorPOVUp;
 	private POVButton xboxManipulatorPOVLeft;
 	private POVButton xboxManipulatorPOVRight;
@@ -73,16 +79,19 @@ public class OI {
 		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
 
 		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
-//		xboxDrivePOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_STATION_INTAKE));
+		xboxDrivePOVLeft.whenPressed(new EndGameSetPosition());
 
 		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_DOWN);
-	//	xboxDrivePOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
+		xboxDrivePOVDown.whileHeld(new EndGameBackWheelsMove());
 
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
-// 		xboxDrivePOVUp.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+ 		xboxDrivePOVUp.whenPressed(new EndGameFrontWheelsIn());
 		
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		//xboxDrivePOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
+		xboxDrivePOVRight.whenPressed(new EndGameBackWheelsIn());
+
+		xboxDriveSelect = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SHARE);
+		xboxDriveSelect.whenPressed(new EndGameBackWheelsMoveReverse());
 
 		xboxManipulateShare = new JoystickButton(xboxDrive, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
@@ -135,7 +144,8 @@ public class OI {
 		xboxManipulateSR = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SR);
 		xboxManipulateSR.whenPressed(new SweeperPackageIntake());
 
-
+		xboxManipulateStart = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
+		xboxManipulateStart.whenPressed(new Hatchy());
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
 

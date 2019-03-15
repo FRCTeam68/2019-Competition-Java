@@ -33,6 +33,8 @@ public class RobotMap {
     public static final int XBOX_DRIVE_BB = 7;  
     public static final int XBOX_DRIVE_RB = 6;
     public static final int XBOX_DRIVE_LB = 5;
+    public static final int XBOX_DRIVE_SHARE = 7;
+	public static final int XBOX_DRIVE_OPTIONS = 8;
     public static final int XBOX_DRIVE_POV_DOWN = 180;
     public static final int XBOX_DRIVE_POV_RIGHT = 90;
     public static final int XBOX_DRIVE_POV_LEFT = 270;
@@ -90,14 +92,14 @@ public class RobotMap {
 	public static final double  LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND =0.0;
-    public static final double LIFT_MATCH_START = 3000.0;
-    public static final double LIFT_ROCKET_CARGO_LOW = 10880.0;
-    public static final double LIFT_ROCKET_CARGO_MID = 32200.0;
-    public static final double LIFT_ROCKET_CARGO_HIGH = 53647.0;
-    public static final double LIFT_ROCKET_HATCH_LOW = 8500.0;
-    public static final double LIFT_ROCKET_HATCH_MID = 21620.0;
-    public static final double LIFT_ROCKET_HATCH_HIGH = 43254.0;
-    public static final double LIFT_BALL_INTAKE = 5440.0;
+    public static final double LIFT_MATCH_START = -3000.0;
+    public static final double LIFT_ROCKET_CARGO_LOW = -10880.0;
+    public static final double LIFT_ROCKET_CARGO_MID = -32200.0;
+    public static final double LIFT_ROCKET_CARGO_HIGH = -53647.0;
+    public static final double LIFT_ROCKET_HATCH_LOW = -8500.0;
+    public static final double LIFT_ROCKET_HATCH_MID = -21620.0;
+    public static final double LIFT_ROCKET_HATCH_HIGH = -43254.0;
+    public static final double LIFT_BALL_INTAKE = -5440.0;
 
 	//public static final int LIFT_LIMIT_SWITCH_UP = 2;
 	public static final int LIFT_LIMIT_SWITCH_DOWN = 3;
@@ -177,12 +179,14 @@ public class RobotMap {
     public static final int ULTRASONIC_SENSOR = 2;
 
     // set the endgame drive motors
-    public static final int ENDGAME_FRONT_LEFT  = 0;
-    public static final int ENDGAME_FRONT_RIGHT  = 0;
-    public static final int ENDGAME_BACK_LEFT  = 0;
-    public static final int ENDGAME_BACK_RIGHT  = 0;
+    public static final int ENDGAME_FRONT_LEFT  = 9;
+    public static final int ENDGAME_FRONT_RIGHT  = 10; //encoder
+    public static final int ENDGAME_BACK_LEFT  = 8; // encoders
+    public static final int ENDGAME_BACK_RIGHT  = 11;
 
-    public static final double ENDGAME_HEIGHT_START = 0;
+    public static final int ENDGAME_WHEELS  = 12;
+
+    public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
     public static final double ENDGAME_HEIGHT_UP = 0;
         // GENERAL
     public static final double MOTOR_STOP = 0;

@@ -35,8 +35,8 @@ public class Sweeper extends Subsystem {
 		sweeperWrist.setSensorPhase(false); 
 		sweeperWrist.configNominalOutputForward(0, 0);
 		sweeperWrist.configNominalOutputReverse(0, 0);
-		sweeperWrist.configPeakOutputForward(0.75,0); 
-		sweeperWrist.configPeakOutputReverse(-0.75,0); 
+		sweeperWrist.configPeakOutputForward(1,0); 
+		sweeperWrist.configPeakOutputReverse(-1,0); 
         //sweeperWrist.configNeutralDeadband(0.001, 0);
         sweeperWrist.selectProfileSlot(RobotMap.SWEEPER_PID_SLOT, 0);
         sweeperWrist.config_kF(RobotMap.SWEEPER_PID_SLOT, RobotMap.SWEEPER_PID_F, 0);

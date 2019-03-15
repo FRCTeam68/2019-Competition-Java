@@ -11,15 +11,15 @@ import frc.robot.RobotMap;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class EndGameBackWheelsStartPos extends Command {
+public class EndGameBackWheelsIn extends Command {
 	
 	private boolean isFinished = false;
 
 
 	
-	public EndGameBackWheelsStartPos(double setSpeed) {
+	public EndGameBackWheelsIn() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.endGame);
+//		requires(Robot.endGame);
 
 	}
 
@@ -34,7 +34,7 @@ public class EndGameBackWheelsStartPos extends Command {
 	protected void execute() {
 		
 		// if the sensor is at the position the set it to this point
-		Robot.endGame.setBackMotorPos(RobotMap.ENDGAME_BACK_LIFTED_POSIITON);
+//		Robot.endGame.setBackMotorPos(RobotMap.ENDGAME_BACK_LIFTED_POSIITON);
         
 	}
 

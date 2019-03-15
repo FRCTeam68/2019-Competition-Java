@@ -34,8 +34,8 @@ public class EndGameSetPosition extends Command {
 		
 		// if the sensor is at the position the set it to this point
 
-		Robot.endGame.setBackMotorPos(setPoint);
-		Robot.endGame.setFrontMotorPos(setPoint);
+	//	Robot.endGame.setBackMotorPos(setPoint);
+	//	Robot.endGame.setFrontMotorPos(setPoint);
         
 	}
 

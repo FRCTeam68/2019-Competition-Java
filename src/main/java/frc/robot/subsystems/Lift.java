@@ -41,11 +41,11 @@ public class Lift extends Subsystem {
 	{
 		liftMotor = new WPI_TalonSRX(RobotMap.LIFT_MOTORS);
 		liftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
-		liftMotor.setSensorPhase(true); 
+		liftMotor.setSensorPhase(false); 
 		liftMotor.configNominalOutputForward(0, 0);
 		liftMotor.configNominalOutputReverse(0, 0);
-		liftMotor.configPeakOutputForward(.7,0); 
-		liftMotor.configPeakOutputReverse(-.3,0); 
+		liftMotor.configPeakOutputForward(.3,0); 
+		liftMotor.configPeakOutputReverse(-.7,0); 
 
 		//		liftMotor.configNeutralDeadband(0.001, 0);
 		liftMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
