@@ -30,37 +30,14 @@ public class IntakeManual extends Command {
 	protected void execute() {
 
 		joystickSpeed = Robot.oi.getLeftXboxManipulatorJoystick();
-		if(Math.abs(joystickSpeed) > .5) { // it better be intentional 
-			if(!Robot.sweeper.isDeployed()) {
-				// Notify the drivers the sweeper IS NOT deployed
-				SmartDashboard.putBoolean("Sweeper State", false);
-				if(joystickSpeed < -0.5) {
-					//System.out.println("Setting intake speed to " + joystickSpeed);
-					Robot.intake.setIntakeSpeed(joystickSpeed);
-				}
-			} else {
-				// Notify the drivers the sweeper IS 
-				SmartDashboard.putBoolean("Sweeper State", true);
-				if(Math.abs(joystickSpeed) > 0.5) {   
-					if(!Robot.intake.getBeamBreak()) {
-						//System.out.println("Beam Break is FALSE ");
-						//System.out.println("Setting intake speed to " + joystickSpeed);
-						Robot.intake.setIntakeSpeed(joystickSpeed);
-						//System.out.println("Setting sweeper speed to " + joystickSpeed);
-						Robot.sweeper.setSweeperSpeed(joystickSpeed);
-					} else if (Robot.intake.getBeamBreak()) {  // the beam is broken
-						//System.out.println("BEAM Broken");
-						Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
-						Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-						Scheduler.getInstance().add(new DeliverCargo());
-					}
-				}
+
+		Robot.intake.setIntakeSpeed(-Robot.oi.getLeftXboxManipulatorJoystick());
+		if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_DEPLOYED){
+			Robot.sweeper.setSweeperSpeed(joystickSpeed);
+			if(Robot.oi.getLeftXboxManipulatorJoystick() > .25 && Robot.intake.getBeamBreak() == true){
+				Scheduler.getInstance().add(new DeliverCargo());
 			}
-		} else {
-			Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
-			Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-		}
-		 
+		} 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

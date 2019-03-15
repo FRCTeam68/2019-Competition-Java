@@ -17,15 +17,15 @@ public class SweeperDeployIntake extends CommandGroup {
    */
   public SweeperDeployIntake() {
 
-    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW));
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW + 1000));
     addSequential(new WaitCommand(.5));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
     addSequential(new WaitCommand(.5));
     addSequential(new SweeperDeploy());
     addSequential(new WaitCommand(2.5));
-    addSequential(new AutoLift(RobotMap.LIFT_BALL_INTAKE));
-    addSequential(new WaitCommand(.5));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
+    addSequential(new WaitCommand(1.5));
+ 
     
 
     // Add Commands here:
@@ -45,4 +45,4 @@ public class SweeperDeployIntake extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
   }
-}
+} 

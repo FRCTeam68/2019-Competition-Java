@@ -122,7 +122,7 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
-	//	SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
 	//	SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
 	//	SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
@@ -130,6 +130,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
 		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
+		SmartDashboard.putBoolean("BEAM BREAK", Robot.intake.getBeamBreak());
 	}
 
 	@Override

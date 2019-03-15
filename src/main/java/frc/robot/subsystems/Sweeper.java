@@ -18,6 +18,7 @@ public class Sweeper extends Subsystem {
 
     private static Sweeper sweeper;
     
+    private double getSweeperPos;
 
     public static Sweeper getSweeper() {
     	if (sweeper == null) {
@@ -57,7 +58,7 @@ public class Sweeper extends Subsystem {
 
     public void setPosition(double position) {
         sweeperWrist.set(ControlMode.Position, position);
-        
+        getSweeperPos = position;
     }
 
     public void zeroEncoder() {
@@ -81,7 +82,9 @@ public class Sweeper extends Subsystem {
     	return sweeperMotor.getMotorOutputPercent();
     }
     
-    
+    public double lastSweeperPos(){
+        return getSweeperPos;
+    }
 
     public double getPosition() {
 		double position = 0;

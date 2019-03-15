@@ -30,16 +30,7 @@ public class Hatchy extends CommandGroup {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		 if(hatchFlag > 0){
-			 addSequential(new HatchTimer(3.2, 1));
-			 hatchFlag = hatchFlag -1;
-		 }
-		 else{
-			addSequential(new HatchTimer(3.2 , -1));
-			hatchFlag = hatchFlag +1;
-		 }
-		 
-		isFinished = true;	
+			Robot.hatch.setHatchSpeed(Robot.oi.getRightXboxManipulatorJoystick());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
