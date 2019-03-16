@@ -36,8 +36,11 @@ public class AutoLiftRB extends Command {
 		//System.out.println("Holding Right Button");
 		if(Robot.oi.getXboxManipulateRB()) {
 		//	System.out.println("Yep, RB is pressed");
-			if(Robot.oi.getXboxManipulateA() || Robot.oi.getXboxManipulateB() ){
+			if(Robot.oi.getXboxManipulateA()){
 		//		System.out.println("And A or B is pressed");
+				setPoint = RobotMap.LIFT_GROUND;
+			} else if (Robot.oi.getXboxManipulateB()) {
+				//System.out.println("And X is pressed");
 				setPoint = RobotMap.LIFT_ROCKET_HATCH_LOW;
 			} else if (Robot.oi.getXboxManipulateX()) {
 				//System.out.println("And X is pressed");

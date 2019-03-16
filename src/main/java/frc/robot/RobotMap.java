@@ -124,8 +124,8 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = -4575;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -61984.0;
-    public static final double INTAKE_WRIST_CARGO_OUTPUT = -140000.0;
+    public static final double INTAKE_WRIST_HATCH_POSITION = -51500;
+    public static final double INTAKE_WRIST_CARGO_OUTPUT = -130000.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -90000.0;
     public static final double INTAKE_WRIST_GROUND_INTAKE = -185000.0; //-11216
 
@@ -172,8 +172,8 @@ public class RobotMap {
     public static final double ENDGAME_BACK_LIFTED_POSIITON = 0;
     public static final double ENDGAME_FRONT_LIFTED_POSIITON = 0;
 
-    public static final int ENDGAME_FRONT_LEFT_MOTOR_WHEEL = 0;
-    public static final int ENDGAME_FRONT_RIGHT_MOTOR_WHEEL= 0;
+    
+    public static final int ENDGAME_BACK_MOTOR_WHEEL= 0;
 
     // set the super sonic sensor
     public static final int ULTRASONIC_SENSOR = 2;

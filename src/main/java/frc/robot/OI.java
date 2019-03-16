@@ -7,11 +7,7 @@ import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
-import frc.robot.commands.EndGameBackWheelsIn;
-import frc.robot.commands.EndGameBackWheelsMove;
-import frc.robot.commands.EndGameBackWheelsMoveReverse;
-import frc.robot.commands.EndGameFrontWheelsIn;
-import frc.robot.commands.EndGameSetPosition;
+import frc.robot.commands.EndGameMotors;
 import frc.robot.commands.Hatchy;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackageIntake;
@@ -28,10 +24,10 @@ public class OI {
 	private XboxController xboxDrive;
 	private POVButton xboxDrivePOVUp;
 	private POVButton xboxDrivePOVDown;
-	private POVButton xboxDrivePOVLeft;
+//	private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
 	//private Button xboxDriveStart;
-	private Button xboxDriveSelect;
+//	private Button xboxDriveSelect;
 
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
@@ -78,21 +74,15 @@ public class OI {
 		// Manipulator Xbox Controller Bindings
 		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
 
-		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
-		xboxDrivePOVLeft.whenPressed(new EndGameSetPosition());
-
 		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_DOWN);
-		xboxDrivePOVDown.whileHeld(new EndGameBackWheelsMove());
+		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_HEIGHT_START));
 
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
- 		xboxDrivePOVUp.whenPressed(new EndGameFrontWheelsIn());
-		
+		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		xboxDrivePOVRight.whenPressed(new EndGameBackWheelsIn());
-
-		xboxDriveSelect = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SHARE);
-		xboxDriveSelect.whenPressed(new EndGameBackWheelsMoveReverse());
-
+		xboxDrivePOVRight.whenPressed(new EndGameMotors(RobotMap.ENDGAME_HEIGHT_START, RobotMap.ENDGAME_HEIGHT_START));
+		 
 		xboxManipulateShare = new JoystickButton(xboxDrive, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 		//lift
@@ -203,6 +193,22 @@ public class OI {
 	public double getXboxManipulateRT() {
 		double rightAxis;
 		rightAxis = xboxManipulate.getRawAxis(RobotMap.XBOX_MANIPULATE_RT);
+		// Allow for up to 10% of joystick noise
+		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
+    	return rightAxis;
+	}
+
+	public double getXboxDriveLT() {
+		double leftAxis;
+		leftAxis = xboxDrive.getRawAxis(RobotMap.XBOX_DRIVE_LT);
+		// Allow for up to 10% of joystick noise
+		leftAxis = (Math.abs(leftAxis) < 0.1) ? 0 : leftAxis;
+    	return leftAxis;
+	}
+
+	public double getXboxDriveRT() {
+		double rightAxis;
+		rightAxis = xboxDrive.getRawAxis(RobotMap.XBOX_DRIVE_RT);
 		// Allow for up to 10% of joystick noise
 		rightAxis = (Math.abs(rightAxis) < 0.1) ? 0 : rightAxis;
     	return rightAxis;

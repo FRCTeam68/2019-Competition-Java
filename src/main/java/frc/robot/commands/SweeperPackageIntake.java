@@ -17,11 +17,13 @@ public class SweeperPackageIntake extends CommandGroup {
    */
   public SweeperPackageIntake() {
 
-    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW + 1000));
-    addSequential(new WaitCommand(1));
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW - 8000));
+    addSequential(new WaitCommand(1.2));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
     addSequential(new WaitCommand(1));
     addSequential(new SweeperPackage());
+    addSequential(new WaitCommand(1.5));
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
 
     
   

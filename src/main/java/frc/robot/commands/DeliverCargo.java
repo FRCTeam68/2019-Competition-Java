@@ -17,13 +17,13 @@ public class DeliverCargo extends CommandGroup {
    */
   public DeliverCargo() {
 
-    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW + 1500));
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW - 1500));
     addSequential(new WaitCommand(1));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
     addSequential(new WaitCommand(2));
     addSequential(new SweeperPackage());
     addSequential(new WaitCommand(2));
-    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_STATION_INTAKE));
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT)); //
 
     // Add Commands here:
     // e.g. addSequential(new Command1());

@@ -1,4 +1,3 @@
-/*
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -7,10 +6,9 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import edu.wpi.first.wpilibj.AnalogInput;
 
 public class EndGame extends Subsystem {
     
@@ -19,8 +17,10 @@ public class EndGame extends Subsystem {
     private WPI_TalonSRX frontRightMotor;
     private WPI_TalonSRX backRightMotor;
     private WPI_TalonSRX backLeftMotor;
-    private WPI_VictorSPX frontRightMotorWheelMotor;
+    private WPI_VictorSPX backMotorWheelMotor;
     private static EndGame endGame;
+    private double lastFrontSetPoint = 0;
+    private double lastBackSetPoint = 0;
     
 
     public static EndGame getEndGame() {
@@ -42,6 +42,9 @@ public class EndGame extends Subsystem {
 		frontRightMotor.config_kI(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_I, 0);
         frontRightMotor.config_kD(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_D, 0);
 
+        frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
+        frontLeftMotor.set(ControlMode.Follower, frontRightMotor.getDeviceID());
+
         backLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_LEFT);
         backLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
@@ -49,20 +52,15 @@ public class EndGame extends Subsystem {
 		backLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
 		backLeftMotor.config_kI(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_I, 0);
         backLeftMotor.config_kD(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_D, 0);
-        
+      
+        backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT);
+        backRightMotor.set(ControlMode.Follower, backLeftMotor.getDeviceID());
 
-        backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT); // slave this motor
-        backRightMotor.set(ControlMode.Follower, frontLeftMotor.getDeviceID());
+        backMotorWheelMotor = new WPI_VictorSPX(RobotMap.ENDGAME_BACK_MOTOR_WHEEL);
 
-        frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
-        frontRightMotor.set(ControlMode.Follower, frontLeftMotor.getDeviceID());
-    
-        //seat motors for driving
-       frontRightMotorWheelMotor = new WPI_VictorSPX(RobotMap.ENDGAME_WHEELS);
-       frontRightMotorWheelMotor.configNominalOutputForward(0, 0);
-		frontRightMotorWheelMotor.configNominalOutputReverse(0, 0);
-		frontRightMotorWheelMotor.configPeakOutputForward(1,0); 
-       frontRightMotorWheelMotor.configPeakOutputReverse(-1,0); 
+        frontLeftMotor.setNeutralMode(NeutralMode.Brake);
+        backLeftMotor.setNeutralMode(NeutralMode.Brake);
+        backMotorWheelMotor.setNeutralMode(NeutralMode.Brake);
 
 
     }
@@ -71,39 +69,30 @@ public class EndGame extends Subsystem {
 	protected void initDefaultCommand() {
         //setDefaultCommand(IntakeManual);.0
     }
-    /*
 
-    public void setEndGameMotorsSpeed(double speedA) 
+    public void setEndGameMotorsSpeed(double speedA,double speedB) 
     {
-     backLeftMotor.set(speedA);   
      frontRightMotor.set(speedA);
+     backLeftMotor.set(speedB);
     }
 
 	public void zeroEncoder() {
-        frontLeftMotor.setSelectedSensorPosition(0, 0, 10);
+        frontRightMotor.setSelectedSensorPosition(0, 0, 10);
         backLeftMotor.setSelectedSensorPosition(0, 0, 10);
 	}
 
     public void setEndGameWheelSpeeds(double speedA) 
     {
-        frontRightMotorWheelMotor.set(speedA);
+        backMotorWheelMotor.set(speedA);
     }
 
-    public void setBackMotorPos(double positionBack) 
+    public void setMotorPos(double positionFront, double positionBack) 
     {
-       backLeftMotor.set(ControlMode.Position, positionBack); 
-    }
+        frontRightMotor.set(ControlMode.Position, positionFront);
+        backLeftMotor.set(ControlMode.Position, positionBack);
+        lastFrontSetPoint = positionFront;
+        lastBackSetPoint = positionBack;
 
-    public void setFrontMotorPos(double positionFront) 
-    {
-        frontRightMotor.set(ControlMode.Position, positionFront); 
-    }
-
-    public double getBackMotorPos() 
-    {
-        double positionBack = 0;
-		positionBack = backLeftMotor.getSelectedSensorPosition(0);
-		return positionBack;
     }
 
     public double getFrontMotorPos() 
@@ -113,15 +102,20 @@ public class EndGame extends Subsystem {
 		return positionFront;
     }
 
-    public double getBackMotorSpeed() 
+    public double getBackMotorPos()
     {
-        return frontLeftMotor.getMotorOutputPercent();
-    }
-    public double getFrontMotorSpeed() 
-    {
-        return backLeftMotor.getMotorOutputPercent();
+        double positionBack = 0;
+		positionBack = backRightMotor.getSelectedSensorPosition(0);
+        return positionBack;
     }
 
-    */
+    public double getLastFrontSetPoint() {
+		return lastFrontSetPoint;
+	}
 
-//}
+    public double getLastBackSetPoint() {
+		return lastBackSetPoint;
+	}
+
+
+}
