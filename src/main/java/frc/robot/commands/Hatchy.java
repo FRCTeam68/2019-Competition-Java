@@ -5,8 +5,6 @@ import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-
-
 public class Hatchy extends CommandGroup {
 	
 	boolean isFinished = false;
@@ -29,6 +27,7 @@ public class Hatchy extends CommandGroup {
 	@Override
 	protected void execute() {
 			Robot.hatch.setHatchSpeed(Robot.oi.getRightXboxManipulatorJoystick());
+			
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

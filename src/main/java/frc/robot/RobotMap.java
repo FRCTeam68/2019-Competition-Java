@@ -168,6 +168,13 @@ public class RobotMap {
     public static final double ENDGAME_PID_P = 0.3; //0.3 start
     public static final double ENDGAME_PID_I = 0.0;
     public static final double ENDGAME_PID_D = 0.0;
+
+    public static final int ENDGAME_BACK_PID_SLOT = 0;
+
+    public static final double ENDGAME_BACK_PID_F = 0.03; //0.025
+    public static final double ENDGAME_BACK_PID_P = 0.3; //0.3 start
+    public static final double ENDGAME_BACK_PID_I = 0.0;
+    public static final double ENDGAME_BACK_PID_D = 0.0;
     
     public static final double ENDGAME_BACK_LIFTED_POSIITON = 0;
     public static final double ENDGAME_FRONT_LIFTED_POSIITON = 0;
@@ -180,9 +187,9 @@ public class RobotMap {
 
     // set the endgame drive motors
     public static final int ENDGAME_FRONT_LEFT  = 9;
-    public static final int ENDGAME_FRONT_RIGHT  = 10; //encoder
+    public static final int ENDGAME_FRONT_RIGHT  = 11; //encoder
     public static final int ENDGAME_BACK_LEFT  = 8; // encoders
-    public static final int ENDGAME_BACK_RIGHT  = 11;
+    public static final int ENDGAME_BACK_RIGHT  = 10;
 
     public static final int ENDGAME_WHEELS  = 12;
 

@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
 
 	public static EndGame endGame;
 
+	public static EndGameBack endGameBack;
+
 /*    private LeftAutoStartCommand leftAuto;
     private RightAutoStartCommand rightAuto;*/
 
@@ -60,6 +62,7 @@ public class Robot extends TimedRobot {
 		sweeper = Sweeper.getSweeper();
 		hatch = Hatch.getHatch();
 		endGame = EndGame.getEndGame();
+		endGameBack = EndGameBack.getEndGame();
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(160, 120);
@@ -109,7 +112,7 @@ public class Robot extends TimedRobot {
 			Robot.sweeper.zeroEncoder();
 			Robot.wrist.zeroEncoder();
 	//		Robot.endGame.zeroEncoder();
-
+ 
 			Scheduler.getInstance().add(new MatchStart());
 	}
 
@@ -123,7 +126,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
-		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGameBack.getBackMotorPos());
 		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
 		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
@@ -153,7 +156,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
-		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGame.getBackMotorPos());
+		SmartDashboard.putNumber("Endgame back encoder POS", Robot.endGameBack.getBackMotorPos());
 		SmartDashboard.putNumber("Endgame Front encoder POS", Robot.endGame.getFrontMotorPos());
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
 		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());

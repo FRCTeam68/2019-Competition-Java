@@ -23,7 +23,7 @@ public class DeliverCargo extends CommandGroup {
     addSequential(new WaitCommand(2));
     addSequential(new SweeperPackage());
     addSequential(new WaitCommand(2));
-    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT)); //
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT)); 
 
     // Add Commands here:
     // e.g. addSequential(new Command1());

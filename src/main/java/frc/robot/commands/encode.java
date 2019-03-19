@@ -9,39 +9,33 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+//import frc.robot.subsystems.EndGame;
 
-public class EndGameMotors extends Command {
-
-  private double pos;
-  private double pos2;
-  private boolean isFinished = false;
-
-  public EndGameMotors(double position, double position2) {
+public class encode extends Command {
+  public encode() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.endGame);
-    pos = position;
-    pos2 = position2;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.endGame.setMotorPos(pos);
-    Robot.endGameBack.setMotorPos(pos2);
-    isFinished = true;
+   // Robot.endGame.setMotorPos(0);
+  //   Robot.endGameBack.setMotorPos(0);
+    Robot.endGameBack.getBackMotorPos();
+    Robot.endGame.getFrontMotorPos();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isFinished;
+    return false;
   }
 
   // Called once after isFinished returns true
