@@ -26,8 +26,7 @@ public class Hatchy extends CommandGroup {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-			Robot.hatch.setHatchSpeed(Robot.oi.getRightXboxManipulatorJoystick());
-			
+			Robot.hatch.setHatchSpeed(Robot.oi.getLeftXboxManipulatorJoystick());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

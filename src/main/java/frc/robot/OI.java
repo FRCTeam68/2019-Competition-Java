@@ -8,10 +8,11 @@ import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
 import frc.robot.commands.EndGameMotors;
-import frc.robot.commands.Hatchy;
+import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackageIntake;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 
 /**
@@ -31,15 +32,15 @@ public class OI {
 
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
-	private Button xboxManipulateX;
-	private Button xboxManipulateY;
+	private Button xboxManipulateSquare;
+	private Button xboxManipulateTriangle;
 	private Button xboxManipulateRB;
-	private Button xboxManipulateA;
-	private Button xboxManipulateB;
+	private Button xboxManipulateX;
+	private Button xboxManipulateCircle;
 	private Button xboxManipulateSL;
 	private Button xboxManipulateSR;
-	//private Button xboxManipulateLT;
-	//private Button xboxManipulateRT;
+	private Button xboxManipulateLT;
+	private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
 	private Button xboxManipulateStart;
 	private POVButton xboxManipulatorPOVUp;
@@ -86,16 +87,16 @@ public class OI {
 		xboxManipulateShare = new JoystickButton(xboxDrive, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 		//lift
-		xboxManipulateA = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_A);
+		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
 		//xboxManipulateA.whenPressed(new AutoLift (RobotMap.LIFT_BALL_PICKUP));
 	
-		xboxManipulateB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_B);
+		xboxManipulateCircle = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_CIRCLE);
 		//xboxManipulateB.whenPressed(new AutoLift (RobotMap.LIFT_BALL1));
 
-		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
+		xboxManipulateSquare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SQUARE);
 		//xboxManipulateX.whenPressed(new AutoLift (RobotMap.LIFT_BALL2));
 
-		xboxManipulateY = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_Y);
+		xboxManipulateTriangle = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_TRIANGLE);
 		//xboxManipulateY.whenPressed(new AutoLift (RobotMap.LIFT_BALL3));
 		
 
@@ -127,18 +128,23 @@ public class OI {
 		// Setup the left joystick of the manipulate controller to deploy the sweeper
 		// when the button click (pushed down) is activated.
 		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
-		xboxManipulateSL.whenPressed(new SweeperDeployIntake());
+		xboxManipulateSL.whenPressed(new SweeperPackageIntake());
 
 		// Setup the Right joystick of the manipulate controller to package the sweeper
 		// when the button click (pushed down) is activated.
 		xboxManipulateSR = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SR);
-		xboxManipulateSR.whenPressed(new SweeperPackageIntake());
+		xboxManipulateSR.whenPressed(new SweeperDeployIntake());
 
 		xboxManipulateStart = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateStart.whenPressed(new Hatchy());
+		xboxManipulateStart.whenPressed(new FeedStationCargo());
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
 
+		xboxManipulateLT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LT);
+		xboxManipulateLT.whileHeld(new AutoLiftLB());
+
+		xboxManipulateRT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RT);
+		xboxManipulateRT.whileHeld(new AutoLiftRB());
 
 	}
 	
@@ -214,33 +220,33 @@ public class OI {
     	return rightAxis;
 	}
 
-	public boolean getXboxManipulateA() {
-		boolean buttonPressed = false;
-		if(xboxManipulateA.get()){
-			buttonPressed = true;
-		}
-		return buttonPressed;
-	}
-
-	public boolean getXboxManipulateY() {
-		boolean buttonPressed = false;
-		if(xboxManipulateY.get()){
-			buttonPressed = true;
-		}
-		return buttonPressed;
-	}
-
-	public boolean getXboxManipulateB() {
-		boolean buttonPressed = false;
-		if(xboxManipulateB.get()){
-			buttonPressed = true;
-		}
-		return buttonPressed;
-	}
-
 	public boolean getXboxManipulateX() {
 		boolean buttonPressed = false;
 		if(xboxManipulateX.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateTriangle() {
+		boolean buttonPressed = false;
+		if(xboxManipulateTriangle.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateCircle() {
+		boolean buttonPressed = false;
+		if(xboxManipulateCircle.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateSquare() {
+		boolean buttonPressed = false;
+		if(xboxManipulateSquare.get()){
 			buttonPressed = true;
 		}
 		return buttonPressed;
@@ -262,5 +268,29 @@ public class OI {
 		return buttonPressed;
 	}
 
+	public boolean getXboxManipulateLTButton() {
+		boolean buttonPressed = false;
+		if(xboxManipulateLT.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateRTButton() {
+		boolean buttonPressed = false;
+		if(xboxManipulateRT.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public void xboxManipulateRumbleStart(){
+		xboxManipulate.setRumble(RumbleType.kLeftRumble,.25);
+		xboxManipulate.setRumble(RumbleType.kRightRumble,.25);
+	}
+	public void xboxManipulateRumbleStop(){
+		xboxManipulate.setRumble(RumbleType.kLeftRumble,0);
+		xboxManipulate.setRumble(RumbleType.kRightRumble,0);
+	}
 
 }

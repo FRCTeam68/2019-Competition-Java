@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
+import frc.robot.commands.RumbleManipulatorController;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -52,14 +53,15 @@ public class Wrist extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new IntakeManual());
+		setDefaultCommand(new RumbleManipulatorController());
 	}
 	
 	public void zeroEncoder() {
 		wristMotor.setSelectedSensorPosition(0, 0, 10);
 	}
     
-    public void setWristSpeed(double speedC)
+	public void setWristSpeed(double speedC)
+	
     {
         wristMotor.set(speedC);
     }

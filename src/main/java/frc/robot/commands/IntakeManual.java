@@ -28,15 +28,23 @@ public class IntakeManual extends Command {
 	@Override
 	protected void execute() {
 
-		joystickSpeed = Robot.oi.getLeftXboxManipulatorJoystick();
-
-		Robot.intake.setIntakeSpeed(-Robot.oi.getLeftXboxManipulatorJoystick());
+		joystickSpeed = Robot.oi.getRightXboxManipulatorJoystick();
+		if(joystickSpeed < -0.01){
+		Robot.intake.setIntakeSpeed(-Robot.oi.getRightXboxManipulatorJoystick()/2); 
+		} else if(joystickSpeed > 0.01){
+			Robot.intake.setIntakeSpeed(-Robot.oi.getRightXboxManipulatorJoystick()); 
+		}
 		if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_DEPLOYED){
 			Robot.sweeper.setSweeperSpeed(joystickSpeed);
-			if(Robot.oi.getLeftXboxManipulatorJoystick() > .25 && Robot.intake.getBeamBreak() == true){
+			if(joystickSpeed > .25 && Robot.intake.getBeamBreak() == true){
 				Scheduler.getInstance().add(new DeliverCargo());
 			}
 		} 
+
+		if(Robot.intake.getBeamBreak()){
+			Scheduler.getInstance().add(new RumbleManipulatorController());
+			
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

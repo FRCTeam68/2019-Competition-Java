@@ -24,7 +24,8 @@ public class SweeperDeployIntake extends CommandGroup {
     addSequential(new SweeperDeploy());
     addSequential(new WaitCommand(.75));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
- 
+    addSequential(new WaitCommand(.75));
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW + 2000));
     
 
     // Add Commands here:
