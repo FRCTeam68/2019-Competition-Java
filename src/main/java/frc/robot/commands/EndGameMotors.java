@@ -12,16 +12,16 @@ import frc.robot.Robot;
 
 public class EndGameMotors extends Command {
 
-  private double pos;
-  private double pos2;
-  private boolean isFinished = false;
+  private double frontPos;
+  private double backPos;
+ // private boolean isFinished = false;
 
   public EndGameMotors(double position, double position2) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.endGame);
-    pos = position;
-    pos2 = position2;
+    frontPos = position;
+    backPos = position2;
   }
 
   // Called just before this Command runs the first time
@@ -33,15 +33,14 @@ public class EndGameMotors extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.endGame.setMotorPos(pos);
-    Robot.endGameBack.setMotorPos(pos2);
-    isFinished = true;
+    Robot.endGame.setMotorPos(frontPos, backPos);
+   // isFinished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isFinished;
+    return false;
   }
 
   // Called once after isFinished returns true

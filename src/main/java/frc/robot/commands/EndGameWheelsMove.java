@@ -21,7 +21,7 @@ public class EndGameWheelsMove extends Command{
       // Called repeatedly when this Command is scheduled to run
       @Override
       protected void execute() {
-        Robot.endGameBack.setEndGameWheelSpeeds(Robot.oi.getXboxDriveRT());
+        Robot.endGame.setEndGameWheelSpeeds(Robot.oi.getXboxDriveRT());
       }
     
       // Make this return true when this Command no longer needs to run execute()

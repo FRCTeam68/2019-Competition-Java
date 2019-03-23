@@ -101,7 +101,7 @@ public class RobotMap {
     public static final double LIFT_ROCKET_CARGO_HIGH = -51000.0;
     public static final double LIFT_ROCKET_HATCH_LOW = -8500.0;
     public static final double LIFT_ROCKET_HATCH_MID = -21620.0;
-    public static final double LIFT_ROCKET_HATCH_HIGH = -40254.0;
+    public static final double LIFT_ROCKET_HATCH_HIGH = -42254.0;
     public static final double LIFT_BALL_INTAKE = -5440.0;
 
 	public static final int LIFT_LIMIT_SWITCH = 1;
@@ -180,8 +180,10 @@ public class RobotMap {
     public static final double ENDGAME_BACK_PID_I = 0.0;
     public static final double ENDGAME_BACK_PID_D = 0.0;
     
-    public static final double ENDGAME_BACK_LIFTED_POSIITON = 0;
-    public static final double ENDGAME_FRONT_LIFTED_POSIITON = 0;
+
+    public static final double ENDGAME_ZERO = 0;
+    public static final double ENDGAME_BACK_LIFTED_POSIITON = -6000;
+    public static final double ENDGAME_FRONT_LIFTED_POSIITON = -6000;
 
     
     public static final int ENDGAME_BACK_MOTOR_WHEEL= 0;

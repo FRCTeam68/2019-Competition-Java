@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
 //import frc.robot.commands.IntakeManual;
-import frc.robot.commands.RumbleManipulatorController;
+//import frc.robot.commands.RumbleManipulatorController;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -53,7 +53,7 @@ public class Wrist extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new RumbleManipulatorController());
+	//	setDefaultCommand(new RumbleManipulatorController());
 	}
 	
 	public void zeroEncoder() {
@@ -61,7 +61,7 @@ public class Wrist extends Subsystem {
 	}
     
 	public void setWristSpeed(double speedC)
-	
+
     {
         wristMotor.set(speedC);
     }
@@ -81,6 +81,10 @@ public class Wrist extends Subsystem {
 		double position = 0;
 		position = wristMotor.getSelectedSensorPosition(0);
 		return position;
+	}
+
+	public double lastWristPosition(){
+		return lastWristPosition;
 	}
 
 	public boolean isWristPackaged(){

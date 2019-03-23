@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class SweeperPackageIntake extends CommandGroup {
@@ -16,9 +17,9 @@ public class SweeperPackageIntake extends CommandGroup {
    * Add your docs here.
    */
   public SweeperPackageIntake() {
-
+    if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_DEPLOYED){
     addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW - 4000));
-    addSequential(new WaitCommand(1));
+    addSequential(new WaitCommand(.15));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
     addSequential(new WaitCommand(.5));
     addSequential(new SweeperPackage());
@@ -28,22 +29,26 @@ public class SweeperPackageIntake extends CommandGroup {
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
     addSequential(new WaitCommand(.75));   
     addSequential(new AutoLift(RobotMap.LIFT_GROUND));
-
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
-
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
-
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
+    } else if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_PACKAGED && Robot.wrist.lastWristPosition() == RobotMap.INTAKE_WRIST_HATCH_POSITION ){
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW));
+    addSequential(new WaitCommand(.25));   
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+    addSequential(new WaitCommand(.75));   
+    addSequential(new AutoLift(RobotMap.LIFT_GROUND));
+     } else if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_PACKAGED && Robot.wrist.lastWristPosition() != RobotMap.INTAKE_WRIST_HATCH_POSITION && Robot.lift.getLastSetPoint() <= RobotMap.LIFT_ROCKET_HATCH_HIGH + 2000){
+      addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW));
+      addSequential(new WaitCommand(1));   
+      addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+      addSequential(new WaitCommand(.75));   
+      addSequential(new AutoLift(RobotMap.LIFT_GROUND));
+     }  else if(Robot.sweeper.lastSweeperPos() == RobotMap.SWEEPER_PACKAGED && Robot.wrist.lastWristPosition() != RobotMap.INTAKE_WRIST_HATCH_POSITION && Robot.lift.getLastSetPoint() >= RobotMap.LIFT_ROCKET_HATCH_HIGH + 2000  ){
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+    addSequential(new WaitCommand(.5));   
+    addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW));
+    addSequential(new WaitCommand(.25));   
+    addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+    addSequential(new WaitCommand(.75));   
+    addSequential(new AutoLift(RobotMap.LIFT_GROUND));
+    }
   }
 }

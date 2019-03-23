@@ -8,6 +8,8 @@ import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
 import frc.robot.commands.EndGameMotors;
+import frc.robot.commands.EndGameWheelsMove;
+import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackageIntake;
@@ -25,8 +27,9 @@ public class OI {
 	private XboxController xboxDrive;
 	private POVButton xboxDrivePOVUp;
 	private POVButton xboxDrivePOVDown;
-//	private POVButton xboxDrivePOVLeft;
+	private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
+	private Button xboxDriveRB;
 	//private Button xboxDriveStart;
 //	private Button xboxDriveSelect;
 
@@ -64,6 +67,21 @@ public class OI {
 		
 		xboxDrive = new XboxController(RobotMap.XBOX_DRIVE);	
 		
+		xboxDriveRB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RB);
+
+		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
+		xboxDrivePOVRight.whenPressed(new EndGameWheelsMove());
+
+		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
+		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+
+
+		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
+		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+
+		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
+		xboxDrivePOVLeft.whenPressed(new EndGameWheelsMoveBack());
+	
 		//LIFT
 		
 
@@ -75,14 +93,6 @@ public class OI {
 		// Manipulator Xbox Controller Bindings
 		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
 
-		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_DOWN);
-		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_HEIGHT_START));
-
-		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
-		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
-
-		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		xboxDrivePOVRight.whenPressed(new EndGameMotors(RobotMap.ENDGAME_HEIGHT_START, RobotMap.ENDGAME_HEIGHT_START));
 		 
 		xboxManipulateShare = new JoystickButton(xboxDrive, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
@@ -292,5 +302,13 @@ public class OI {
 		xboxManipulate.setRumble(RumbleType.kLeftRumble,0);
 		xboxManipulate.setRumble(RumbleType.kRightRumble,0);
 	}
+	public boolean getXboxDriveRB() {
+		boolean buttonPressed = false;
+		if(xboxDriveRB.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+	
 
 }

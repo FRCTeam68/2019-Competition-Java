@@ -5,7 +5,7 @@ import frc.robot.RobotMap;
 //import frc.robot.commands.DriveWithXboxJoysticks;
 //import frc.robot.commands.LiftManual;
 //import frc.robot.commands.LiftManual;
-import frc.robot.commands.LiftZeroEncoder;
+//import frc.robot.commands.LiftZeroEncoder;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 //import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.DigitalInput;
+//import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Lift extends Subsystem {
 	
 	private WPI_TalonSRX liftMotor;
-    private DigitalInput limitSwitch;
+   // private DigitalInput limitSwitch;
 	private Boolean manualBool;
 	private double lastSetPoint = 0;
 	
@@ -55,13 +55,13 @@ public class Lift extends Subsystem {
 		liftMotor.config_kD(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_D, 0);
 		liftMotor.setNeutralMode(NeutralMode.Brake);
 		manualBool = false;
-		limitSwitch = new DigitalInput(RobotMap.LIFT_LIMIT_SWITCH);
+	//	limitSwitch = new DigitalInput(RobotMap.LIFT_LIMIT_SWITCH);
 
 	}
 
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new LiftZeroEncoder());
+	//	setDefaultCommand(new LiftZeroEncoder());
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);
@@ -93,9 +93,9 @@ public class Lift extends Subsystem {
 		liftMotor.setSelectedSensorPosition(0, 0, 10);
 	}
 	
-	public boolean getLimitSwitch(){
-		return limitSwitch.get();
-	}
+	//public boolean getLimitSwitch(){
+	//	return limitSwitch.get();
+	//}
     
 
     public void swapManual() {
