@@ -1,13 +1,5 @@
  package frc.robot;
 
-
-
-/**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
 public class RobotMap {
 	
     private static RobotMap robotMap;
@@ -92,9 +84,9 @@ public class RobotMap {
     // LIFT
 	public static final int LIFT_MOTORS = 7;
 	public static final double LIFT_SPEED_UP = 1;
-	public static final double  LIFT_SPEED_STOP = 0;
+	public static final double LIFT_SPEED_STOP = 0;
 	public static final double LIFT_SPEED_DOWN = -0.75;
-    public static final double LIFT_GROUND =0.0;
+    public static final double LIFT_GROUND = 0.0;
     public static final double LIFT_MATCH_START = -3000.0;
     public static final double LIFT_ROCKET_CARGO_LOW = -10880.0;
     public static final double LIFT_ROCKET_CARGO_MID = -32200.0;
@@ -109,7 +101,7 @@ public class RobotMap {
     public static final int LIFT_PID_SLOT = 0;
     
     
-    public static final double LIFT_PID_F = 0.03; //0.025
+    public static final double LIFT_PID_F = 0.00; //0.025
     public static final double LIFT_PID_P = 0.3; //0.3 start
     public static final double LIFT_PID_I = 0.0;
     public static final double LIFT_PID_D = 0.0;
@@ -135,7 +127,7 @@ public class RobotMap {
 
     public static final int WRIST_PID_SLOT = 0;
     
-    public static final double WRIST_PID_F = 0.03; //0.025
+    public static final double WRIST_PID_F = 0.00; //0.025
     public static final double WRIST_PID_P = 0.3; //0.3 start
     public static final double WRIST_PID_I = 0.0;
     public static final double WRIST_PID_D = 0.0;
@@ -147,35 +139,35 @@ public class RobotMap {
     public static final int SWEEPER_MOTOR = 13;
     public static final int SWEEPER_WRIST_MOTOR = 6;
     
-    public static final double SWEEPER_DEPLOYED = 150000.0;
+    public static final double SWEEPER_DEPLOYED = 76908.0;
     public static final double SWEEPER_PACKAGED = 0.0;
     
   //-51396
     //SWEEPER PID STUFF
     public static final int SWEEPER_PID_SLOT = 0;
     
-    public static final double SWEEPER_PID_F = 0.03; //0.025
+    public static final double SWEEPER_PID_F = 0.00; //0.025
     public static final double SWEEPER_PID_P = 0.3; //0.3 start
     public static final double SWEEPER_PID_I = 0.0;
     public static final double SWEEPER_PID_D = 0.0;
     //CLAW PID STUFF
     public static final int CLAW_PID_SLOT = 0;
     
-    public static final double CLAW_PID_F = 0.03; //0.025
+    public static final double CLAW_PID_F = 0.00; //0.025
     public static final double CLAW_PID_P = 0.3; //0.3 start
     public static final double CLAW_PID_I = 0.0;
     public static final double CLAW_PID_D = 0.0;
     //set endgame vars here
     public static final int ENDGAME_PID_SLOT = 0;
 
-    public static final double ENDGAME_PID_F = 0.03; //0.025
+    public static final double ENDGAME_PID_F = 0.00; //0.025
     public static final double ENDGAME_PID_P = 0.3; //0.3 start
     public static final double ENDGAME_PID_I = 0.0;
     public static final double ENDGAME_PID_D = 0.0;
 
     public static final int ENDGAME_BACK_PID_SLOT = 0;
 
-    public static final double ENDGAME_BACK_PID_F = 0.03; //0.025
+    public static final double ENDGAME_BACK_PID_F = 0.00; //0.025
     public static final double ENDGAME_BACK_PID_P = 0.3; //0.3 start
     public static final double ENDGAME_BACK_PID_I = 0.0;
     public static final double ENDGAME_BACK_PID_D = 0.0;

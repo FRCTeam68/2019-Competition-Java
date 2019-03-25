@@ -17,8 +17,9 @@ public class Sweeper extends Subsystem {
     private WPI_TalonSRX sweeperWrist;
 
     private static Sweeper sweeper;
-    
-    private double getSweeperPos;
+
+
+    private boolean isDeployed = false;
 
     public static Sweeper getSweeper() {
     	if (sweeper == null) {
@@ -58,7 +59,12 @@ public class Sweeper extends Subsystem {
 
     public void setPosition(double position) {
         sweeperWrist.set(ControlMode.Position, position);
-        getSweeperPos = position;
+        if(position == RobotMap.SWEEPER_DEPLOYED){
+            isDeployed = true;
+        }
+        else{
+            isDeployed = false;
+        }
     }
 
     public void zeroEncoder() {
@@ -82,18 +88,14 @@ public class Sweeper extends Subsystem {
     	return sweeperMotor.getMotorOutputPercent();
     }
     
-    public double lastSweeperPos(){
-        return getSweeperPos;
-    }
-
     public double getPosition() {
 		double position = 0;
 		position = sweeperWrist.getSelectedSensorPosition(0);
 		return position;
     }
-    
+
     public boolean isDeployed(){
-        return (sweeperWrist.getSelectedSensorPosition(0) > 90000);
+        return isDeployed;
     }
 
 }

@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class SweeperDeployIntake extends CommandGroup {
@@ -16,7 +17,9 @@ public class SweeperDeployIntake extends CommandGroup {
    * Add your docs here.
    */
   public SweeperDeployIntake() {
-
+    if(!Robot.wrist.isWristHatchPos()){
+      addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+    }
     addSequential(new AutoLift(RobotMap.LIFT_ROCKET_CARGO_LOW - 4000));
     addSequential(new WaitCommand(.1));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));

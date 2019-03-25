@@ -133,6 +133,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
 		SmartDashboard.putBoolean("BEAM BREAK", Robot.intake.getBeamBreak());
+		SmartDashboard.putBoolean("IS DEPLOYED", Robot.sweeper.isDeployed());
 	}
 
 	@Override

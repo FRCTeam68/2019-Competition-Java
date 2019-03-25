@@ -103,12 +103,11 @@ public class Wrist extends Subsystem {
 		boolean isWristPackaged;
 		if(lastWristPosition == RobotMap.INTAKE_WRIST_HATCH_POSITION){
 		isWristPackaged = true;
-		return isWristPackaged;
 		}
 		else{
 			isWristPackaged = false;
-			return isWristPackaged;
 		}
+		return isWristPackaged;
 	}
 
 	public boolean isWristOutputPos(){
