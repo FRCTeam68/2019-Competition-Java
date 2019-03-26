@@ -36,6 +36,7 @@ public class EndGame extends Subsystem {
         // CREATE PID VALUES FOR ENDGAME
         frontRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_RIGHT); // slave this motor
         frontRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+        frontRightMotor.setSensorPhase(true);
         frontRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -44,6 +45,7 @@ public class EndGame extends Subsystem {
 
         frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
         frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+        frontLeftMotor.setSensorPhase(false);
         frontLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -52,6 +54,7 @@ public class EndGame extends Subsystem {
 
         backLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_LEFT);
         backLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+        backLeftMotor.setSensorPhase(false);
         backLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -60,6 +63,7 @@ public class EndGame extends Subsystem {
       
         backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT);
         backRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
+        backRightMotor.setSensorPhase(true);
         backRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -70,6 +74,8 @@ public class EndGame extends Subsystem {
 
         frontLeftMotor.setNeutralMode(NeutralMode.Brake);
         backLeftMotor.setNeutralMode(NeutralMode.Brake);
+        frontRightMotor.setNeutralMode(NeutralMode.Brake);
+        backRightMotor.setNeutralMode(NeutralMode.Brake);
         backMotorWheelMotor.setNeutralMode(NeutralMode.Brake);
 
 
@@ -109,18 +115,32 @@ public class EndGame extends Subsystem {
 
     }
 
-    public double getFrontMotorPos() 
+    public double getFrontLeftMotorPos() 
     {
-        double positionFront = 0;
-		positionFront = frontLeftMotor.getSelectedSensorPosition(0);
-		return positionFront;
+        double positionFrontLeft = 0;
+		positionFrontLeft = frontLeftMotor.getSelectedSensorPosition(0);
+		return positionFrontLeft;
     }
 
-    public double getBackMotorPos()
+    public double getFrontRightMotorPos() 
     {
-        double positionBack = 0;
-		positionBack = backRightMotor.getSelectedSensorPosition(0);
-        return positionBack;
+        double positionFrontRight = 0;
+		positionFrontRight = frontRightMotor.getSelectedSensorPosition(0);
+		return positionFrontRight;
+    }
+
+    public double getBackRightMotorPos()
+    {
+        double positionBackRight = 0;
+		positionBackRight = backRightMotor.getSelectedSensorPosition(0);
+        return positionBackRight;
+    }
+
+    public double getBackLeftMotorPos()
+    {
+        double positionBackLeft = 0;
+		positionBackLeft = backLeftMotor.getSelectedSensorPosition(0);
+        return positionBackLeft;
     }
 
     public double getLastFrontSetPoint() {

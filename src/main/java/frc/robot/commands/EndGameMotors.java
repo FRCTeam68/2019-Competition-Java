@@ -14,7 +14,7 @@ public class EndGameMotors extends Command {
 
   private double frontPos;
   private double backPos;
- // private boolean isFinished = false;
+  private boolean isFinished = false;
 
   public EndGameMotors(double position, double position2) {
     // Use requires() here to declare subsystem dependencies
@@ -34,7 +34,7 @@ public class EndGameMotors extends Command {
   @Override
   protected void execute() {
     Robot.endGame.setMotorPos(frontPos, backPos);
-   // isFinished = true;
+    isFinished = true;
   }
 
   // Make this return true when this Command no longer needs to run execute()

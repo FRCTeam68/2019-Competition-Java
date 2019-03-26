@@ -120,7 +120,7 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -5750.0;
+    public static final double INTAKE_WRIST_HATCH_POSITION = -6550.0;
     public static final double INTAKE_WRIST_CARGO_OUTPUT = -13500.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -9423.0;
     public static final double INTAKE_WRIST_GROUND_INTAKE = -18500.0; //-11216
@@ -192,7 +192,8 @@ public class RobotMap {
     public static final int ENDGAME_WHEELS  = 12;
 
     public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
-    public static final double ENDGAME_HEIGHT_UP = 0;
+    public static final double ENDGAME_FRONT_HEIGHT_UP = -190000;
+    public static final double ENDGAME_BACK_HEIGHT_UP = -114000;
         // GENERAL
     public static final double MOTOR_STOP = 0;
 }

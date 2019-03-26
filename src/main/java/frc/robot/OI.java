@@ -72,14 +72,14 @@ public class OI {
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
 		xboxDrivePOVRight.whenPressed(new EndGameWheelsMove());
 
-		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_DOWN);
+		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_HEIGHT_UP));
 
 
-		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
+		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
 
-		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
+		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
 		xboxDrivePOVLeft.whenPressed(new EndGameWheelsMoveBack());
 	
 		//LIFT
