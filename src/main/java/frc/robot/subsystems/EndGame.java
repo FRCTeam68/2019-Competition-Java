@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
+import frc.robot.commands.EndGameWheelsMove;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -37,6 +38,8 @@ public class EndGame extends Subsystem {
         frontRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_RIGHT); // slave this motor
         frontRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontRightMotor.setSensorPhase(true);
+        frontRightMotor.configPeakOutputForward(0.75);
+        frontRightMotor.configPeakOutputReverse(-0.4);
         frontRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -46,6 +49,8 @@ public class EndGame extends Subsystem {
         frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
         frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontLeftMotor.setSensorPhase(false);
+        frontLeftMotor.configPeakOutputForward(0.75);
+        frontLeftMotor.configPeakOutputReverse(-0.4);
         frontLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -55,6 +60,8 @@ public class EndGame extends Subsystem {
         backLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_LEFT);
         backLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backLeftMotor.setSensorPhase(false);
+        backLeftMotor.configPeakOutputForward(0.75);
+        backLeftMotor.configPeakOutputReverse(-0.5);
         backLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -64,13 +71,15 @@ public class EndGame extends Subsystem {
         backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT);
         backRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backRightMotor.setSensorPhase(true);
+        backRightMotor.configPeakOutputForward(0.75);
+        backRightMotor.configPeakOutputReverse(-0.5);
         backRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
 		backRightMotor.config_kI(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_I, 0);
         backRightMotor.config_kD(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_D, 0);
 
-        backMotorWheelMotor = new WPI_VictorSPX(RobotMap.ENDGAME_BACK_MOTOR_WHEEL);
+        backMotorWheelMotor = new WPI_VictorSPX(RobotMap.ENDGAME_WHEELS);
 
         frontLeftMotor.setNeutralMode(NeutralMode.Brake);
         backLeftMotor.setNeutralMode(NeutralMode.Brake);
@@ -83,7 +92,7 @@ public class EndGame extends Subsystem {
  
 	@Override
 	protected void initDefaultCommand() {
-        //setDefaultCommand(IntakeManual);.0
+        
     }
 
     public void setEndGameMotorsSpeed(double speedA,double speedB) 
@@ -101,6 +110,7 @@ public class EndGame extends Subsystem {
 
     public void setEndGameWheelSpeeds(double speedA) 
     {
+        System.out.print("Endgame Wheel Speed = "+speedA);
         backMotorWheelMotor.set(speedA);
     }
 

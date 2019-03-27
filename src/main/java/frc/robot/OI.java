@@ -12,6 +12,7 @@ import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
+import frc.robot.commands.SweeperPackage;
 import frc.robot.commands.SweeperPackageIntake;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -30,6 +31,12 @@ public class OI {
 	private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
 	private Button xboxDriveRB;
+	private Button xboxDriveRTButton;
+	private Button xboxDriveLTButton;
+	private Button xboxDriveTriangle;
+	private Button xboxDriveCircle;
+	private Button xboxDriveSquare;
+	private Button xboxDriveX;
 	//private Button xboxDriveStart;
 //	private Button xboxDriveSelect;
 
@@ -69,18 +76,37 @@ public class OI {
 		
 		xboxDriveRB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RB);
 
+		xboxDriveRTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RT_BUTTON);
+		xboxDriveRTButton.whileHeld(new EndGameWheelsMove());
+
+		xboxDriveLTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_LT_BUTTON);
+		xboxDriveLTButton.whileHeld(new EndGameWheelsMoveBack());
+
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
-		xboxDrivePOVRight.whenPressed(new EndGameWheelsMove());
+		xboxDrivePOVRight.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_ZERO));
 
 		xboxDrivePOVDown = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_DOWN);
-		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_HEIGHT_UP));
+		xboxDrivePOVDown.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_ZERO));
 
 
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
-		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
+		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
 
-		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
-		xboxDrivePOVLeft.whenPressed(new EndGameWheelsMoveBack());
+		//xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
+		//xboxDrivePOVLeft.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+
+		xboxDriveTriangle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_TRIANGLE);
+		xboxDriveTriangle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
+
+		//xboxDriveSquare = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SQUARE);
+		//xboxDriveSquare.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_HEIGHT_UP));
+
+		xboxDriveCircle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_CIRCLE);
+		xboxDriveCircle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_ZERO));
+
+		xboxDriveX = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_X);
+		xboxDriveX.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_ZERO));
+
 	
 		//LIFT
 		
@@ -132,9 +158,12 @@ public class OI {
 		xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
-		xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+		xboxManipulateShare.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 
 		//SWEEPER BUTTON
+		xboxManipulateStart = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
+		xboxManipulateStart.whenPressed(new SweeperPackage());
+
 		// Setup the left joystick of the manipulate controller to deploy the sweeper
 		// when the button click (pushed down) is activated.
 		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
@@ -145,8 +174,7 @@ public class OI {
 		xboxManipulateSR = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SR);
 		xboxManipulateSR.whenPressed(new SweeperDeployIntake());
 
-		xboxManipulateStart = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateStart.whenPressed(new FeedStationCargo());
+		
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
 
