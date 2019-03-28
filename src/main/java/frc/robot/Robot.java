@@ -15,6 +15,8 @@ import edu.wpi.cscore.UsbCamera;
 
 public class Robot extends TimedRobot {
 	
+	
+
 	public static RobotMap robotMap;
 
 	public static Wrist wrist;
@@ -63,10 +65,9 @@ public class Robot extends TimedRobot {
 		endGame = EndGame.getEndGame();
 
 
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(160, 120);
-		camera.setFPS(10);
-
+		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+		//UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+		
 		// The OI class should be the last to be instantiated
 
 		oi = OI.getOI();
