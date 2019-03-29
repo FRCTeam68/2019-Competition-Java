@@ -103,10 +103,10 @@ public class DriveTrain extends Subsystem {
 		rightRear.setNeutralMode(NeutralMode.Coast);
 		rightFront.setNeutralMode(NeutralMode.Coast);
 
-		leftRear.configOpenloopRamp(.04);
-		leftFront.configOpenloopRamp(.04);
-		rightRear.configOpenloopRamp(.04);
-		rightFront.configOpenloopRamp(.04);
+		leftRear.configOpenloopRamp(.045);
+		leftFront.configOpenloopRamp(.045);
+		rightRear.configOpenloopRamp(.045);
+		rightFront.configOpenloopRamp(.045);
 
 		// Initialize the drive orientation.  We start with the orientation of
 		// robot front = gear. 

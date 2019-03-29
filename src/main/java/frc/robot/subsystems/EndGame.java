@@ -3,13 +3,16 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import frc.robot.RobotMap;
-import frc.robot.commands.EndGameWheelsMove;
+
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 public class EndGame extends Subsystem {
     
@@ -22,7 +25,10 @@ public class EndGame extends Subsystem {
     private static EndGame endGame;
     private double lastFrontSetPoint = 0;
     private double lastBackSetPoint = 0;
-    
+    private AnalogInput backUltrasonic;
+    private AnalogInput frontUltraSonic;
+    private boolean isGroundBack;
+    private boolean isGroundFront;
 
     public static EndGame getEndGame() {
     	if (endGame == null) {
@@ -38,8 +44,8 @@ public class EndGame extends Subsystem {
         frontRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_RIGHT); // slave this motor
         frontRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontRightMotor.setSensorPhase(true);
-        frontRightMotor.configPeakOutputForward(0.75);
-        frontRightMotor.configPeakOutputReverse(-0.4);
+        frontRightMotor.configPeakOutputForward(0.7);
+        frontRightMotor.configPeakOutputReverse(-0.7);
         frontRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -49,8 +55,8 @@ public class EndGame extends Subsystem {
         frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
         frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontLeftMotor.setSensorPhase(false);
-        frontLeftMotor.configPeakOutputForward(0.75);
-        frontLeftMotor.configPeakOutputReverse(-0.4);
+        frontLeftMotor.configPeakOutputForward(0.7);
+        frontLeftMotor.configPeakOutputReverse(-0.7);
         frontLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -60,8 +66,8 @@ public class EndGame extends Subsystem {
         backLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_LEFT);
         backLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backLeftMotor.setSensorPhase(false);
-        backLeftMotor.configPeakOutputForward(0.75);
-        backLeftMotor.configPeakOutputReverse(-0.5);
+        backLeftMotor.configPeakOutputForward(0.9);
+        backLeftMotor.configPeakOutputReverse(-.9);
         backLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -71,8 +77,8 @@ public class EndGame extends Subsystem {
         backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT);
         backRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backRightMotor.setSensorPhase(true);
-        backRightMotor.configPeakOutputForward(0.75);
-        backRightMotor.configPeakOutputReverse(-0.5);
+        backRightMotor.configPeakOutputForward(0.92);
+        backRightMotor.configPeakOutputReverse(-.92);
         backRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -80,12 +86,15 @@ public class EndGame extends Subsystem {
         backRightMotor.config_kD(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_D, 0);
 
         backMotorWheelMotor = new WPI_VictorSPX(RobotMap.ENDGAME_WHEELS);
+        
+        backUltrasonic = new AnalogInput(0);
+        frontUltraSonic = new AnalogInput(1);
 
         frontLeftMotor.setNeutralMode(NeutralMode.Brake);
         backLeftMotor.setNeutralMode(NeutralMode.Brake);
         frontRightMotor.setNeutralMode(NeutralMode.Brake);
         backRightMotor.setNeutralMode(NeutralMode.Brake);
-        backMotorWheelMotor.setNeutralMode(NeutralMode.Brake);
+        backMotorWheelMotor.setNeutralMode(NeutralMode.Coast);
 
 
     }
@@ -153,13 +162,48 @@ public class EndGame extends Subsystem {
         return positionBackLeft;
     }
 
+    public double getUltraSonicVoltBack()
+    {
+        double voltage = 0;
+        voltage = backUltrasonic.getVoltage();
+        
+        if(voltage <= 2.2){
+            isGroundBack = true;
+        }
+        else{
+            isGroundBack = false;
+        }
+        return voltage;
+    }
+
+    public double getUltraSonicVoltFront()
+    {
+        double voltage = 0;
+        voltage = frontUltraSonic.getVoltage();
+        
+        if(voltage <= 2.2){
+            isGroundFront = true;
+        }
+        else{
+            isGroundFront = false;
+        }
+        return voltage;
+    }
+
     public double getLastFrontSetPoint() {
 		return lastFrontSetPoint;
 	}
 
     public double getLastBackSetPoint() {
 		return lastBackSetPoint;
-	}
+    }
+    
+    public boolean isGroundBack(){
+        return isGroundBack;
+    }
 
+    public boolean isGroundFront(){
+        return isGroundFront;
+    }
 
 }

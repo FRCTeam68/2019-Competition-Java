@@ -6,6 +6,7 @@ import frc.robot.Robot;
 public class EndGameWheelsMove extends Command{
 
   boolean isFinished = false;
+  double triggerValue;
 
     public EndGameWheelsMove() {
         // Use requires() here to declare subsystem dependencies
@@ -23,7 +24,7 @@ public class EndGameWheelsMove extends Command{
       // Called repeatedly when this Command is scheduled to run
       @Override
       protected void execute() {
-      
+
         Robot.endGame.setEndGameWheelSpeeds(1);
        
         isFinished = true;
@@ -39,7 +40,6 @@ public class EndGameWheelsMove extends Command{
       // Called once after isFinished returns true
       @Override
       protected void end() {
-        Robot.endGame.setEndGameWheelSpeeds(0);
       }
     
       // Called when another command which requires one or more of the same

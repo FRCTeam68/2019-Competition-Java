@@ -10,6 +10,7 @@ import frc.robot.commands.AutoWrist;
 import frc.robot.commands.EndGameMotors;
 import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
+import frc.robot.commands.EndGameWheelsStop;
 import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackage;
@@ -77,10 +78,14 @@ public class OI {
 		xboxDriveRB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RB);
 
 		xboxDriveRTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RT_BUTTON);
-		xboxDriveRTButton.whileHeld(new EndGameWheelsMove());
+		xboxDriveRTButton.whenPressed(new EndGameWheelsMove());
+
+		xboxDriveRTButton.whenReleased(new EndGameWheelsStop());
 
 		xboxDriveLTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_LT_BUTTON);
-		xboxDriveLTButton.whileHeld(new EndGameWheelsMoveBack());
+		xboxDriveLTButton.whenPressed(new EndGameWheelsMoveBack());
+
+		xboxDriveLTButton.whenReleased(new EndGameWheelsStop());
 
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
 		xboxDrivePOVRight.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_ZERO));

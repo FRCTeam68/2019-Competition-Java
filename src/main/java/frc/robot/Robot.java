@@ -1,7 +1,7 @@
 package frc.robot;
 
 
-import edu.wpi.first.cameraserver.CameraServer;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.commands.MatchStart;
 import frc.robot.subsystems.*;
@@ -9,7 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 
 /*import org.usfirst.frc.team68.robot.auto.RightAutoStartCommand; */
 
@@ -64,8 +72,24 @@ public class Robot extends TimedRobot {
 		hatch = Hatch.getHatch();
 		endGame = EndGame.getEndGame();
 
+		new Thread(() -> {
+			UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+			camera0.setResolution(480, 320);
 
-		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+			CvSink cvSink = CameraServer.getInstance().getVideo();
+			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 480, 320);
+
+			Mat source = new Mat();
+			Mat output = new Mat();
+
+			while(!Thread.interrupted()){
+				cvSink.grabFrame(source);
+				Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+				outputStream.putFrame(output);
+			}
+
+		}).start();
+		
 		//UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(1);
 		
 		// The OI class should be the last to be instantiated
@@ -130,6 +154,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Endgame Back Left encoder POS", Robot.endGame.getBackLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Left encoder POS", Robot.endGame.getFrontLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());
+		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
+		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
 		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
 		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
@@ -137,6 +163,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
 		SmartDashboard.putBoolean("BEAM BREAK", Robot.intake.getBeamBreak());
 		SmartDashboard.putBoolean("IS DEPLOYED", Robot.sweeper.isDeployed());
+		SmartDashboard.putBoolean("Is Ground", Robot.endGame.isGroundBack());
+		SmartDashboard.putBoolean("Is Ground Front", Robot.endGame.isGroundFront());
 	}
 
 	@Override
@@ -170,6 +198,11 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
 		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
+		SmartDashboard.putNumber("Endgame Ultrasonic", Robot.endGame.getUltraSonicVoltBack());
+		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
+		SmartDashboard.putBoolean("Is Ground", Robot.endGame.isGroundBack());
+		SmartDashboard.putBoolean("Is Ground Front", Robot.endGame.isGroundFront());
+
 	}
 
 
