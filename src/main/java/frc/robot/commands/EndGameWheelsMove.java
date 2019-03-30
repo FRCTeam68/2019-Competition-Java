@@ -7,12 +7,12 @@ public class EndGameWheelsMove extends Command{
 
   boolean isFinished = false;
   double triggerValue;
-
-    public EndGameWheelsMove() {
+  double speedSpeed;
+    public EndGameWheelsMove(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.endGame);
-        
+        speedSpeed = speed;
       }
     
       // Called just before this Command runs the first time
@@ -24,8 +24,8 @@ public class EndGameWheelsMove extends Command{
       // Called repeatedly when this Command is scheduled to run
       @Override
       protected void execute() {
-
-        Robot.endGame.setEndGameWheelSpeeds(1);
+        
+        Robot.endGame.setEndGameWheelSpeeds(speedSpeed);
        
         isFinished = true;
       

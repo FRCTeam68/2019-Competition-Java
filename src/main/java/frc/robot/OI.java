@@ -8,10 +8,11 @@ import frc.robot.commands.AutoLiftLB;
 import frc.robot.commands.AutoLiftRB;
 import frc.robot.commands.AutoWrist;
 import frc.robot.commands.EndGameMotors;
+import frc.robot.commands.EndGameSequenceLevel2;
 import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.EndGameWheelsStop;
-import frc.robot.commands.FeedStationCargo;
+//import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackage;
 import frc.robot.commands.SweeperPackageIntake;
@@ -29,14 +30,14 @@ public class OI {
 	private XboxController xboxDrive;
 	private POVButton xboxDrivePOVUp;
 	private POVButton xboxDrivePOVDown;
-	private POVButton xboxDrivePOVLeft;
+	//private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
 	private Button xboxDriveRB;
 	private Button xboxDriveRTButton;
 	private Button xboxDriveLTButton;
 	private Button xboxDriveTriangle;
 	private Button xboxDriveCircle;
-	private Button xboxDriveSquare;
+	//private Button xboxDriveSquare;
 	private Button xboxDriveX;
 	//private Button xboxDriveStart;
 //	private Button xboxDriveSelect;
@@ -78,7 +79,7 @@ public class OI {
 		xboxDriveRB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RB);
 
 		xboxDriveRTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RT_BUTTON);
-		xboxDriveRTButton.whenPressed(new EndGameWheelsMove());
+		xboxDriveRTButton.whenPressed(new EndGameWheelsMove(1));
 
 		xboxDriveRTButton.whenReleased(new EndGameWheelsStop());
 
@@ -95,7 +96,7 @@ public class OI {
 
 
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
-		xboxDrivePOVUp.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+		xboxDrivePOVUp.whenPressed(new EndGameSequenceLevel2());
 
 		//xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
 		//xboxDrivePOVLeft.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
@@ -342,6 +343,12 @@ public class OI {
 		}
 		return buttonPressed;
 	}
-	
+	public boolean getXboxDrivePOVUp() {
+		boolean buttonPressed = false;
+		if(xboxDrivePOVUp.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
 
 }

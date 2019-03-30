@@ -8,13 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.command.WaitCommand;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
-public class EndGameWheelsStop extends Command {
-
-  private boolean isFinished;
-
-  public EndGameWheelsStop() {
+public class EndGameAuto extends Command {
+  public EndGameAuto() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.endGame);
@@ -29,15 +28,21 @@ public class EndGameWheelsStop extends Command {
   @Override
   protected void execute() {
 
-    Robot.endGame.setEndGameWheelSpeeds(0);
-
-    isFinished = true;
+    if(Robot.oi.getXboxDrivePOVUp()){
+      Scheduler.getInstance().add(new EndGameSequenceLevel2());
+      if(Robot.endGame.isGroundFront()){
+        Scheduler.getInstance().add(new SequenceFrontTripped());
+       if(Robot.endGame.isGroundBack()){
+         Scheduler.getInstance().add(new SequenceBackTripped());
+        }
+      }
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isFinished;
+    return false;
   }
 
   // Called once after isFinished returns true

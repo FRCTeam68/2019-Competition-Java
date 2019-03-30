@@ -147,24 +147,33 @@ public class Robot extends TimedRobot {
 	public void autonomousPeriodic() {
 
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
+
+		/*SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
 		SmartDashboard.putNumber("Endgame Back Right encoder POS", Robot.endGame.getBackRightMotorPos());
 		SmartDashboard.putNumber("Endgame Back Left encoder POS", Robot.endGame.getBackLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Left encoder POS", Robot.endGame.getFrontLeftMotorPos());
-		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());
+		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());4
+		*/
+		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+
 		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
 		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
+		
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
 		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
 		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
 		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
+
 		SmartDashboard.putBoolean("BEAM BREAK", Robot.intake.getBeamBreak());
 		SmartDashboard.putBoolean("IS DEPLOYED", Robot.sweeper.isDeployed());
 		SmartDashboard.putBoolean("Is Ground", Robot.endGame.isGroundBack());
 		SmartDashboard.putBoolean("Is Ground Front", Robot.endGame.isGroundFront());
+		SmartDashboard.putBoolean("IS HATCH OUT", Robot.hatch.getLimitSwitch());
+
+
 	}
 
 	@Override
@@ -186,6 +195,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		/*
 		SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
@@ -193,16 +203,23 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Endgame Back Left encoder POS", Robot.endGame.getBackLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Left encoder POS", Robot.endGame.getFrontLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());
+		*/
 		SmartDashboard.putBoolean("Wrist Cargostation", Robot.wrist.isWristCargoStationPos());
 		SmartDashboard.putBoolean("Wrist Ground intake", Robot.wrist.isWristGroundIntakePos());
 		SmartDashboard.putBoolean("wrist hatch pos", Robot.wrist.isWristHatchPos());
 		SmartDashboard.putBoolean("Wrist Packaged", Robot.wrist.isWristPackaged());
 		SmartDashboard.putBoolean("Wrist Output Pos", Robot.wrist.isWristOutputPos());
-		SmartDashboard.putNumber("Endgame Ultrasonic", Robot.endGame.getUltraSonicVoltBack());
-		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
+
+	//	SmartDashboard.putNumber("Endgame Ultrasonic", Robot.endGame.getUltraSonicVoltBack());
+	//	SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
+
+		SmartDashboard.putBoolean("BEAM BREAK", Robot.intake.getBeamBreak());
+		SmartDashboard.putBoolean("IS DEPLOYED", Robot.sweeper.isDeployed());
 		SmartDashboard.putBoolean("Is Ground", Robot.endGame.isGroundBack());
 		SmartDashboard.putBoolean("Is Ground Front", Robot.endGame.isGroundFront());
-
+		SmartDashboard.putBoolean("IS HATCH OUT", Robot.hatch.getLimitSwitch());
+		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
+		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
 	}
 
 

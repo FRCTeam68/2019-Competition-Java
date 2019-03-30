@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -16,7 +17,9 @@ public class Hatch extends Subsystem {
     // Declare Class variables here
 	private WPI_VictorSPX hatchMotor;
     private static Hatch hatch;
-    
+    public DigitalInput hatchLimitSwitch;
+    public boolean isHatchIn;
+    public boolean reverseHatch;
 
     public static Hatch getHatch() {
     	if (hatch == null) {
@@ -27,7 +30,8 @@ public class Hatch extends Subsystem {
       
 
     private Hatch(){
-    	hatchMotor = new WPI_VictorSPX(RobotMap.HATCH_MOTOR); //Setting whaat motor this is associated with
+        hatchMotor = new WPI_VictorSPX(RobotMap.HATCH_MOTOR); //Setting whaat motor this is associated with
+        hatchLimitSwitch = new DigitalInput(2);
     }
  
 	@Override
@@ -39,11 +43,19 @@ public class Hatch extends Subsystem {
     {
     	
     	hatchMotor.set(ControlMode.PercentOutput,speed);
-    	
+    	isHatchIn = hatchLimitSwitch.get();
     }
     
     public double getHatchSpeed()
     {
     	return hatchMotor.getMotorOutputPercent();
+    }
+    public boolean getLimitSwitch(){
+        if(isHatchIn){
+            reverseHatch = false;
+        } else{
+            reverseHatch = true;
+        }
+        return reverseHatch;
     }
 }
