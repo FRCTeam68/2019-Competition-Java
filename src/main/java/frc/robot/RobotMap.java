@@ -178,8 +178,12 @@ public class RobotMap {
     public static final double ENDGAME_ZERO = 0;
     public static final double ENDGAME_BACK_LIFTED_POSIITON = -36000;
     public static final double ENDGAME_FRONT_LIFTED_POSIITON = -60000;
+    public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
+    public static final double ENDGAME_FRONT_HEIGHT_UP = -190000;
+    public static final double ENDGAME_BACK_HEIGHT_UP = -114000;
+    public static final double ENDGAME_FRONT_LVL2_LVL3 = -130000;
+    public static final double ENDGAME_BACK_LVL2_LVL3 = -78000;
 
-    
     public static final int ENDGAME_BACK_MOTOR_WHEEL= 0;
 
     // set the super sonic sensor
@@ -193,9 +197,9 @@ public class RobotMap {
 
     public static final int ENDGAME_WHEELS  = 12;
 
-    public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
-    public static final double ENDGAME_FRONT_HEIGHT_UP = -190000;
-    public static final double ENDGAME_BACK_HEIGHT_UP = -114000;
+   
+
+
         // GENERAL
     public static final double MOTOR_STOP = 0;
 }

@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -12,6 +13,7 @@ import frc.robot.commands.EndGameSequenceLevel2;
 import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.EndGameWheelsStop;
+import frc.robot.commands.StartSequenceLevel2;
 //import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackage;
@@ -33,14 +35,15 @@ public class OI {
 	//private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
 	private Button xboxDriveRB;
+	private Button xboxDriveLB;
 	private Button xboxDriveRTButton;
 	private Button xboxDriveLTButton;
 	private Button xboxDriveTriangle;
 	private Button xboxDriveCircle;
-	//private Button xboxDriveSquare;
+	private Button xboxDriveSquare;
 	private Button xboxDriveX;
-	//private Button xboxDriveStart;
-//	private Button xboxDriveSelect;
+	private Button xboxDriveStart;
+	private Button xboxDriveSelect;
 
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
@@ -78,6 +81,8 @@ public class OI {
 		
 		xboxDriveRB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RB);
 
+		xboxDriveLB = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_LB);
+
 		xboxDriveRTButton = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_RT_BUTTON);
 		xboxDriveRTButton.whenPressed(new EndGameWheelsMove(1));
 
@@ -87,6 +92,9 @@ public class OI {
 		xboxDriveLTButton.whenPressed(new EndGameWheelsMoveBack());
 
 		xboxDriveLTButton.whenReleased(new EndGameWheelsStop());
+
+		xboxDriveSelect = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SHARE);
+	//	xboxDriveSelect.whenPressed(new StartSequenceLevel2());
 
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
 		xboxDrivePOVRight.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LIFTED_POSIITON,RobotMap.ENDGAME_ZERO));
@@ -104,11 +112,14 @@ public class OI {
 		xboxDriveTriangle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_TRIANGLE);
 		xboxDriveTriangle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
 
-		//xboxDriveSquare = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SQUARE);
-		//xboxDriveSquare.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_BACK_HEIGHT_UP));
-
 		xboxDriveCircle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_CIRCLE);
 		xboxDriveCircle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_ZERO));
+
+		xboxDriveStart = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_OPTIONS);
+		xboxDriveStart.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LVL2_LVL3,RobotMap.ENDGAME_BACK_LVL2_LVL3));
+
+		xboxDriveSquare = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SQUARE);
+		xboxDriveSquare.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_LVL2_LVL3,RobotMap.ENDGAME_ZERO));
 
 		xboxDriveX = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_X);
 		xboxDriveX.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_ZERO));
@@ -343,6 +354,15 @@ public class OI {
 		}
 		return buttonPressed;
 	}
+
+	public boolean getXboxDriveLB() {
+		boolean buttonPressed = false;
+		if(xboxDriveLB.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
 	public boolean getXboxDrivePOVUp() {
 		boolean buttonPressed = false;
 		if(xboxDrivePOVUp.get()){

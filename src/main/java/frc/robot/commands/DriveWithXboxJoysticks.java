@@ -20,10 +20,16 @@ public class DriveWithXboxJoysticks extends Command {
 
 	@Override
 	protected void execute() {
-		if(Robot.oi.getXboxDriveRB() == false){
-			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue()*Math.abs(Robot.oi.getLeftXboxJoystickValue()*Math.abs(Robot.oi.getLeftXboxJoystickValue())), -Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue())));	
-		}else{
-			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue()*Math.abs(Robot.oi.getLeftXboxJoystickValue())*Math.abs(Robot.oi.getLeftXboxJoystickValue())*.75, -Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue()))*.75);	
+		if(Robot.oi.getXboxDriveRB() == true){
+			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue()
+			*Math.abs(Robot.oi.getLeftXboxJoystickValue())*.75, -Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue())*.75);	
+		}
+		if(Robot.oi.getXboxDriveLB() == true){
+			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue()*Math.abs(Robot.oi.getLeftXboxJoystickValue())*.6, -Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue())*.6);	
+		}
+
+		else{
+			Robot.driveTrain.tankDrive(-Robot.oi.getLeftXboxJoystickValue()*Math.abs(Robot.oi.getLeftXboxJoystickValue()), -Robot.oi.getRightXboxJoystickValue()*Math.abs(Robot.oi.getRightXboxJoystickValue()));	
 		}
 	}
 

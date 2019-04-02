@@ -17,8 +17,9 @@ public class SequenceBackTripped extends CommandGroup {
    */
   public SequenceBackTripped() {
     addSequential(new EndGameWheelsMove(0));
-    addSequential(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_ZERO));
     addSequential(new DriveWithEndGameMotors());
+    addSequential(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
     addSequential(new WaitCommand(.3));
+    addSequential(new EndGameWheelsMove(1));
   }
 }
