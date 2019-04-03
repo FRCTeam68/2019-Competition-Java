@@ -122,7 +122,7 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -9800.0;
+    public static final double INTAKE_WRIST_HATCH_POSITION = -10300.0; //Comp 9800
     public static final double INTAKE_WRIST_CARGO_OUTPUT = -22900.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -18400.0;
     public static final double INTAKE_WRIST_GROUND_INTAKE = -33000.0; //-11216

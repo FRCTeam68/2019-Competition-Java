@@ -18,7 +18,7 @@ public class DeliverCargo extends CommandGroup {
   public DeliverCargo() {
 
     addSequential(new AutoLift(RobotMap.LIFT_ROCKET_HATCH_MID));
-    addSequential(new WaitCommand(.5));
+    addSequential(new WaitCommand(0.1));
     addSequential(new SweeperPackage());
     addSequential(new WaitCommand(.75));
     addSequential(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT)); 
