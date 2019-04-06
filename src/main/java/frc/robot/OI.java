@@ -1,6 +1,6 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -13,7 +13,9 @@ import frc.robot.commands.EndGameSequenceLevel2;
 import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.EndGameWheelsStop;
-import frc.robot.commands.StartSequenceLevel2;
+import frc.robot.commands.RunForwardBack;
+import frc.robot.commands.RunForwardDrive;
+//import frc.robot.commands.StartSequenceLevel2;
 //import frc.robot.commands.FeedStationCargo;
 import frc.robot.commands.SweeperDeployIntake;
 import frc.robot.commands.SweeperPackage;
@@ -43,7 +45,9 @@ public class OI {
 	private Button xboxDriveSquare;
 	private Button xboxDriveX;
 	private Button xboxDriveStart;
-	private Button xboxDriveSelect;
+	private Button xboxDriveSL;
+	private Button xboxDriveSR;
+	//private Button xboxDriveSelect;
 
 	private XboxController xboxManipulate;
 	private Button xboxManipulateLB;
@@ -93,7 +97,7 @@ public class OI {
 
 		xboxDriveLTButton.whenReleased(new EndGameWheelsStop());
 
-		xboxDriveSelect = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SHARE);
+	//	xboxDriveSelect = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SHARE);
 	//	xboxDriveSelect.whenPressed(new StartSequenceLevel2());
 
 		xboxDrivePOVRight = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_RIGHT);
@@ -123,6 +127,13 @@ public class OI {
 
 		xboxDriveX = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_X);
 		xboxDriveX.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO,RobotMap.ENDGAME_ZERO));
+
+		xboxDriveSL = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SL);
+		xboxDriveSL.whileHeld(new RunForwardBack());
+
+		xboxDriveSR = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_SR);
+		xboxDriveSR.whileHeld(new RunForwardDrive());
+
 
 	
 		//LIFT

@@ -220,6 +220,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putBoolean("IS HATCH OUT", Robot.hatch.getLimitSwitch());
 		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
 		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
+
 	}
 
 

@@ -90,12 +90,12 @@ public class RobotMap {
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND = 0.0;
     public static final double LIFT_MATCH_START = -3000.0;
-    public static final double LIFT_ROCKET_CARGO_LOW = -11380.0;
-    public static final double LIFT_ROCKET_CARGO_MID = -35200.0;
-    public static final double LIFT_ROCKET_CARGO_HIGH = -55000.0;
-    public static final double LIFT_ROCKET_HATCH_LOW = -8500.0;
-    public static final double LIFT_ROCKET_HATCH_MID = -23620.0;
-    public static final double LIFT_ROCKET_HATCH_HIGH = -45254.0;
+    public static final double LIFT_ROCKET_CARGO_LOW = -10880.0;//-11380
+    public static final double LIFT_ROCKET_CARGO_MID = -34400.0;//35200
+    public static final double LIFT_ROCKET_CARGO_HIGH = -54200.0;//-55000
+    public static final double LIFT_ROCKET_HATCH_LOW = -7800.0;//-8500
+    public static final double LIFT_ROCKET_HATCH_MID = -22820.0;//-23620
+    public static final double LIFT_ROCKET_HATCH_HIGH = -44454.0;//-45254
     public static final double LIFT_BALL_INTAKE = -5440.0;
 
 	public static final int LIFT_LIMIT_SWITCH = 1;
@@ -122,7 +122,7 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -10300.0; //Comp 9800
+    public static final double INTAKE_WRIST_HATCH_POSITION = -10800.0; //Comp -9800
     public static final double INTAKE_WRIST_CARGO_OUTPUT = -22900.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -18400.0;
     public static final double INTAKE_WRIST_GROUND_INTAKE = -33000.0; //-11216
