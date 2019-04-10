@@ -56,8 +56,6 @@ public class RobotMap {
     public static final int XBOX_MANIPULATE_POV_LEFT = 270;
     public static final int XBOX_MANIPULATE_POV_UP = 0;
 
-
-
     // DRIVETRAIN
     public static final int DRIVETRAIN_LEFT_FRONT = 2;
     public static final int DRIVETRAIN_RIGHT_FRONT = 1;
@@ -90,12 +88,22 @@ public class RobotMap {
 	public static final double LIFT_SPEED_DOWN = -0.75;
     public static final double LIFT_GROUND = 0.0;
     public static final double LIFT_MATCH_START = -3000.0;
+    /* practice bot
     public static final double LIFT_ROCKET_CARGO_LOW = -10880.0;//-11380
     public static final double LIFT_ROCKET_CARGO_MID = -34400.0;//35200
     public static final double LIFT_ROCKET_CARGO_HIGH = -54200.0;//-55000
     public static final double LIFT_ROCKET_HATCH_LOW = -7800.0;//-8500
     public static final double LIFT_ROCKET_HATCH_MID = -22820.0;//-23620
-    public static final double LIFT_ROCKET_HATCH_HIGH = -44454.0;//-45254
+    public static final double LIFT_ROCKET_HATCH_HIGH = -45454.0;//-45254
+    public static final double LIFT_BALL_INTAKE = -5440.0;
+    */
+    // Comp Bot 
+    public static final double LIFT_ROCKET_CARGO_LOW = -11880.0;
+    public static final double LIFT_ROCKET_CARGO_MID = -35200.0;
+    public static final double LIFT_ROCKET_CARGO_HIGH = -55000.0;
+    public static final double LIFT_ROCKET_HATCH_LOW = -8500.0;
+    public static final double LIFT_ROCKET_HATCH_MID = -23620.0;
+    public static final double LIFT_ROCKET_HATCH_HIGH = -45254.0;
     public static final double LIFT_BALL_INTAKE = -5440.0;
 
 	public static final int LIFT_LIMIT_SWITCH = 1;
@@ -122,10 +130,10 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -10800.0; //Comp -9800
+    public static final double INTAKE_WRIST_HATCH_POSITION = -9800.0; //Comp -9800
     public static final double INTAKE_WRIST_CARGO_OUTPUT = -22900.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -18400.0;
-    public static final double INTAKE_WRIST_GROUND_INTAKE = -33000.0; //-11216
+    public static final double INTAKE_WRIST_GROUND_INTAKE = -11000.0; //-11216
 
     public static final int WRIST_PID_SLOT = 0;
     
@@ -177,11 +185,11 @@ public class RobotMap {
 
     public static final double ENDGAME_ZERO = 0;
     public static final double ENDGAME_BACK_LIFTED_POSIITON = -36000;
-    public static final double ENDGAME_FRONT_LIFTED_POSIITON = -60000;
+    public static final double ENDGAME_FRONT_LIFTED_POSIITON = -34200;
     public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
-    public static final double ENDGAME_FRONT_HEIGHT_UP = -190000;
-    public static final double ENDGAME_BACK_HEIGHT_UP = -114000;
-    public static final double ENDGAME_FRONT_LVL2_LVL3 = -130000;
+    public static final double ENDGAME_FRONT_HEIGHT_UP = -108300;
+    public static final double ENDGAME_BACK_HEIGHT_UP = -114000; 
+    public static final double ENDGAME_FRONT_LVL2_LVL3 = -74100;
     public static final double ENDGAME_BACK_LVL2_LVL3 = -78000;
 
     public static final int ENDGAME_BACK_MOTOR_WHEEL= 0;

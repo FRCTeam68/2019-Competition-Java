@@ -34,7 +34,7 @@ public class OI {
 	private XboxController xboxDrive;
 	private POVButton xboxDrivePOVUp;
 	private POVButton xboxDrivePOVDown;
-	//private POVButton xboxDrivePOVLeft;
+	private POVButton xboxDrivePOVLeft;
 	private POVButton xboxDrivePOVRight;
 	private Button xboxDriveRB;
 	private Button xboxDriveLB;
@@ -110,8 +110,7 @@ public class OI {
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
 		xboxDrivePOVUp.whenPressed(new EndGameSequenceLevel2());
 
-		//xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
-		//xboxDrivePOVLeft.whenPressed(new EndGameMotors(RobotMap.ENDGAME_ZERO, RobotMap.ENDGAME_BACK_LIFTED_POSIITON));
+		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
 
 		xboxDriveTriangle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_TRIANGLE);
 		xboxDriveTriangle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
@@ -377,6 +376,13 @@ public class OI {
 	public boolean getXboxDrivePOVUp() {
 		boolean buttonPressed = false;
 		if(xboxDrivePOVUp.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+	public boolean getXboxDrivePOVLeft() {
+		boolean buttonPressed = false;
+		if(xboxDrivePOVLeft.get()){
 			buttonPressed = true;
 		}
 		return buttonPressed;
