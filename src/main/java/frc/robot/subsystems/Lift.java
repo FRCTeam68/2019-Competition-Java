@@ -6,6 +6,7 @@ import frc.robot.RobotMap;
 //import frc.robot.commands.LiftManual;
 //import frc.robot.commands.LiftManual;
 //import frc.robot.commands.LiftZeroEncoder;
+import frc.robot.commands.LiftManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -27,7 +28,8 @@ public class Lift extends Subsystem {
    // private DigitalInput limitSwitch;
 	private Boolean manualBool;
 	private double lastSetPoint = 0;
-	
+	public Boolean isManualMode = false;
+
 	private static Lift lift;
 	
 	public static Lift getLift() {
@@ -49,7 +51,7 @@ public class Lift extends Subsystem {
 
 		//		liftMotor.configNeutralDeadband(0.001, 0);
 		liftMotor.selectProfileSlot(RobotMap.LIFT_PID_SLOT, 0);
-		liftMotor.config_kF(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_F, 0);
+		liftMotor.config_kF(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_F, 0);	
 		liftMotor.config_kP(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_P, 0);
 		liftMotor.config_kI(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_I, 0);
 		liftMotor.config_kD(RobotMap.LIFT_PID_SLOT, RobotMap.LIFT_PID_D, 0);
@@ -61,7 +63,7 @@ public class Lift extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-	//	setDefaultCommand(new LiftZeroEncoder());
+	setDefaultCommand(new LiftManual());
 	}
 	public void setLiftSpeed(double speed) {
 		liftMotor.set(speed);
@@ -92,11 +94,11 @@ public class Lift extends Subsystem {
 	public void zeroEncoder() {
 		liftMotor.setSelectedSensorPosition(0, 0, 10);
 	}
-	
-	//public boolean getLimitSwitch(){
-	//	return limitSwitch.get();
-	//}
-    
+
+
+    public boolean manualMode(){
+		return isManualMode;
+	}
 
     public void swapManual() {
     	manualBool = !manualBool;

@@ -33,6 +33,7 @@ public class AutoLiftRB extends Command {
 	@Override
 	protected void execute() {
 	//	System.out.println("Holding Left Button");
+	if(!Robot.lift.isManualMode){
 		if(Robot.oi.getXboxManipulateRB() || Robot.oi.getXboxManipulateRTButton()) {
 			if(Robot.oi.getXboxManipulateCircle()){
 				Scheduler.getInstance().add(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
@@ -54,13 +55,15 @@ public class AutoLiftRB extends Command {
 				setPoint = RobotMap.LIFT_ROCKET_CARGO_HIGH;
 				
 			}
-		}
+		
+	}
 	//	System.out.println("Setting setPoint to LB " + setPoint);
 		Robot.lift.setPosition(setPoint);
 		currentPos = Robot.lift.getPosition();
 		if ( currentPos == setPoint ) {
 			isFinished = true;
 		}
+	  }
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

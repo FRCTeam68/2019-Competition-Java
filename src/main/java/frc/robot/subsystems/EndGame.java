@@ -44,8 +44,8 @@ public class EndGame extends Subsystem {
         frontRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_RIGHT); // slave this motor
         frontRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontRightMotor.setSensorPhase(true);
-        frontRightMotor.configPeakOutputForward(0.7);
-        frontRightMotor.configPeakOutputReverse(-0.7);
+        frontRightMotor.configPeakOutputForward(0.62);
+        frontRightMotor.configPeakOutputReverse(-0.62);
         frontRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -55,8 +55,8 @@ public class EndGame extends Subsystem {
         frontLeftMotor = new WPI_TalonSRX(RobotMap.ENDGAME_FRONT_LEFT);
         frontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         frontLeftMotor.setSensorPhase(false);
-        frontLeftMotor.configPeakOutputForward(0.7);
-        frontLeftMotor.configPeakOutputReverse(-0.7);
+        frontLeftMotor.configPeakOutputForward(0.62);
+        frontLeftMotor.configPeakOutputReverse(-0.62);
         frontLeftMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		frontLeftMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		frontLeftMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);
@@ -77,8 +77,8 @@ public class EndGame extends Subsystem {
         backRightMotor = new WPI_TalonSRX(RobotMap.ENDGAME_BACK_RIGHT);
         backRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
         backRightMotor.setSensorPhase(true);
-        backRightMotor.configPeakOutputForward(0.92);
-        backRightMotor.configPeakOutputReverse(-.92);
+        backRightMotor.configPeakOutputForward(0.9);
+        backRightMotor.configPeakOutputReverse(-.9);
         backRightMotor.selectProfileSlot(RobotMap.ENDGAME_PID_SLOT, 0);
 		backRightMotor.config_kF(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_F, 0);
 		backRightMotor.config_kP(RobotMap.ENDGAME_PID_SLOT, RobotMap.ENDGAME_PID_P, 0);

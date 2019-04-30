@@ -72,9 +72,17 @@ public class Robot extends TimedRobot {
 		hatch = Hatch.getHatch();
 		endGame = EndGame.getEndGame();
 
+		/*
+		UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera0.setResolution(480, 320);
+		camera0.setFPS(20);
+*/
+
+		
 		new Thread(() -> {
 			UsbCamera camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-			camera0.setResolution(480, 320);
+			camera0.setResolution(320, 240);
+			camera0.setFPS(20);
 
 			CvSink cvSink = CameraServer.getInstance().getVideo();
 			CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 480, 320);
@@ -151,13 +159,16 @@ public class Robot extends TimedRobot {
 		/*SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		*/
+		/*
 		SmartDashboard.putNumber("Endgame Back Right encoder POS", Robot.endGame.getBackRightMotorPos());
 		SmartDashboard.putNumber("Endgame Back Left encoder POS", Robot.endGame.getBackLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Left encoder POS", Robot.endGame.getFrontLeftMotorPos());
-		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());4
-		*/
+		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());
+		
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
-
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		*/
 		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
 		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());
 		

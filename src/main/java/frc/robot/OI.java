@@ -13,6 +13,9 @@ import frc.robot.commands.EndGameSequenceLevel2;
 import frc.robot.commands.EndGameWheelsMove;
 import frc.robot.commands.EndGameWheelsMoveBack;
 import frc.robot.commands.EndGameWheelsStop;
+import frc.robot.commands.Hatchy;
+import frc.robot.commands.HatchyStop;
+import frc.robot.commands.ManualOverride;
 import frc.robot.commands.RunForwardBack;
 import frc.robot.commands.RunForwardDrive;
 //import frc.robot.commands.StartSequenceLevel2;
@@ -62,6 +65,7 @@ public class OI {
 	private Button xboxManipulateRT;
 	private Button xboxManipulateShare;
 	private Button xboxManipulateStart;
+	private Button xboxManipulateMiddle;
 	private POVButton xboxManipulatorPOVUp;
 	private POVButton xboxManipulatorPOVLeft;
 	private POVButton xboxManipulatorPOVRight;
@@ -110,7 +114,7 @@ public class OI {
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
 		xboxDrivePOVUp.whenPressed(new EndGameSequenceLevel2());
 
-		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
+//		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
 
 		xboxDriveTriangle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_TRIANGLE);
 		xboxDriveTriangle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));
@@ -147,7 +151,7 @@ public class OI {
 		xboxManipulate = new XboxController(RobotMap.XBOX_MANIPULATE); 
 
 		 
-		xboxManipulateShare = new JoystickButton(xboxDrive, RobotMap.XBOX_MANIPULATE_SHARE);
+		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
 		//lift
 		xboxManipulateX = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_X);
@@ -164,59 +168,100 @@ public class OI {
 		
 
 		xboxManipulateRB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RB);
-		xboxManipulateRB.whileHeld(new AutoLiftRB());
 
 		xboxManipulateLB = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LB);
-		xboxManipulateLB.whileHeld(new AutoLiftLB());
 		//end lift here
 
 		// WRIST BUTTONS HERE
 
 		xboxManipulatorPOVLeft = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_LEFT);
-		xboxManipulatorPOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_STATION_INTAKE));
+	
 
 		xboxManipulatorPOVDown = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_DOWN);
-		xboxManipulatorPOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
+		
 
 		xboxManipulatorPOVUp = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_UP);
-		xboxManipulatorPOVUp.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+		
 		
 		xboxManipulatorPOVRight = new POVButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_POV_RIGHT);
-		xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
+	
 
 		xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
-		xboxManipulateShare.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+		
 
 		//SWEEPER BUTTON
 		xboxManipulateStart = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_OPTIONS);
-		xboxManipulateStart.whenPressed(new SweeperPackage());
+		
 
 		// Setup the left joystick of the manipulate controller to deploy the sweeper
 		// when the button click (pushed down) is activated.
 		xboxManipulateSL = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SL);
-		xboxManipulateSL.whenPressed(new SweeperPackageIntake());
+		
 
 		// Setup the Right joystick of the manipulate controller to package the sweeper
 		// when the button click (pushed down) is activated.
 		xboxManipulateSR = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SR);
-		xboxManipulateSR.whenPressed(new SweeperDeployIntake());
+		
 
 		
 		//xboxManipulateShare = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_SHARE);
 		//xboxManipulateShare.whileHeld(new AutoLift (RobotMap.LIFT_HATCH3));
 
 		xboxManipulateLT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_LT);
-		xboxManipulateLT.whileHeld(new AutoLiftLB());
 
 		xboxManipulateRT = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_RT);
-		xboxManipulateRT.whileHeld(new AutoLiftRB());
+
+
+		xboxManipulateMiddle = new JoystickButton(xboxManipulate, RobotMap.XBOX_MANIPULATE_MIDDLE);
+		xboxManipulateMiddle.whenPressed(new ManualOverride());
+
+		if(Robot.lift.manualMode()) {
+			xboxManipulateRT.whileHeld(null);
+			xboxManipulateLT.whileHeld(null);
+			xboxManipulateLB.whileHeld(null);
+			xboxManipulateRB.whileHeld(null);
+
+			xboxManipulateSR.whenPressed(null);
+			xboxManipulateSL.whenPressed(null);
+			xboxManipulateStart.whenPressed(null);
+
+			xboxManipulateShare.whenPressed(null);
+			xboxManipulatorPOVRight.whenPressed(null);
+			xboxManipulatorPOVUp.whenPressed(null);
+			xboxManipulatorPOVDown.whenPressed(null);
+			xboxManipulatorPOVLeft.whenPressed(null);
+
+			xboxManipulateX.whenReleased(new HatchyStop());
+			xboxManipulateSquare.whenReleased(new HatchyStop());
+
+		} else {
+			xboxManipulateRT.whileHeld(new AutoLiftRB());
+			xboxManipulateLT.whileHeld(new AutoLiftLB());
+			xboxManipulateLB.whileHeld(new AutoLiftLB());
+			xboxManipulateRB.whileHeld(new AutoLiftRB());
+
+			xboxManipulateSR.whenPressed(new SweeperDeployIntake());
+			xboxManipulateSL.whenPressed(new SweeperPackageIntake());
+			xboxManipulateStart.whenPressed(new SweeperPackage());
+
+			xboxManipulateShare.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_PACKAGED));
+			xboxManipulatorPOVRight.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_OUTPUT));
+			xboxManipulatorPOVUp.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_HATCH_POSITION));
+			xboxManipulatorPOVDown.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_GROUND_INTAKE));
+			xboxManipulatorPOVLeft.whenPressed(new AutoWrist(RobotMap.INTAKE_WRIST_CARGO_STATION_INTAKE));
+
+			xboxManipulateX.whenReleased(null);
+			xboxManipulateSquare.whenReleased(null);
+
+		}
 
 	}
 	
 	// Custom user defined methods should go here
 	
 
-	// Drivetrain Tank Drive Left 
+	// Drivetrain Tank Drive Left |
+	
 	public double getLeftXboxJoystickValue() {
 		double leftAxis;
 		leftAxis = xboxDrive.getY(Hand.kLeft);
@@ -344,6 +389,14 @@ public class OI {
 	public boolean getXboxManipulateRTButton() {
 		boolean buttonPressed = false;
 		if(xboxManipulateRT.get()){
+			buttonPressed = true;
+		}
+		return buttonPressed;
+	}
+
+	public boolean getXboxManipulateMiddle() {
+		boolean buttonPressed = false;
+		if(xboxManipulateMiddle.get()){
 			buttonPressed = true;
 		}
 		return buttonPressed;

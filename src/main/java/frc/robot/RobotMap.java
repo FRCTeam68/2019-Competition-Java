@@ -50,7 +50,8 @@ public class RobotMap {
     public static final int XBOX_MANIPULATE_RB = 6;
     public static final int XBOX_MANIPULATE_LB = 5;
     public static final int XBOX_MANIPULATE_SHARE = 9;
-	public static final int XBOX_MANIPULATE_OPTIONS = 10;
+    public static final int XBOX_MANIPULATE_OPTIONS = 10;
+    public static final int XBOX_MANIPULATE_MIDDLE = 14;
     public static final int XBOX_MANIPULATE_POV_DOWN = 180;
     public static final int XBOX_MANIPULATE_POV_RIGHT = 90;
     public static final int XBOX_MANIPULATE_POV_LEFT = 270;
@@ -130,10 +131,10 @@ public class RobotMap {
     public static final int INTAKE_WRIST_MOTOR= 5;
 
     public static final double INTAKE_WRIST_PACKAGED = 0;
-    public static final double INTAKE_WRIST_HATCH_POSITION = -9800.0; //Comp -9800
-    public static final double INTAKE_WRIST_CARGO_OUTPUT = -22900.0;
+    public static final double INTAKE_WRIST_HATCH_POSITION = -9300.0; //Comp -9800
+    public static final double INTAKE_WRIST_CARGO_OUTPUT = -22700.0;
     public static final double INTAKE_WRIST_CARGO_STATION_INTAKE = -18400.0;
-    public static final double INTAKE_WRIST_GROUND_INTAKE = -11000.0; //-11216
+    public static final double INTAKE_WRIST_GROUND_INTAKE = -32000.0; //-11216
 
     public static final int WRIST_PID_SLOT = 0;
     
@@ -184,13 +185,13 @@ public class RobotMap {
     
 
     public static final double ENDGAME_ZERO = 0;
-    public static final double ENDGAME_BACK_LIFTED_POSIITON = -36000;
-    public static final double ENDGAME_FRONT_LIFTED_POSIITON = -34200;
+    public static final double ENDGAME_BACK_LIFTED_POSIITON = -47900;
+    public static final double ENDGAME_FRONT_LIFTED_POSIITON = -55400;
     public static final double ENDGAME_HEIGHT_START = 0; // this will always vbe zero
-    public static final double ENDGAME_FRONT_HEIGHT_UP = -108300;
-    public static final double ENDGAME_BACK_HEIGHT_UP = -114000; 
-    public static final double ENDGAME_FRONT_LVL2_LVL3 = -74100;
-    public static final double ENDGAME_BACK_LVL2_LVL3 = -78000;
+    public static final double ENDGAME_FRONT_HEIGHT_UP = -188200; 
+    public static final double ENDGAME_BACK_HEIGHT_UP = -142000; 
+    public static final double ENDGAME_FRONT_LVL2_LVL3 = -128800;
+    public static final double ENDGAME_BACK_LVL2_LVL3 = -95200;
 
     public static final int ENDGAME_BACK_MOTOR_WHEEL= 0;
 

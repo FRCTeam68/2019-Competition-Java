@@ -3,21 +3,18 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-import frc.robot.RobotMap;
-/**
- *
- */
-
-public class SweeperDeploy extends Command {
+public class HatchyStop extends CommandGroup {
 	
 	boolean isFinished = false;
 
-	public SweeperDeploy() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sweeper);
+	double hatchFlag = 0.0;
 
+	public HatchyStop() {
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.hatch);
+		
 	}
 
 	// Called just before this Command runs the first time
@@ -29,10 +26,8 @@ public class SweeperDeploy extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if(!Robot.lift.isManualMode){
-		Robot.sweeper.setPosition(RobotMap.SWEEPER_DEPLOYED);
-		
-		isFinished = true;
+		if(!Robot.lift.manualMode()){
+		Robot.hatch.setHatchSpeed(0);
 		}
 	}
 
@@ -51,6 +46,5 @@ public class SweeperDeploy extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		
 	}
 }

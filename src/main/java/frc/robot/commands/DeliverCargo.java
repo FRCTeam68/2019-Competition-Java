@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class DeliverCargo extends CommandGroup {
@@ -16,7 +17,10 @@ public class DeliverCargo extends CommandGroup {
    * Add your docs here.
    */
   public DeliverCargo() {
+    requires(Robot.intake);
+    requires(Robot.sweeper);
 
+    Robot.sweeper.setSweeperSpeed(0);	
     addSequential(new AutoLift(RobotMap.LIFT_ROCKET_HATCH_MID));
     addSequential(new WaitCommand(0.1));
     addSequential(new SweeperPackage());

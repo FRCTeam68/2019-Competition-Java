@@ -24,10 +24,11 @@ public class AutoWrist extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
+		if(!Robot.lift.isManualMode){
         Robot.wrist.setPosition(setPoint);
 	
 		isFinished = true;
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
