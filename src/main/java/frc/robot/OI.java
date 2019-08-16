@@ -110,7 +110,7 @@ public class OI {
 		xboxDrivePOVUp = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_UP);
 		xboxDrivePOVUp.whenPressed(new EndGameSequenceLevel2());
 
-		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
+//		xboxDrivePOVLeft = new POVButton(xboxDrive, RobotMap.XBOX_DRIVE_POV_LEFT);
 
 		xboxDriveTriangle = new JoystickButton(xboxDrive, RobotMap.XBOX_DRIVE_TRIANGLE);
 		xboxDriveTriangle.whenPressed(new EndGameMotors(RobotMap.ENDGAME_FRONT_HEIGHT_UP,RobotMap.ENDGAME_BACK_HEIGHT_UP));

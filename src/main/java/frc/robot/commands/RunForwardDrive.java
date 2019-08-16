@@ -19,8 +19,8 @@ public class RunForwardDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.driveTrain.setDriveLeftSpeed(.25);
-    Robot.driveTrain.setDriveRightSpeed(-.25);
+  //  Robot.driveTrain.setDriveLeftSpeed(.25);
+ //   Robot.driveTrain.setDriveRightSpeed(-.25);
 
   }
 

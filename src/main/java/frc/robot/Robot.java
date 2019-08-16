@@ -131,7 +131,7 @@ public class Robot extends TimedRobot {
 	        //System.out.println("Auto Running: " + autonomousCommand.getName());
 			autonomousCommand.start();
 
-			Robot.driveTrain.setBrakeMode();
+		///	Robot.driveTrain.setBrakeMode();
 			Robot.lift.zeroEncoder();
 			Robot.sweeper.zeroEncoder();
 			Robot.wrist.zeroEncoder();
@@ -151,12 +151,14 @@ public class Robot extends TimedRobot {
 		/*SmartDashboard.putNumber("encoder value lift", Robot.lift.getPosition());
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
 		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
+		*/
 		SmartDashboard.putNumber("Endgame Back Right encoder POS", Robot.endGame.getBackRightMotorPos());
 		SmartDashboard.putNumber("Endgame Back Left encoder POS", Robot.endGame.getBackLeftMotorPos());
 		SmartDashboard.putNumber("Endgame Front Left encoder POS", Robot.endGame.getFrontLeftMotorPos());
-		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());4
-		*/
+		SmartDashboard.putNumber("Endgame Front Right encoder POS", Robot.endGame.getFrontRightMotorPos());
+		
 		SmartDashboard.putNumber("encoder value sweeper wrist", Robot.sweeper.getPosition());
+		SmartDashboard.putNumber("encoder value claw wrist", Robot.wrist.getPosition());
 
 		SmartDashboard.putNumber("Endgame Ultrasonic Back", Robot.endGame.getUltraSonicVoltBack());
 		SmartDashboard.putNumber("Endgame UltraSonic Front", Robot.endGame.getUltraSonicVoltFront());

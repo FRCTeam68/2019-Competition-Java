@@ -9,23 +9,23 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Sweeper;
 
-public class RunForwardBack extends Command {
-  public RunForwardBack() {
+public class StopWrist extends Command {
+  public StopWrist() {
     // Use requires() here to declare subsystem dependencies
-  requires(Robot.driveTrain);
-  }
+    requires(Robot.intake);
+ }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
- //   Robot.driveTrain.setDriveLeftSpeed(-.25);
-//Robot.driveTrain.setDriveRightSpeed(.25);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.intake.setIntakeSpeed(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

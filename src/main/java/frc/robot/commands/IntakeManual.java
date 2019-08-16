@@ -4,8 +4,11 @@ package frc.robot.commands;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
+import org.opencv.core.Mat;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 
 public class IntakeManual extends Command {
@@ -30,14 +33,17 @@ public class IntakeManual extends Command {
 
 		joystickSpeed = Robot.oi.getRightXboxManipulatorJoystick();
 
-		Robot.intake.setIntakeSpeed(-Robot.oi.getRightXboxManipulatorJoystick()); 
+		Robot.intake.setIntakeSpeed(-joystickSpeed); 
 
 		if(Robot.sweeper.isDeployed()){
 			Robot.sweeper.setSweeperSpeed(joystickSpeed);
+			Robot.intake.setIntakeSpeed(-joystickSpeed); 
 			if(joystickSpeed > .25 && Robot.intake.getBeamBreak() == true){
-				Robot.sweeper.setSweeperSpeed(RobotMap.MOTOR_STOP);
-				Robot.intake.setIntakeSpeed(RobotMap.MOTOR_STOP);
 				Scheduler.getInstance().add(new DeliverCargo());
+			} else if(joystickSpeed > .05 && Robot.intake.getBeamBreak() == true ){
+				Robot.intake.setIntakeSpeed(0); 
+			} else if(joystickSpeed < -.05 && Robot.intake.getBeamBreak() == true){
+				Robot.intake.setIntakeSpeed(-joystickSpeed); 
 			}
 		} 
 	}
